@@ -22,21 +22,21 @@ public class Test {
         
         
   try {
-//           User p = new User(58229725,"hmaidi","mohamed","aaaa@gmail.com","aaaa","aaaa","aaaa");
+          User p = new User(58229725,"hmaidi","mohamed","aaaa@gmail.com","aaaa","aaaa","aaaa");
 //            User p2 = new User(2,777777788,"hmaidi","mohamed","aaaa@gmail.com","aaaa","aaaa","aaaa");
-//            UserService ps = new UserService();
+           UserService ps = new UserService();
 //            ps.ajouter(p);
 //            ps.modifier(p2);
 //            ps.supprimer(p2);
 //          System.out.println(ps.recuperer(p));
-          Commentaire c = new Commentaire(1,2,"blablablablabla");
-         CommentaireService cs= new CommentaireService();
+ //         Commentaire c = new Commentaire(1,2,"blablablablabla");
+  //       CommentaireService cs= new CommentaireService();
 //          cs.ajouter(c);
 //          
 //          Commentaire c2 = new Commentaire(1,2,"hhhhhhhhhhhhhhhhhhhhhhh");
 //          cs.modifier(c2);
-          cs.supprimer(c);
-          
+  //        cs.supprimer(c);
+    ps.existemail(p.getEmail());
           
           
         } catch (SQLException ex) {

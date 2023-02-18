@@ -58,7 +58,7 @@ public CommentaireService() {
     }
 
     @Override
-    public List<Commentaire> recuperer(Commentaire t) throws SQLException {
+    public List<Commentaire> recuperer() throws SQLException {
         List<Commentaire> commentaires = new ArrayList<>(); 
         String req="select * from Commentaire";
    Statement st = cnx.createStatement();

@@ -44,6 +44,21 @@ public UserService() {
         System.out.println(result + " enregistrement ajouté.");
         
     }
+    
+    
+   public boolean existemail(String email) throws SQLException {
+    boolean exist = false;
+    String query = "SELECT * FROM user WHERE email = ?";
+    PreparedStatement ps = cnx.prepareStatement(query);
+    ps.setString(1, email);
+    ResultSet rs = ps.executeQuery();
+    if (rs.next()) {
+        exist = true;
+        
+    }
+    return exist;
+}
+    
 
     @Override
     public void modifier(User t) throws SQLException {
@@ -70,7 +85,7 @@ public UserService() {
     }
 
     @Override
-    public List<User> recuperer(User t) throws SQLException {
+    public List<User> recuperer() throws SQLException {
    List<User> users = new ArrayList<>();      
    String req="select * from user";
    Statement st = cnx.createStatement();
