@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReclamationController">
+   <children>
+      <VBox prefHeight="93.0" prefWidth="150.0">
+         <children>
+            <ImageView fitHeight="96.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Complaint.png" />
+               </image>
+               <VBox.margin>
+                  <Insets left="30.0" top="10.0" />
+               </VBox.margin>
+            </ImageView>
+         </children>
+      </VBox>
+      <Label fx:id="TypRec" layoutX="6.0" layoutY="129.0" text="TypRec">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="StatusRec" layoutX="5.0" layoutY="174.0" text="StatusRec">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="4.0" layoutY="111.0" text="Type De Reclamation :" textFill="#ee586e">
+         <font>
+            <Font name="Verdana Bold" size="10.0" />
+         </font>
+      </Label>
+      <Label layoutX="4.0" layoutY="157.0" text="Status De Reclamation:" textFill="#ee586e">
+         <font>
+            <Font name="Verdana Bold" size="10.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
