@@ -75,9 +75,11 @@ public class ReponsesService implements IRService<Reponses>{
     return reponsesList;
 }
 
-
-
-
-
-    
+    @Override
+    public void supprimerParRecId(int rec_id) throws SQLException {
+        String query = "DELETE FROM reponses WHERE rec_id=?";
+        pst = cnx.prepareStatement(query);
+        pst.setInt(1, rec_id);
+        pst.executeUpdate();    }
+ 
 }

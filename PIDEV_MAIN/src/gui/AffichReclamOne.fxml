@@ -21,6 +21,16 @@
       </ImageView>
       <AnchorPane layoutX="25.0" layoutY="25.0" prefHeight="550.0" prefWidth="750.0" style="-fx-background-color: WHITE;">
          <children>
+            <Button fx:id="AddRep1" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="483.0" mnemonicParsing="false" onAction="#AjoutRep" prefHeight="45.0" prefWidth="335.0" stylesheets="@style.css" text="Ajouter une réponse">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="RemRec" alignment="CENTER" contentDisplay="CENTER" layoutX="390.0" layoutY="484.0" mnemonicParsing="false" onAction="#RemoveRec" prefHeight="44.0" prefWidth="335.0" style="-fx-background-color: #7a59e4; -fx-background-radius: 10;" text="Supprimer la réclamation" textFill="WHITE">
+               <font>
+                  <Font name="Verdana" size="12.0" />
+               </font>
+            </Button>
             <ImageView fx:id="GoBckBtn" fitHeight="45.0" fitWidth="45.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#GoBck" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@GoBack.png" />
@@ -31,7 +41,7 @@
                   <Font name="Verdana Bold" size="20.0" />
                </font>
             </Label>
-            <TextArea fx:id="RepText" layoutX="14.0" layoutY="357.0" prefHeight="100.0" prefWidth="711.0" />
+            <TextArea fx:id="RepText" layoutX="14.0" layoutY="357.0" prefHeight="100.0" prefWidth="711.0" wrapText="true" />
             <HBox layoutX="65.0" layoutY="17.0" prefHeight="67.0" prefWidth="436.0" style="-fx-spacing: 5;">
                <children>
                   <Label fx:id="TypeRec" text="TypeRec" textFill="#ee586e">
@@ -60,16 +70,16 @@
             </VBox>
             <ScrollPane layoutY="83.0" prefHeight="237.0" prefWidth="750.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="440.0" prefWidth="748.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="748.0">
                      <children>
-                        <VBox layoutX="8.0" layoutY="8.0" prefHeight="403.0" prefWidth="716.0" style="-fx-spacing: 5;">
+                        <VBox layoutX="8.0" layoutY="8.0" prefHeight="209.0" prefWidth="716.0" style="-fx-spacing: 5;">
                            <children>
                               <Label text="Titre de la réclamation :" textFill="#ee586e">
                                  <font>
                                     <Font name="Verdana Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="TitreRec" prefHeight="25.0" prefWidth="716.0" text="TitreRec">
+                              <Label fx:id="TitreRec" prefHeight="25.0" prefWidth="716.0" text="TitreRec" wrapText="true">
                                  <font>
                                     <Font name="Verdana" size="13.0" />
                                  </font>
@@ -79,7 +89,7 @@
                                     <Font name="Verdana Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="DescRec" alignment="TOP_LEFT" prefHeight="167.0" prefWidth="716.0" text="DescRec" wrapText="true">
+                              <Label fx:id="DescRec" alignment="TOP_LEFT" prefHeight="38.0" prefWidth="716.0" text="DescRec" wrapText="true">
                                  <font>
                                     <Font name="Verdana" size="13.0" />
                                  </font>
@@ -89,18 +99,13 @@
                                     <Font name="Verdana Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="DescRep" text="DescRep" />
+                              <Label fx:id="DescRep" text="DescRep" wrapText="true" />
                            </children>
                         </VBox>
                      </children>
                   </AnchorPane>
               </content>
             </ScrollPane>
-            <Button fx:id="AddRep" alignment="CENTER" contentDisplay="CENTER" layoutX="12.0" layoutY="473.0" mnemonicParsing="false" onAction="#AjoutRep" prefHeight="44.0" prefWidth="711.0" stylesheets="@style.css" text="Ajouter une réponse">
-               <font>
-                  <Font name="Verdana" size="12.0" />
-               </font>
-            </Button>
          </children>
       </AnchorPane>
    </children>

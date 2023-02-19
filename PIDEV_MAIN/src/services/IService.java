@@ -17,6 +17,7 @@ public interface IService<T> {
     public void ajouter(T t) throws SQLException;
     public void modifier(T t) throws SQLException;
     public void supprimer(T t) throws SQLException;
+    public void supprimerParRecId(int rec_id) throws SQLException;
     public List<T> recupererParUtilisateur(int userId) throws SQLException;
     public T recupererParId(int id) throws SQLException;
     public List<T> recuperer() throws SQLException;

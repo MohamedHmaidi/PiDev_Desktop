@@ -52,6 +52,15 @@ public class ReclamationService implements IService<Reclamation> {
         pst.setInt(1, r.getRec_id());
         pst.executeUpdate();
     }
+    
+    @Override
+    public void supprimerParRecId(int rec_id) throws SQLException {
+        String query = "DELETE FROM reclamation WHERE rec_id=?";
+        pst = cnx.prepareStatement(query);
+        pst.setInt(1, rec_id);
+        pst.executeUpdate();
+}
+
 
     @Override
     public List<Reclamation> recuperer() throws SQLException {

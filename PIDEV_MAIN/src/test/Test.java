@@ -25,12 +25,7 @@ public class Test {
             for (Reclamation recl : reclam) {
                 System.out.println(recl.toString());
             }
-            // recuperer reclamation Par user Id
-            List<Reclamation> reclamations = rs.recupererParUtilisateur(10);
-            System.out.println("Liste des reclamations");
-            for (Reclamation recl : reclamations) {
-                System.out.println(recl.toString());
-            }
+
             
             
 //            // recover reclamation by ID
@@ -38,23 +33,34 @@ public class Test {
 //            System.out.println("Reclamation with id: " + recl.getRec_id()+ " " + recl.toString());
 
             
-//            
-//            // update the status of a reclamation
-//            Reclamation rToUpdate = new Reclamation(12, 10, "Probleme de paiment","Paiment","Probleme paiment quand je...", "Closed");
-//            rs.modifier(rToUpdate);
-//            System.out.println("Reclamation mis a jour");
-            
+////            
+////            // update the status of a reclamation
+//            Reclamation rToUpdate = new Reclamation(61, 10, "Probleme de paiment","Paiment","Probleme paiment quand je...", "Closed");
+//            rs.ajouter(rToUpdate);
+////            rs.modifier(rToUpdate);
+////            System.out.println("Reclamation mis a jour");
 
+            rs.supprimerParRecId(61);
+
+            // recuperer reclamation Par user Id
+            List<Reclamation> reclamations = rs.recupererParUtilisateur(10);
+            System.out.println("Liste des reclamations");
+            for (Reclamation recl : reclamations) {
+                System.out.println(recl.toString());
+            }
             
-            
-            // delete a reclamation
-            //rs.supprimer(rToUpdate);
-            //System.out.println("Reclamation supprimée");
+////             delete a reclamation
+//            
+//            System.out.println("Reclamation supprimée");
+//            
+
             
 //            // create a new reponse
 //            Reponses rep = new Reponses(506,12,10,"Rep3");
 //            reps.ajouter(rep);
 //            System.out.println("Reponse ajoutée");
+                
+                reps.supprimerParRecId(64);
             
             // recuperer responses pour un utilisateur
             try {
