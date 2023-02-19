@@ -31,6 +31,13 @@ public class Test {
             for (Reclamation recl : reclamations) {
                 System.out.println(recl.toString());
             }
+            
+            
+//            // recover reclamation by ID
+//            Reclamation recl = rs.recupererParId(20);
+//            System.out.println("Reclamation with id: " + recl.getRec_id()+ " " + recl.toString());
+
+            
 //            
 //            // update the status of a reclamation
 //            Reclamation rToUpdate = new Reclamation(12, 10, "Probleme de paiment","Paiment","Probleme paiment quand je...", "Closed");
@@ -44,15 +51,15 @@ public class Test {
             //rs.supprimer(rToUpdate);
             //System.out.println("Reclamation supprimée");
             
-            // create a new reponse
-            Reponses rep = new Reponses(506,12,10,"Rep3");
-            reps.ajouter(rep);
-            System.out.println("Reponse ajoutée");
+//            // create a new reponse
+//            Reponses rep = new Reponses(506,12,10,"Rep3");
+//            reps.ajouter(rep);
+//            System.out.println("Reponse ajoutée");
             
             // recuperer responses pour un utilisateur
             try {
-                List<Reponses> responses = reps.recuperer(new Reponses(0, 0, 10, null));
-                System.out.println("Liste des réponses pour l'utilisateur 10");
+                List<Reponses> responses = reps.recupererParRecId(50);
+                System.out.println("Liste des réponses pour rec");
                 for (Reponses reponse : responses) {
                     System.out.println("Réponse : " + reponse.getRep_desc() + " | Date : " + reponse.getDate_rep());
                 }

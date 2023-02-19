@@ -29,7 +29,7 @@
                </font>
             </Label>
             <TextField fx:id="TitreRec" layoutX="24.0" layoutY="115.0" prefHeight="25.0" prefWidth="640.0" promptText="Sujet" />
-            <TextArea fx:id="DescriptionRec" layoutX="24.0" layoutY="196.0" prefHeight="200.0" prefWidth="640.0" promptText="J'ai un problème quand je..." />
+            <TextArea fx:id="DescriptionRec" layoutX="24.0" layoutY="196.0" prefHeight="200.0" prefWidth="640.0" promptText="J'ai un problème quand je..." wrapText="true" />
             <Label fx:id="labelTitreDescription" layoutX="24.0" layoutY="166.0" prefHeight="30.0" prefWidth="640.0" text="Veuillez fournir des détails sur le problème que vous rencontrez :" textFill="#a05385">
                <font>
                   <Font name="Verdana Bold" size="13.0" />
@@ -40,7 +40,7 @@
                   <Font name="Verdana Bold" size="14.0" />
                </font>
             </Button>
-            <ImageView fx:id="GoBackBtn" fitHeight="43.0" fitWidth="43.0" layoutX="24.0" layoutY="21.0" onMouseClicked="#GoBk" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="GoBackBtn" fitHeight="45.0" fitWidth="45.0" layoutX="24.0" layoutY="22.0" onMouseClicked="#GoBk" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@GoBack.png" />
                </image>

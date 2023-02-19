@@ -91,5 +91,24 @@ public class ReclamationService implements IService<Reclamation> {
             return reclamations;
 }
 
+    @Override
+    public Reclamation recupererParId(int recId) throws SQLException {
+        String query = "SELECT * FROM reclamation WHERE rec_id=?";
+        pst = cnx.prepareStatement(query);
+        pst.setInt(1, recId);
+        ResultSet rs = pst.executeQuery();
+        if (rs.next()) {
+            int userId = rs.getInt("user_id");
+            String titre_rec = rs.getString("titre_rec");
+            String type = rs.getString("type");
+            String description = rs.getString("description");
+            String status = rs.getString("status");
+            return new Reclamation(recId, userId, titre_rec, type, description, status);
+        } else {
+            return null;
+    }
+}
+
+
 
 }

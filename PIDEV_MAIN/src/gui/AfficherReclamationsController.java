@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -27,9 +28,12 @@ public class AfficherReclamationsController implements Initializable {
     private ImageView GoBackBtn;
 
     public int userId;
+    @FXML
+    private Label UsrNbr;
      
     public void setNewUserId(int userId) {
         this.userId = userId;
+        UsrNbr.setText(String.valueOf(userId));
         System.out.println("userId = " + userId);
         try {
             List<Reclamation> reclamations = rs.recupererParUtilisateur(userId);
@@ -40,8 +44,8 @@ public class AfficherReclamationsController implements Initializable {
                 AnchorPane pane = loader.load();
 
                 ReclamationController controller = loader.getController();
-                controller.SetReclamation(reclamation);
-
+                controller.SetReclamation(reclamation, reclamation.getRec_id());
+                controller.setUserId(userId);
                 flpRec.getChildren().add(pane);
             }
         } catch (SQLException | IOException ex) {
