@@ -9,21 +9,32 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import services.ReclamationService;
 
 public class AfficherReclamationsController implements Initializable {
-
+    
     @FXML
     private FlowPane flpRec;
 
     ReclamationService rs = new ReclamationService();
+    
+    @FXML
+    private ImageView GoBackBtn;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public int userId;
+     
+    public void setNewUserId(int userId) {
+        this.userId = userId;
+        System.out.println("userId = " + userId);
         try {
-            List<Reclamation> reclamations = rs.recuperer();
+            List<Reclamation> reclamations = rs.recupererParUtilisateur(userId);
+            System.out.println("Number of reclamations for user " + userId + ": " + reclamations.size());
+            flpRec.getChildren().clear(); // clear the previous reclamations from the view
             for (Reclamation reclamation : reclamations) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Reclamation.fxml"));
                 AnchorPane pane = loader.load();
@@ -36,5 +47,20 @@ public class AfficherReclamationsController implements Initializable {
         } catch (SQLException | IOException ex) {
             System.out.println(ex.getMessage());
         }
+    }   
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // do nothing
     }
+
+    @FXML
+    private void GoBk(MouseEvent event) throws IOException {
+        // Load the new FXML file
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ChoisirReclamationType.fxml"));
+        Parent root = loader.load();
+
+        // Set the root of the current scene to the new FXML file
+        GoBackBtn.getScene().setRoot(root);
+    } 
 }

@@ -20,7 +20,13 @@ public class Test {
             System.out.println("Reclamation ajoutée");
 //            
             // retrieve all the reclamations
-            List<Reclamation> reclamations = rs.recuperer();
+            List<Reclamation> reclam = rs.recuperer();
+            System.out.println("Liste des reclamations");
+            for (Reclamation recl : reclam) {
+                System.out.println(recl.toString());
+            }
+            // recuperer reclamation Par user Id
+            List<Reclamation> reclamations = rs.recupererParUtilisateur(10);
             System.out.println("Liste des reclamations");
             for (Reclamation recl : reclamations) {
                 System.out.println(recl.toString());

@@ -29,6 +29,11 @@
                            </font>
                         </Label>
                         <Line endX="358.0" layoutX="378.0" layoutY="61.0" startX="-362.0" stroke="#ee586e" strokeWidth="2.0" />
+                        <ImageView fx:id="GoBackBtn" fitHeight="43.0" fitWidth="43.0" layoutX="14.0" layoutY="10.0" onMouseClicked="#GoBk" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@GoBack.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </top>

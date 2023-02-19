@@ -7,8 +7,10 @@ package gui;
 import entities.Reclamation;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 /**
@@ -22,6 +24,8 @@ public class ReclamationController implements Initializable {
     private Label TypRec;
     @FXML
     private Label StatusRec;
+    @FXML
+    private Button BtnOpnRec;
 
     /**
      * Initializes the controller class.
@@ -34,6 +38,10 @@ public class ReclamationController implements Initializable {
     public void SetReclamation(Reclamation r) {
         TypRec.setText(r.getType());
         StatusRec.setText(r.getStatus());
+    }
+
+    @FXML
+    private void OpenRec(ActionEvent event) {
     }
     
 }

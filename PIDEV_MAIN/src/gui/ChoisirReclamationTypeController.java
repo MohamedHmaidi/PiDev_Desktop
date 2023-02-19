@@ -10,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -83,6 +82,10 @@ private void GoToRec(ActionEvent event) throws IOException {
         // Load the AfficherReclamations.fxml file
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherReclamations.fxml"));
         Parent root = loader.load();
+        AfficherReclamationsController controller = loader.getController();
+        String userId = IdUser.getText().substring(9);
+        System.out.println("User ID selected: " + userId);
+        controller.setNewUserId(Integer.parseInt(userId));
 
         // Set the loaded FXML file as the scene root
         BtnViewOwnRec.getScene().setRoot(root);

@@ -1,18 +1,23 @@
 package gui;
 
 import entities.Reclamation;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import services.ReclamationService;
 
 public class AjouterReclamationController implements Initializable {
@@ -33,6 +38,8 @@ public class AjouterReclamationController implements Initializable {
     private int userId;
     
     ReclamationService rs = new ReclamationService();
+    @FXML
+    private ImageView GoBackBtn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -94,5 +101,16 @@ public class AjouterReclamationController implements Initializable {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    @FXML
+    private void GoBk(MouseEvent event) throws IOException {
+        // Load the new FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ChoisirReclamationType.fxml"));
+            Parent root = loader.load();
+
+            // Set the root of the current scene to the new FXML file
+            GoBackBtn.getScene().setRoot(root);
+        
     }
 }
