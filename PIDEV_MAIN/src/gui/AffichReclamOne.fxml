@@ -70,9 +70,9 @@
             </VBox>
             <ScrollPane layoutY="83.0" prefHeight="237.0" prefWidth="750.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="386.0" prefWidth="748.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="650.0" prefWidth="748.0">
                      <children>
-                        <VBox layoutX="8.0" layoutY="8.0" prefHeight="209.0" prefWidth="716.0" style="-fx-spacing: 5;">
+                        <VBox layoutX="8.0" layoutY="8.0" prefHeight="641.0" prefWidth="716.0" style="-fx-spacing: 5;">
                            <children>
                               <Label text="Titre de la réclamation :" textFill="#ee586e">
                                  <font>
@@ -99,7 +99,7 @@
                                     <Font name="Verdana Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="DescRep" text="DescRep" wrapText="true" />
+                              <VBox fx:id="DescRep" prefHeight="200.0" prefWidth="100.0" />
                            </children>
                         </VBox>
                      </children>

@@ -60,7 +60,7 @@ public class ReclamationController implements Initializable {
         Parent root = loader.load();
 
         AffichReclamOneController controller = loader.getController();
-        controller.setRecId(rec_id);
+        controller.AfficherReponses(rec_id);
         controller.setUserId(userId);
 
         BtnOpnRec.getScene().setRoot(root);

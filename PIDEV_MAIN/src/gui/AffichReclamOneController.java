@@ -25,6 +25,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import services.ReclamationService;
 import services.ReponsesService;
 
@@ -55,10 +58,13 @@ public class AffichReclamOneController implements Initializable {
     @FXML
     private ImageView GoBckBtn;
     private int userId;
-    @FXML
-    private Label DescRep;
+
     @FXML
     private Button RemRec;
+    @FXML
+    private Button AddRep1;
+    @FXML
+    private VBox DescRep;
 
     /**
      * Initializes the controller class.
@@ -72,8 +78,8 @@ public class AffichReclamOneController implements Initializable {
     this.userId = userId;
 }
 
-
-    public void setRecId(int rec_id) throws SQLException {
+    @FXML
+    public void AfficherReponses(int rec_id) throws SQLException, IOException {
     this.rec_id = rec_id;
 
     // Get the reclamation with the specified ID from the database
@@ -81,20 +87,30 @@ public class AffichReclamOneController implements Initializable {
     List<Reponses> reponses = Reps.recupererParRecId(rec_id);
 
     // Set the labels to display the reclamation data
-    DescRep.setText("");
+    DescRep.getChildren().clear();
+    int numRep = 1;
     for (Reponses rep : reponses) {
-        DescRep.setText(DescRep.getText() + rep.getRep_desc() + "\n");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Reponse.fxml"));
+        AnchorPane reponseNode = loader.load();
+        ReponseController reponseController = loader.getController();
+        reponseController.setData(rep);
+        DescRep.getChildren().add(reponseNode);
+        numRep++;
     }
-    TypeRec.setText("Type de Reclamation: " +r.getType());
+    TypeRec.setText("Type de Reclamation: " + r.getType());
     TitreRec.setText(r.getTitre_rec());
     DescRec.setText(r.getDescription());
     DateCreation.setText(r.getDate_creation().toString());
-    StatusRec.setText("Status: " +r.getStatus());
+    StatusRec.setText("Status: " + r.getStatus());
 }
 
 
+
+
+
+
 @FXML
-private void AjoutRep(ActionEvent event) throws SQLException {
+private void AjoutRep(ActionEvent event) throws SQLException, IOException {
     // Get the response description from the text area
     String repDesc = RepText.getText();
 
@@ -128,9 +144,9 @@ private void AjoutRep(ActionEvent event) throws SQLException {
 
     // Clear the reply text area
     RepText.clear();
+    // Refresh the response page with the newly added response
+    AfficherReponses(rec_id);
 
-    // Refresh the page to display the updated reply
-    setRecId(rec_id);
 }
 
 
