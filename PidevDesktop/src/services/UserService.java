@@ -93,7 +93,7 @@ public UserService() {
    while(rs.next()){
    User p = new User();
    p.setId(rs.getInt("id_user"));
-   p.setId(rs.getInt("tel"));
+   p.setTel(rs.getInt("tel"));
    p.setEmail(rs.getString("email"));
    p.setNom(rs.getString("nom"));
    p.setPrenom(rs.getString("prenom"));

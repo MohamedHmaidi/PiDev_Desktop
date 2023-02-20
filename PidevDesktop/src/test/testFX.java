@@ -25,7 +25,7 @@ public class testFX extends Application {
     public void start(Stage primaryStage) {
       
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/AfficheUser.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/InscriptionUser.fxml"));
             Parent root = loader.load();
             Scene sc = new Scene(root);
             

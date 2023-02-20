@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.EditController">
+   <children>
+      <Label fx:id="nom" layoutX="341.0" layoutY="26.0" prefHeight="23.0" prefWidth="187.0" text="nom">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="prenom" layoutX="341.0" layoutY="64.0" prefHeight="17.0" prefWidth="187.0" text="prenom">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="email" layoutX="341.0" layoutY="97.0" prefHeight="17.0" prefWidth="187.0" text="email">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="tel" layoutX="341.0" layoutY="128.0" prefHeight="17.0" prefWidth="187.0" text="tel">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="mdp" layoutX="341.0" layoutY="163.0" prefHeight="17.0" prefWidth="187.0" text="mot de passe">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="role" layoutX="341.0" layoutY="200.0" prefHeight="17.0" prefWidth="206.0" text="role">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="98.0" fitWidth="104.0" layoutX="28.0" layoutY="29.0">
+         <image>
+            <Image url="@user%20image.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="delb" layoutX="48.0" layoutY="322.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="116.0" text="supprimer" />
+      <Button fx:id="modb" layoutX="181.0" layoutY="322.0" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="116.0" text="modifier" />
+      <Label layoutX="217.0" layoutY="29.0" text="nom:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="217.0" layoutY="66.0" text="prenom:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="217.0" layoutY="99.0" text="email:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="217.0" layoutY="130.0" text="Tel:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="217.0" layoutY="165.0" text="mot de passe:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="217.0" layoutY="202.0" text="role:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

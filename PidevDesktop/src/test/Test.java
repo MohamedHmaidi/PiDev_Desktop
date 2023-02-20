@@ -22,9 +22,10 @@ public class Test {
         
         
   try {
-          User p = new User(58229725,"hmaidi","mohamed","aaaa@gmail.com","aaaa","aaaa","aaaa");
+          User p = new User(14,58229725,"hmaidi","mohamed","aaaa@gmail.com","aaaa","aaaa","aaaa");
 //            User p2 = new User(2,777777788,"hmaidi","mohamed","aaaa@gmail.com","aaaa","aaaa","aaaa");
            UserService ps = new UserService();
+           ps.supprimer(p);
 //            ps.ajouter(p);
 //            ps.modifier(p2);
 //            ps.supprimer(p2);
@@ -36,7 +37,7 @@ public class Test {
 //          Commentaire c2 = new Commentaire(1,2,"hhhhhhhhhhhhhhhhhhhhhhh");
 //          cs.modifier(c2);
   //        cs.supprimer(c);
-    ps.existemail(p.getEmail());
+  //  ps.existemail(p.getEmail());
           
           
         } catch (SQLException ex) {
