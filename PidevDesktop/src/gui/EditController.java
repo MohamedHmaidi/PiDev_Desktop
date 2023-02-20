@@ -5,6 +5,7 @@
 package gui;
 
 import entities.User;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -18,6 +19,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import services.UserService;
 
@@ -48,6 +51,8 @@ public class EditController implements Initializable {
     private User user;
     
     private UserService  us=new UserService();
+    @FXML
+    private ImageView pdp;
     
     /**
      * Initializes the controller class.
@@ -67,6 +72,9 @@ public class EditController implements Initializable {
         tel.setText(Integer.toString(user.getTel()));
         mdp.setText(user.getMdp());
         role.setText(user.getRole());
+         ByteArrayInputStream inputStream = new ByteArrayInputStream(user.getImage());
+       Image image = new Image(inputStream);
+       pdp.setImage(image);
         
     }
 

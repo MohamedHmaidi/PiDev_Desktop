@@ -86,7 +86,7 @@
                   </Label>
                </children>
             </VBox>
-            <ImageView fitHeight="98.0" fitWidth="104.0" layoutX="61.0" layoutY="85.0">
+            <ImageView fx:id="pdp" fitHeight="98.0" fitWidth="104.0" layoutX="61.0" layoutY="85.0">
                <image>
                   <Image url="@user%20image.jpg" />
                </image>

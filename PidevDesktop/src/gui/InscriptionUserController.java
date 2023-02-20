@@ -5,7 +5,10 @@
 package gui;
 
 import entities.User;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.sql.SQLException;
 
 import java.util.ResourceBundle;
@@ -18,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import services.UserService;
 
 /**
@@ -45,8 +49,10 @@ public class InscriptionUserController implements Initializable {
    UserService us= new UserService();
     @FXML
     private Button annuler;
+    @FXML
+    private Button uploadImgBtn;
     
-    
+    private byte[] imageData;
 
     /**
      * Initializes the controller class.
@@ -116,7 +122,8 @@ public class InscriptionUserController implements Initializable {
         p.setTel(Integer.parseInt(teltf.getText()));
         p.setRole(choices.getValue());
         p.setEmail(emailtf.getText());
-        p.setMdp(mdptf.getText());        
+        p.setMdp(mdptf.getText()); 
+        p.setImage(imageData);
         us.ajouter(p);
         
         
@@ -144,6 +151,29 @@ public class InscriptionUserController implements Initializable {
         emailtf.setText("");
         teltf.setText("");
         mdptf.setText("");
+    }
+
+    @FXML
+   private void onUploadButtonClick(ActionEvent event) {
+        
+         FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Image File");
+        fileChooser.getExtensionFilters().addAll(
+        new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            try {
+                imageData = Files.readAllBytes(selectedFile.toPath());
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        
+        
+        
+        
+        
+        
     }
     
 }

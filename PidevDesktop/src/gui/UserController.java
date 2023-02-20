@@ -5,6 +5,7 @@
 package gui;
 
 import entities.User;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -51,6 +53,14 @@ private User u;
    public void setUser(User p){   
    nom.setText(p.getPrenom()+" "+p.getNom());
    email.setText(p.getEmail());
+  
+  ByteArrayInputStream inputStream = new ByteArrayInputStream(p.getImage());
+       Image image = new Image(inputStream);
+       pdp.setImage(image);
+   
+   
+   
+   
    u=p;
    }
 

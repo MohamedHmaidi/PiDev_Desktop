@@ -5,15 +5,25 @@
 package gui;
 
 import entities.User;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import services.UserService;
 
 /**
@@ -40,7 +50,13 @@ public class UpdateController implements Initializable {
     @FXML
     private Button annb;
 private User user;
+private User user_test;
 UserService us = new UserService();
+    @FXML
+    private ImageView pdp;
+    @FXML
+    private Button upbtn;
+    private byte[] imageData;
     /**
      * Initializes the controller class.
      */
@@ -49,12 +65,18 @@ UserService us = new UserService();
          role.getItems().add("Artiste");
         role.getItems().add("simple utilisateur");
         role.getSelectionModel().select("Artiste");
+        
+        
     }    
 
     
     public void senduser(User p){
-    
+    user_test=p;
     user=p;
+    ByteArrayInputStream inputStream = new ByteArrayInputStream(user.getImage());
+       Image image = new Image(inputStream);
+       pdp.setImage(image);
+        
     
     }
     
@@ -94,15 +116,52 @@ if (role.getValue() != null) {
     user.setRole(role.getValue());
 } 
 
+if (imageData != null ) {
+user.setImage(imageData);
         
-        
+}
         us.modifier(user);
+        
+      
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+       
+       alert.setHeaderText(null);
+       alert.setContentText("Modification réussie !!");
+       alert.show();  
+       
+      
+               
+       
+        
         
         
     }
 
     @FXML
     private void reset(ActionEvent event) {
+    }
+
+
+    @FXML
+    private void uploadImgBtn(ActionEvent event) {
+        
+        
+         FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Image File");
+        fileChooser.getExtensionFilters().addAll(
+        new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            try {
+                imageData = Files.readAllBytes(selectedFile.toPath());
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        
+        
+        
+        
     }
     
 }

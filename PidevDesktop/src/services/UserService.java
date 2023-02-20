@@ -5,6 +5,7 @@
 package services;
 
 import entities.User;
+import java.io.ByteArrayInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,7 +37,8 @@ public UserService() {
              stmt.setString(3, t.getEmail());
             stmt.setString(4, t.getMdp());
              stmt.setInt(5, t.getTel());
-              stmt.setString(6, t.getImage());
+              stmt.setBinaryStream(6, new ByteArrayInputStream(t.getImage()), t.getImage().length);
+
                stmt.setString(7, t.getRole());
             int result=stmt.executeUpdate();
         
@@ -69,7 +71,7 @@ public UserService() {
              stmt.setString(3, t.getEmail());
             stmt.setString(4, t.getMdp());
              stmt.setInt(5, t.getTel());
-              stmt.setString(6, t.getImage());
+              stmt.setBinaryStream(6, new ByteArrayInputStream(t.getImage()), t.getImage().length);
                stmt.setString(7, t.getRole());
          stmt.setInt(8, t.getId());
          
@@ -86,7 +88,7 @@ public UserService() {
 
     @Override
     public List<User> recuperer() throws SQLException {
-   List<User> users = new ArrayList<>();      
+    List<User> users = new ArrayList<>();      
    String req="select * from user";
    Statement st = cnx.createStatement();
    ResultSet rs =  st.executeQuery(req);
@@ -98,7 +100,12 @@ public UserService() {
    p.setNom(rs.getString("nom"));
    p.setPrenom(rs.getString("prenom"));
    p.setRole(rs.getString("role"));
-   p.setImage(rs.getString("image"));
+  // p.setImage(rs.getString("image"));
+  
+   byte[] ImageBytes = rs.getBlob("image").getBytes(1l, (int)rs.getBlob("image").length());
+            p.setImage(ImageBytes);
+  
+  
    p.setMdp(rs.getString("mdp"));
    
    users.add(p);
