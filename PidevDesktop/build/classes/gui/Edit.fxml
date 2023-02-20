@@ -5,76 +5,102 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.EditController">
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.EditController">
    <children>
-      <Label fx:id="nom" layoutX="341.0" layoutY="26.0" prefHeight="23.0" prefWidth="187.0" text="nom">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="prenom" layoutX="341.0" layoutY="64.0" prefHeight="17.0" prefWidth="187.0" text="prenom">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="email" layoutX="341.0" layoutY="97.0" prefHeight="17.0" prefWidth="187.0" text="email">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="tel" layoutX="341.0" layoutY="128.0" prefHeight="17.0" prefWidth="187.0" text="tel">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="mdp" layoutX="341.0" layoutY="163.0" prefHeight="17.0" prefWidth="187.0" text="mot de passe">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="role" layoutX="341.0" layoutY="200.0" prefHeight="17.0" prefWidth="206.0" text="role">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="98.0" fitWidth="104.0" layoutX="28.0" layoutY="29.0">
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@user%20image.jpg" />
+            <Image url="@Background.png" />
          </image>
       </ImageView>
-      <Button fx:id="delb" layoutX="48.0" layoutY="322.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="116.0" text="supprimer" />
-      <Button fx:id="modb" layoutX="181.0" layoutY="322.0" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="116.0" text="modifier" />
-      <Label layoutX="217.0" layoutY="29.0" text="nom:">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="217.0" layoutY="66.0" text="prenom:">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="217.0" layoutY="99.0" text="email:">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="217.0" layoutY="130.0" text="Tel:">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="217.0" layoutY="165.0" text="mot de passe:">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="217.0" layoutY="202.0" text="role:">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
+      <AnchorPane id="AnchorPane" layoutX="25.0" layoutY="25.0" prefHeight="550.0" prefWidth="750.0" style="-fx-background-color: WHITE;">
+         <children>
+            <VBox layoutX="496.0" layoutY="37.0" prefHeight="200.0" prefWidth="163.0" style="-fx-spacing: 13;">
+               <children>
+                  <Label fx:id="nom" prefHeight="23.0" prefWidth="187.0" text="nom">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="prenom" prefHeight="17.0" prefWidth="187.0" text="prenom">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="email" prefHeight="17.0" prefWidth="187.0" text="email">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="tel" prefHeight="17.0" prefWidth="187.0" text="tel">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="mdp" prefHeight="17.0" prefWidth="187.0" text="mot de passe">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="role" prefHeight="17.0" prefWidth="206.0" text="role">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutX="244.0" layoutY="37.0" prefHeight="265.0" prefWidth="206.0" style="-fx-spacing: 10;">
+               <children>
+                  <Label lineSpacing="20.0" text="Nom :" textFill="#ee586e">
+                     <font>
+                        <Font name="Verdana Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label lineSpacing="20.0" text="Prenom :" textFill="#ee586e">
+                     <font>
+                        <Font name="Verdana Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label lineSpacing="20.0" text="Email :" textFill="#ee586e">
+                     <font>
+                        <Font name="Verdana Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label lineSpacing="20.0" text="Tel :" textFill="#ee586e">
+                     <font>
+                        <Font name="Verdana Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label lineSpacing="20.0" text="Mot de passe :" textFill="#ee586e">
+                     <font>
+                        <Font name="Verdana Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label lineSpacing="20.0" text="Role :" textFill="#ee586e">
+                     <font>
+                        <Font name="Verdana Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <ImageView fitHeight="98.0" fitWidth="104.0" layoutX="61.0" layoutY="85.0">
+               <image>
+                  <Image url="@user%20image.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="delb" layoutX="26.0" layoutY="445.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="300.0" style="-fx-background-color: #ee586e; -fx-background-radius: 10;" text="Supprimer" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="24.0" />
+               </font></Button>
+            <Button fx:id="modb" layoutX="427.0" layoutY="445.0" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="300.0" style="-fx-background-color: #ee586e; -fx-background-radius: 10;" text="Modifier" textFill="WHITE">
+               <font>
+                  <Font name="Verdana Bold" size="24.0" />
+               </font></Button>
+            <Line endX="598.0" layoutX="126.0" layoutY="309.0" startX="-100.0" stroke="#ee586e" strokeWidth="3.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

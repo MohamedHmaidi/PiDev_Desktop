@@ -6,21 +6,28 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="496.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UpdateController">
    <children>
-      <ImageView fitHeight="100.0" fitWidth="97.0" layoutX="27.0" layoutY="65.0">
+      <ImageView fitHeight="100.0" fitWidth="97.0" layoutX="438.0" layoutY="18.0">
          <image>
             <Image url="@../../../../GitHub/PiDev_Desktop/PidevDesktop/src/gui/user%20image.jpg" />
          </image>
       </ImageView>
-      <TextField fx:id="nom" layoutX="209.0" layoutY="74.0" promptText="nom" />
-      <TextField fx:id="prenom" layoutX="209.0" layoutY="126.0" promptText="prenom" />
-      <TextField fx:id="email" layoutX="209.0" layoutY="178.0" promptText="email" />
-      <TextField fx:id="Tel" layoutX="209.0" layoutY="233.0" promptText="Tel" />
-      <TextField fx:id="mdp" layoutX="209.0" layoutY="284.0" promptText="mot de passe" />
-      <ChoiceBox fx:id="role" layoutX="209.0" layoutY="343.0" prefWidth="150.0" />
-      <Button fx:id="modb" layoutX="157.0" layoutY="427.0" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="108.0" text="modifier" />
-      <Button fx:id="annb" layoutX="298.0" layoutY="427.0" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="108.0" text="annuler" />
+      <TextField fx:id="nom" layoutX="76.0" layoutY="73.0" prefHeight="34.0" prefWidth="217.0" promptText="nom" />
+      <TextField fx:id="prenom" layoutX="76.0" layoutY="125.0" prefHeight="34.0" prefWidth="217.0" promptText="prenom" />
+      <TextField fx:id="email" layoutX="76.0" layoutY="177.0" prefHeight="34.0" prefWidth="217.0" promptText="email" />
+      <TextField fx:id="Tel" layoutX="76.0" layoutY="232.0" prefHeight="34.0" prefWidth="217.0" promptText="Tel" />
+      <TextField fx:id="mdp" layoutX="76.0" layoutY="283.0" prefHeight="34.0" prefWidth="217.0" promptText="mot de passe" />
+      <ChoiceBox fx:id="role" layoutX="76.0" layoutY="342.0" prefHeight="34.0" prefWidth="217.0" style="-fx-background-color: #ee586e;" />
+      <Button fx:id="modb" layoutX="406.0" layoutY="147.0" mnemonicParsing="false" onAction="#modifier" prefHeight="46.0" prefWidth="171.0" style="-fx-background-color: #ee586e; -fx-background-radius: 10;" text="Modifier" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="24.0" />
+         </font></Button>
+      <Button fx:id="annb" layoutX="406.0" layoutY="211.0" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="171.0" style="-fx-background-color: #ee586e; -fx-background-radius: 10;" text="Annuler" textFill="WHITE">
+         <font>
+            <Font name="Verdana Bold" size="24.0" />
+         </font></Button>
    </children>
 </AnchorPane>
