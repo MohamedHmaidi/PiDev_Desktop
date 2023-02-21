@@ -60,6 +60,7 @@ public class AfficheUserController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("User.fxml"));
         AnchorPane pane = loader.load();
         UserController controller = loader.getController();
+        if(users.get(i).getRole().equals("Artiste")||users.get(i).getRole().equals("simple utilisateur")){
          User user=users.get(i);
      
         controller.setUser(user);
@@ -73,7 +74,7 @@ public class AfficheUserController implements Initializable {
         }
         
         }
-            
+        }
             
             
             

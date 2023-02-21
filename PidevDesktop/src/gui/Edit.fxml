@@ -91,11 +91,11 @@
                   <Image url="@user%20image.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="delb" layoutX="26.0" layoutY="445.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="300.0" style="-fx-background-color: #ee586e; -fx-background-radius: 10;" text="Supprimer" textFill="WHITE">
+            <Button fx:id="delb" layoutX="26.0" layoutY="445.0" mnemonicParsing="false" onAction="#delete" prefHeight="25.0" prefWidth="300.0" style="-fx-background-color: #ee586e; -fx-background-radius: 10;" stylesheets="@style.css" text="Supprimer" textFill="WHITE">
                <font>
                   <Font name="Verdana Bold" size="24.0" />
                </font></Button>
-            <Button fx:id="modb" layoutX="427.0" layoutY="445.0" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="300.0" style="-fx-background-color: #ee586e; -fx-background-radius: 10;" text="Modifier" textFill="WHITE">
+            <Button fx:id="modb" layoutX="427.0" layoutY="445.0" mnemonicParsing="false" onAction="#modifier" prefHeight="25.0" prefWidth="300.0" style="-fx-background-color: #ee586e; -fx-background-radius: 10;" stylesheets="@style.css" text="Modifier" textFill="WHITE">
                <font>
                   <Font name="Verdana Bold" size="24.0" />
                </font></Button>

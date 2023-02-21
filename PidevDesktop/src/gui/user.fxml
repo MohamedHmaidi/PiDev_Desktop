@@ -27,7 +27,7 @@
                   <Image url="@user%20image.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="btinfos" layoutX="151.0" layoutY="99.0" mnemonicParsing="false" onAction="#infos" style="-fx-background-color: #ee586e;" text="Plus d'informations" textFill="WHITE">
+            <Button fx:id="btinfos" layoutX="151.0" layoutY="99.0" mnemonicParsing="false" onAction="#infos" style="-fx-background-color: #ee586e;" stylesheets="@style.css" text="Plus d'informations" textFill="WHITE">
                <font>
                   <Font name="Verdana Bold" size="14.0" />
                </font></Button>

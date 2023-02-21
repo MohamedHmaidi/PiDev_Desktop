@@ -43,7 +43,7 @@
                   <Image url="@unnamed.png" />
                </image>
             </ImageView>
-            <Button fx:id="uploadImgBtn" layoutX="84.0" layoutY="439.0" mnemonicParsing="false" onAction="#onUploadButtonClick" prefHeight="25.0" prefWidth="150.0" text="upload" />
+            <Button fx:id="uploadImgBtn" layoutX="84.0" layoutY="439.0" mnemonicParsing="false" onAction="#onUploadButtonClick" prefHeight="25.0" prefWidth="150.0" stylesheets="@style.css" text="upload" />
          </children>
       </AnchorPane>
    </content>

@@ -56,7 +56,7 @@ public class LoginController implements Initializable {
     }    
 
     @FXML
-    private void connect(ActionEvent event) throws SQLException {
+    private void connect(ActionEvent event) throws SQLException, IOException {
         
         if (email.getText().isEmpty()||mdp.getText().isEmpty()){
         
@@ -112,7 +112,37 @@ public class LoginController implements Initializable {
             }
             
             
+            if(UserConnected.getRole().equals("Admin")){
             
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficheUser.fxml"));
+            Parent root = loader.load();
+        
+        
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("ajouter utilisateur");
+        stage.setScene(scene);
+        stage.show();
+        
+            
+            }
+            
+            
+            else{
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Update.fxml"));
+            Parent root = loader.load();
+        UpdateController controller = loader.getController();
+        controller.senduser(UserConnected);
+        
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("modifier");
+        stage.setScene(scene);
+        stage.show();
+            
+            
+            }
             
             
             
