@@ -9,10 +9,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- *
- * @author Skander
- */
 public class MyDB {
 
     String url = "jdbc:mysql://localhost:3307/touskieart";

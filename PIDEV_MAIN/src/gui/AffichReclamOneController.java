@@ -26,7 +26,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import services.ReclamationService;
 import services.ReponsesService;
@@ -74,9 +73,11 @@ public class AffichReclamOneController implements Initializable {
         // TODO
     }    
     
+    //setUserId mab3outha men aand ReclamationController
     public void setUserId(int userId) {
     this.userId = userId;
 }
+    
 
     @FXML
     public void AfficherReponses(int rec_id) throws SQLException, IOException {
@@ -102,6 +103,12 @@ public class AffichReclamOneController implements Initializable {
     DescRec.setText(r.getDescription());
     DateCreation.setText(r.getDate_creation().toString());
     StatusRec.setText("Status: " + r.getStatus());
+    
+    // Check the status of the reclamation and hide the buttons if the status is "Closed"
+    if (r.getStatus().equals("Fermé")) {
+    AddRep1.setDisable(true);
+    RepText.setDisable(true);
+    }
 }
 
 

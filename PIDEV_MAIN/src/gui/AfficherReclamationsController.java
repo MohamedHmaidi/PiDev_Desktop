@@ -37,7 +37,7 @@ public class AfficherReclamationsController implements Initializable {
         System.out.println("userId = " + userId);
         try {
             List<Reclamation> reclamations = rs.recupererParUtilisateur(userId);
-            System.out.println("Number of reclamations for user " + userId + ": " + reclamations.size());
+            System.out.println("DEBUG CONSOLE MSG : nbr reclamations pour user " + userId + ": " + reclamations.size());
             flpRec.getChildren().clear(); // clear the previous reclamations from the view
             for (Reclamation reclamation : reclamations) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Reclamation.fxml"));

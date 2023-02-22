@@ -19,6 +19,7 @@ public class ReclamationService implements IService<Reclamation> {
     }
     
     @Override
+    //ajouter reclamation
     public void ajouter(Reclamation r) throws SQLException {
         String query = "INSERT INTO reclamation (user_id, titre_rec, type, description, `date-creation`, status) VALUES (?, ?, ?, ?, ?, ?)";
         pst = cnx.prepareStatement(query);
@@ -32,6 +33,7 @@ public class ReclamationService implements IService<Reclamation> {
     }
 
     @Override
+    //modifer une reclamation, not used in our context
     public void modifier(Reclamation r) throws SQLException {
         String query = "UPDATE reclamation SET user_id=?, titre_rec=?, type=?, description=?, `date-creation`=?, status=? WHERE rec_id=?";
         pst = cnx.prepareStatement(query);
@@ -44,8 +46,22 @@ public class ReclamationService implements IService<Reclamation> {
         pst.setInt(7, r.getRec_id());
         pst.executeUpdate();
     }
+    
+    
+    
+    @Override
+    //changer etat a ferme et inserer currdate dans date_fin reclamation
+    public void ModifierEtat(int rec_id) throws SQLException {
+    String query = "UPDATE reclamation SET status='Fermé', date_fin=CURDATE() WHERE rec_id=?";
+    pst = cnx.prepareStatement(query);
+    pst.setInt(1, rec_id);
+    pst.executeUpdate();
+}
+
+
 
     @Override
+    //supprimer reclam standard
     public void supprimer(Reclamation r) throws SQLException {
         String query = "DELETE FROM reclamation WHERE rec_id=?";
         pst = cnx.prepareStatement(query);
@@ -54,6 +70,7 @@ public class ReclamationService implements IService<Reclamation> {
     }
     
     @Override
+    //supprimer par id
     public void supprimerParRecId(int rec_id) throws SQLException {
         String query = "DELETE FROM reclamation WHERE rec_id=?";
         pst = cnx.prepareStatement(query);
@@ -63,12 +80,13 @@ public class ReclamationService implements IService<Reclamation> {
 
 
     @Override
+    //Recuperer tous les reclamation , methode ADMIN
     public List<Reclamation> recuperer() throws SQLException {
-        List<Reclamation> reclamations = new ArrayList<>();
-        String query = "SELECT * FROM reclamation";
-        pst = cnx.prepareStatement(query);
-        ResultSet rs = pst.executeQuery();
-        while (rs.next()) {
+            List<Reclamation> reclamations = new ArrayList<>();
+            String query = "SELECT * FROM reclamation";
+            pst = cnx.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
             int rec_id = rs.getInt(1); // 1 represents the first column
             int user_id = rs.getInt("user_id");
             String titre_rec = rs.getString("titre_rec");
@@ -80,33 +98,36 @@ public class ReclamationService implements IService<Reclamation> {
         }
         return reclamations;
 }
+    
 
     @Override
+        //recuperer les reclamation d'un utilisateur specifique
         public List<Reclamation> recupererParUtilisateur(int userId) throws SQLException {
-            List<Reclamation> reclamations = new ArrayList<>();
-            String query = "SELECT * FROM reclamation WHERE user_id=?";
-            pst = cnx.prepareStatement(query);
-            pst.setInt(1, userId);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                int rec_id = rs.getInt(1); // 1 represents the first column
-                String titre_rec = rs.getString("titre_rec");
-                String type = rs.getString("type");
-                String description = rs.getString("description");
-                String status = rs.getString("status");
-                Reclamation reclamation = new Reclamation(rec_id, userId, titre_rec, type, description, status);
-                reclamations.add(reclamation);
+           List<Reclamation> reclamations = new ArrayList<>();
+           String query = "SELECT * FROM reclamation WHERE user_id=?";
+           pst = cnx.prepareStatement(query);
+           pst.setInt(1, userId);
+           ResultSet rs = pst.executeQuery();
+           while (rs.next()) {
+           int rec_id = rs.getInt(1); // 1 represents the first column
+           String titre_rec = rs.getString("titre_rec");
+           String type = rs.getString("type");
+           String description = rs.getString("description");
+           String status = rs.getString("status");
+           Reclamation reclamation = new Reclamation(rec_id, userId, titre_rec, type, description, status);
+           reclamations.add(reclamation);
             }
             return reclamations;
 }
 
     @Override
+    //recuperer une reclamation specifique par id reclamation
     public Reclamation recupererParId(int recId) throws SQLException {
-        String query = "SELECT * FROM reclamation WHERE rec_id=?";
-        pst = cnx.prepareStatement(query);
-        pst.setInt(1, recId);
-        ResultSet rs = pst.executeQuery();
-        if (rs.next()) {
+            String query = "SELECT * FROM reclamation WHERE rec_id=?";
+            pst = cnx.prepareStatement(query);
+            pst.setInt(1, recId);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
             int userId = rs.getInt("user_id");
             String titre_rec = rs.getString("titre_rec");
             String type = rs.getString("type");

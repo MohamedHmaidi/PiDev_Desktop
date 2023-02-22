@@ -42,30 +42,31 @@ public class ReclamationController implements Initializable {
         // TODO
     }    
     
+    //setUserId depuis AfficherReclamationsController passé pour OpenRec() bech nraja3ha maa el goback to fetsh recs for user x
      public void setUserId(int userId) {
         this.userId = userId;
     }
     
+    // Titre , type set
     public void SetReclamation(Reclamation r, int rec_id) {
     TypRec.setText(r.getType());
     StatusRec.setText(r.getStatus());
     this.rec_id = rec_id;
-    System.out.println("Rec id = " + rec_id); //debugging
+    System.out.println("DEBUG CONSOLE MSG Rec id = " + rec_id); //debugging
 }
 
 
     @FXML
+    //yloadi el page reclamation pour User mou3ayen and rec_id mou3ayen
     private void OpenRec(ActionEvent event) throws IOException, SQLException {
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AffichReclamOne.fxml"));
         Parent root = loader.load();
-
         AffichReclamOneController controller = loader.getController();
+        //passage de params
         controller.AfficherReponses(rec_id);
         controller.setUserId(userId);
-
         BtnOpnRec.getScene().setRoot(root);
 }
-
-
-    
+  
 }

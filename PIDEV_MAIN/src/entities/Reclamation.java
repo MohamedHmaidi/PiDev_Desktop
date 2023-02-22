@@ -18,7 +18,7 @@ public class Reclamation {
     private String description;
     private Date date_creation;
     private Date date_fin;
-    private String status = "Open";
+    private String status = "Ouvert";
 
     public Reclamation() {
     }
@@ -44,7 +44,6 @@ public class Reclamation {
     }
 
     public Reclamation(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public int getRec_id() {

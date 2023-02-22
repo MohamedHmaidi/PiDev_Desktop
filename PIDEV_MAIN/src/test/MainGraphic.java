@@ -17,22 +17,27 @@ public class MainGraphic extends Application {
     public void start(Stage primaryStage) throws Exception {
         
         try {
-        // Load the ChoisirReclamation.fxml file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/ChoisirReclamationType.fxml"));
+        // Interface Utilisateur normale
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/ChoisirReclamationType.fxml"));
+        
+        //Interface ADMIN
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/AdminRecPanel.fxml"));
+        
+        
         Parent root = loader.load();
 
-        // Create a new Scene with the root node
+        // new scene avec root node
         Scene scene = new Scene(root,800,600);
         
         primaryStage.setResizable(false);
 
-        // Set the title of the stage
+        // titre stage
         primaryStage.setTitle("Touskieart");
 
-        // Set the scene of the stage
+        // set scene pour stage
         primaryStage.setScene(scene);
 
-        // Show the stage
+        // Show stage
         primaryStage.show();
     }
         catch (IOException ex) {

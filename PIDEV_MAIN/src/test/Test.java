@@ -14,7 +14,7 @@ public class Test {
         ReponsesService reps = new ReponsesService();
         
         try {
-            // create a new reclamation
+            // Creer Nouvelle reclam
             Reclamation r = new Reclamation(10, "Probleme de paiment","Paiment","Probleme paiment quand je...", "Open");
             rs.ajouter(r);
             System.out.println("Reclamation ajoutée");
@@ -25,16 +25,18 @@ public class Test {
             for (Reclamation recl : reclam) {
                 System.out.println(recl.toString());
             }
+            
+            rs.ModifierEtat(72);
 
             
             
-//            // recover reclamation by ID
-//            Reclamation recl = rs.recupererParId(20);
-//            System.out.println("Reclamation with id: " + recl.getRec_id()+ " " + recl.toString());
+            // recuperer par id test
+            Reclamation recl = rs.recupererParId(72);
+            System.out.println("Reclamation with id: " + recl.getRec_id()+ " " + recl.toString());
 
             
 ////            
-////            // update the status of a reclamation
+////            // Mise a jour etat reclam LKOL
 //            Reclamation rToUpdate = new Reclamation(61, 10, "Probleme de paiment","Paiment","Probleme paiment quand je...", "Closed");
 //            rs.ajouter(rToUpdate);
 ////            rs.modifier(rToUpdate);
@@ -42,12 +44,12 @@ public class Test {
 
             rs.supprimerParRecId(61);
 
-            // recuperer reclamation Par user Id
-            List<Reclamation> reclamations = rs.recupererParUtilisateur(10);
-            System.out.println("Liste des reclamations");
-            for (Reclamation recl : reclamations) {
-                System.out.println(recl.toString());
-            }
+//            // recuperer reclamation Par user Id
+//            List<Reclamation> reclamations = rs.recupererParUtilisateur(10);
+//            System.out.println("Liste des reclamations");
+//            for (Reclamation recl : reclamations) {
+//                System.out.println(recl.toString());
+//            }
             
 ////             delete a reclamation
 //            
@@ -55,7 +57,7 @@ public class Test {
 //            
 
             
-//            // create a new reponse
+//            // creer nouvelle rep
 //            Reponses rep = new Reponses(506,12,10,"Rep3");
 //            reps.ajouter(rep);
 //            System.out.println("Reponse ajoutée");

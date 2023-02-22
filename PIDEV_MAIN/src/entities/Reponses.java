@@ -14,6 +14,7 @@ public class Reponses {
     private int rep_id;
     private int rec_id;
     private int user_id;
+    private int admin_id;
     private String rep_desc;
     private Date date_rep;
 
@@ -28,12 +29,29 @@ public class Reponses {
         Date daterep = new Date();
         this.date_rep = daterep;
     }
+    public Reponses(int rep_id, int rec_id, int user_id,int admin_id, String rep_desc) {
+        this.rep_id = rep_id;
+        this.rec_id = rec_id;
+        this.user_id = user_id;
+        this.admin_id = admin_id;
+        this.rep_desc = rep_desc;
+        Date daterep = new Date();
+        this.date_rep = daterep;
+    }
+
 
     public Reponses(int user_id) {
         
     }
-    
 
+    public int getAdmin_id() {
+        return admin_id;
+    }
+
+    public void setAdmin_id(int admin_id) {
+        this.admin_id = admin_id;
+    }
+    
 
     public int getRep_id() {
         return rep_id;

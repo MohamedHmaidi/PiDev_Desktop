@@ -13,7 +13,6 @@ import java.util.List;
  */
 public interface IRService<T> {
     public void ajouter(T t) throws SQLException;
-    public List<T> recuperer(T t) throws SQLException;
     public List<T>recupererParRecId(int rec_id) throws SQLException;
     public void supprimerParRecId(int rec_id) throws SQLException;
 }
