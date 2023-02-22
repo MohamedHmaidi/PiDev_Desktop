@@ -41,9 +41,10 @@ public CommentaireService() {
 
     @Override
     public void modifier(Commentaire t) throws SQLException {
-    String req="update Commentaire set commentaire =?";
+    String req="update Commentaire set commentaire =? where id_com=?" ;
     PreparedStatement stmt = cnx.prepareStatement(req);
      stmt.setString(1, t.getCommentaire());
+     stmt.setInt(2, t.getId_com());
       stmt.executeUpdate();
     }
 

@@ -17,10 +17,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import services.UserService;
 
@@ -53,13 +55,19 @@ public class EditController implements Initializable {
     private UserService  us=new UserService();
     @FXML
     private ImageView pdp;
+    @FXML
+    private ImageView backbtn;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+        if (LoginController.UserConnected.getRole().equals("Admin")){
+        
+        backbtn.setVisible(true);
+        
+        }
     }  
     
     
@@ -79,9 +87,30 @@ public class EditController implements Initializable {
     }
 
     @FXML
-    private void delete(ActionEvent event)  {
+    private void delete(ActionEvent event) throws IOException  {
          try {
             us.supprimer(user);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+       
+       alert.setHeaderText(null);
+       alert.setContentText("Compte supprimé!");
+       alert.show();
+       if(!(LoginController.UserConnected.getRole().equals("Admin"))){
+       
+       
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            Parent root = loader.load();
+      
+        
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Login");
+        stage.setScene(scene);
+        stage.show();
+       
+       }
+       
+            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -107,6 +136,30 @@ public class EditController implements Initializable {
         
        UpdateController controller = loader.getController();
         controller.senduser(user);
+        
+        
+        
+    }
+
+    @FXML
+    private void back(MouseEvent event) throws IOException {
+       
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficheUser.fxml"));
+            Parent root = loader.load();
+      
+        
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Affiche Users");
+        stage.setScene(scene);
+        stage.show();
+        
+        
+        
+        
+        
+        
         
         
         

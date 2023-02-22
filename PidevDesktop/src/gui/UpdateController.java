@@ -5,6 +5,7 @@
 package gui;
 
 import entities.User;
+import static gui.LoginController.UserConnected;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +16,11 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -24,6 +29,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import services.UserService;
 
 /**
@@ -57,6 +63,8 @@ UserService us = new UserService();
     @FXML
     private Button upbtn;
     private byte[] imageData;
+    @FXML
+    private ImageView backbt;
     /**
      * Initializes the controller class.
      */
@@ -84,7 +92,7 @@ UserService us = new UserService();
     
     
     @FXML
-    private void modifier(ActionEvent event) throws SQLException , NumberFormatException {
+    private void modifier(ActionEvent event) throws SQLException , NumberFormatException, IOException {
         
         
                 
@@ -129,9 +137,18 @@ user.setImage(imageData);
        alert.setContentText("Modification réussie !!");
        alert.show();  
        
-      
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("Edit.fxml"));
+            Parent root = loader.load();
+        EditController controller = loader.getController();
+        controller.senduser(user);
+        
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Edit");
+        stage.setScene(scene);
+        stage.show();
                
-       
+      
         
         
         
@@ -163,5 +180,23 @@ user.setImage(imageData);
         
         
     }
+
+    @FXML
+    private void back(MouseEvent event) throws IOException {
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Edit.fxml"));
+            Parent root = loader.load();
+        EditController controller = loader.getController();
+        controller.senduser(user);
+        
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Edit");
+        stage.setScene(scene);
+        stage.show();
+        
+    }
+
+    
     
 }

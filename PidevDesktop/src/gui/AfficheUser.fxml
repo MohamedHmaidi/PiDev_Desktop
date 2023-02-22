@@ -33,7 +33,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <padding>
-                        <Insets top="100.0" />
+                        <Insets bottom="100.0" top="100.0" />
                      </padding>
                   </GridPane>
                </content>

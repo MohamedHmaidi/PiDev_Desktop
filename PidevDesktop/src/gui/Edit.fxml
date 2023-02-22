@@ -100,6 +100,11 @@
                   <Font name="Verdana Bold" size="24.0" />
                </font></Button>
             <Line endX="598.0" layoutX="126.0" layoutY="309.0" startX="-100.0" stroke="#ee586e" strokeWidth="3.0" />
+            <ImageView fx:id="backbtn" fitHeight="51.0" fitWidth="58.0" layoutX="25.0" layoutY="12.0" onMouseClicked="#back" visible="false">
+               <image>
+                  <Image url="@GoBack.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

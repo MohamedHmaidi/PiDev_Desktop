@@ -16,7 +16,7 @@
    <content>
       <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #EE586E;">
          <children>
-            <Text fill="WHITE" layoutX="237.0" layoutY="105.0" lineSpacing="1.0" stroke="#d70b0b" strokeType="OUTSIDE" strokeWidth="0.0" text="Inscription" textAlignment="CENTER" wrappingWidth="325.13671875">
+            <Text fx:id="iscriL" fill="WHITE" layoutX="237.0" layoutY="105.0" lineSpacing="1.0" stroke="#d70b0b" strokeType="OUTSIDE" strokeWidth="0.0" text="Inscription" textAlignment="CENTER" wrappingWidth="325.13671875">
                <font>
                   <Font name="Verdana Bold" size="34.0" />
                </font>
@@ -44,6 +44,11 @@
                </image>
             </ImageView>
             <Button fx:id="uploadImgBtn" layoutX="84.0" layoutY="439.0" mnemonicParsing="false" onAction="#onUploadButtonClick" prefHeight="25.0" prefWidth="150.0" stylesheets="@style.css" text="upload" />
+            <Button fx:id="ret" layoutX="32.0" layoutY="22.0" mnemonicParsing="false" onAction="#retour" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: white;" text="retour" textFill="#ee586e">
+               <font>
+                  <Font name="Verdana Bold" size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </content>

@@ -14,14 +14,20 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import services.UserService;
 
 /**
@@ -53,6 +59,11 @@ public class InscriptionUserController implements Initializable {
     private Button uploadImgBtn;
     
     private byte[] imageData;
+    @FXML
+    private Text iscriL;
+    @FXML
+    private Button ret;
+ 
 
     /**
      * Initializes the controller class.
@@ -63,7 +74,12 @@ public class InscriptionUserController implements Initializable {
         choices.getItems().add("simple utilisateur");
         choices.getSelectionModel().select("Artiste");
         
+    
         
+//        if (LoginController.UserConnected.getRole().equals("Admin")){
+//        iscriL.setText("ajouter un utilisateur");
+//        }
+       
     }    
 
     @FXML
@@ -173,6 +189,39 @@ public class InscriptionUserController implements Initializable {
         
         
         
+        
+    }
+
+    @FXML
+    private void retour(ActionEvent event) throws IOException {
+//       if (LoginController.UserConnected.getRole().equals("Admin")){
+//       
+//       FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficheUser.fxml"));
+//            Parent root = loader.load();
+//      
+//        
+//        Scene scene = new Scene(root);
+//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        stage.setTitle("Affiche Users");
+//        stage.setScene(scene);
+//        stage.show();
+//       
+//       } 
+//       
+//       else if(LoginController.UserConnected==null){
+//       
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+           Parent root = loader.load();
+//      
+//        
+      Scene scene = new Scene(root);
+      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      stage.setTitle("Affiche Users");
+       stage.setScene(scene);
+      stage.show();
+//       
+//       }
+       
         
     }
     

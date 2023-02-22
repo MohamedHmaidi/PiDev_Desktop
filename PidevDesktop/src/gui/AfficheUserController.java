@@ -107,10 +107,18 @@ public class AfficheUserController implements Initializable {
     }
 
     @FXML
-    private void retour(ActionEvent event) {
+    private void retour(ActionEvent event) throws IOException {
         
         
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Commentaire.fxml"));
+            Parent root = loader.load();
         
+        
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Inscription");
+        stage.setScene(scene);
+        stage.show();
         
     }
 }
