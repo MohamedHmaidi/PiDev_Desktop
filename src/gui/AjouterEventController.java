@@ -5,11 +5,14 @@
 package gui;
 
 import entities.Event;
+import entities.Location;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,12 +24,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import services.EventService;
+import services.LocationService;
 
 /**
  * FXML Controller class
@@ -52,16 +59,22 @@ public class AjouterEventController implements Initializable {
     @FXML
     private Button addBtn;
     
+    @FXML
     private Button eventListBtn;
     
     private byte[] imageData;
-    
-    private Event eventInfo;
-    
-    
+    private String selectedLoc;
+    private int selectedLocId;
     
     EventService es = new EventService();
+    LocationService locS = new LocationService();
+    
     @FXML
+    private ImageView imagePreview;
+    @FXML
+    private ChoiceBox<String> locationCBox;
+    @FXML
+    private TextField ticketPriceTf;
     
 
     /**
@@ -69,7 +82,24 @@ public class AjouterEventController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            List<Location> locations = locS.recuperer();
+            locationCBox.setValue(locations.get(0).getLieu_loc());
+            for (int i = 0; i < locations.size(); i++){
+                locationCBox.getItems().add(locations.get(i).getLieu_loc());
+            }
+            locationCBox.setOnAction(event -> {
+                selectedLoc = locationCBox.getValue();
+                for (Location location : locations) {
+                    if (location.getLieu_loc().equals(selectedLoc)) {
+                        selectedLocId = location.getId_loc();
+                        break;
+                    }
+                }
+            });
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }    
 
     @FXML
@@ -82,6 +112,10 @@ public class AjouterEventController implements Initializable {
         if (selectedFile != null) {
             try {
                 imageData = Files.readAllBytes(selectedFile.toPath());
+                //Convert byte[] to InputStream then preview it
+                ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData);
+                Image image = new Image(inputStream);
+                imagePreview.setImage(image);
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -98,12 +132,15 @@ public class AjouterEventController implements Initializable {
             e.setStartDate(java.sql.Date.valueOf(startDateDp.getValue())); //Gives a local date so I converted to Date
             e.setEndDate(java.sql.Date.valueOf(endDateDp.getValue()));
             e.setTicketCount(Integer.parseInt(ticketCountTf.getText()));
-            e.setHost_id(1);
-            e.setLocation_id(1);
+            e.setHost_id(LoginController.UserConnected.getId());
+            e.setLocation_id(selectedLocId);
             e.setAffiche(imageData);
+            e.setTicketPrice(Integer.parseInt(ticketPriceTf.getText()));
             es.ajouter(e);
-            System.out.println("event ajouté avec succes");
-        } catch (SQLException ex) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherListeEvent.fxml"));
+            Parent root = loader.load();
+            MCCSaver.mcc.setContent(root); 
+        } catch (SQLException | IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
@@ -113,21 +150,12 @@ public class AjouterEventController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherListeEvent.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Event List");
-            stage.show();
-            
-            
+            MCCSaver.mcc.setContent(root); 
         } catch (IOException ex) {
             System.out.println("error" + ex.getMessage());
         }
     }
 
-    void eventReceiver(Event eventInfoStore) {
-        eventInfo = eventInfoStore;
-        addBtn.setText("Update");
-    }
+    
     
 }

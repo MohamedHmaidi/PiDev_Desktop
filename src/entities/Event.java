@@ -16,6 +16,7 @@ public class Event {
     private String title, type, description, status;
     private Date startDate, endDate;
     private byte[] affiche;
+    private float ticketPrice;
 
     public Event() {
     }
@@ -57,10 +58,6 @@ public class Event {
         this.type = type;
     }
     
-    
-    
-    
-
     public int getEvent_id() {
         return event_id;
     }
@@ -147,6 +144,14 @@ public class Event {
 
     public void setAffiche(byte[] affiche) {
         this.affiche = affiche;
+    }
+    
+    public float getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(float ticketPrice) {
+        this.ticketPrice = ticketPrice;
     }
 
     @Override

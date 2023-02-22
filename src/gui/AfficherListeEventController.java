@@ -12,15 +12,21 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import services.EventService;
 
 /**
@@ -36,6 +42,8 @@ public class AfficherListeEventController implements Initializable {
     private GridPane eventListGP;
     
     EventService es = new EventService();
+    @FXML
+    private Button addEventBtn;
 
     /**
      * Initializes the controller class.
@@ -43,27 +51,32 @@ public class AfficherListeEventController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            eListScrollPane.setFitToWidth(true);
             List<Event> events = es.recuperer();
-            int row = 0;
+            int row = 1;
             int column = 0;
             for (int i = 0; i < events.size(); i++){
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("SingleEvent.fxml"));
                 AnchorPane pane = loader.load();
                 SingleEventController controller = loader.getController();
                 controller.setData(events.get(i));
-                
-                
                 eventListGP.add(pane, column, row);
-                    row++;
-                    if (column > 0) {
-                        column = 0;
-                        row++;
-                    }
+                    row++;       
             }
-            //eventListGP.prefHeightProperty().bind(eventListGP.prefHeightProperty());
         } catch (SQLException | IOException ex) {
-            Logger.getLogger(AfficherListeEventController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
     }    
+
+    @FXML
+    private void addEventRedirect(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AjouterEvent.fxml"));
+            Parent root = loader.load();
+            MCCSaver.mcc.setContent(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     
 }

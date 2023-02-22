@@ -24,11 +24,14 @@ public class FXMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/AjouterEvent.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Login.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
+            //Load CSS
+            String css = this.getClass().getResource("../assets/css/app.css").toExternalForm();
+            scene.getStylesheets().add(css);
             primaryStage.setScene(scene);
-            primaryStage.setTitle("ajouter event");
+            primaryStage.setTitle("TouskieArt");
             primaryStage.show();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

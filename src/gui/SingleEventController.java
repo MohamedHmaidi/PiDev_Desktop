@@ -34,32 +34,36 @@ public class SingleEventController implements Initializable {
     @FXML
     private Text titleText;
     @FXML
-    private Text descText;
-    @FXML
     private Text startDateText;
     @FXML
     private Button moreInfoBtn;
     
     private Event eventInfo;
+    @FXML
+    private Text typeText;
+    @FXML
+    private Text endDateText;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        afficheIv.maxWidth(202);
+        afficheIv.maxHeight(114);
     }
 
     public void setData(Event e){
         titleText.setText(e.getTitle());
-        descText.setText(e.getDescription());
+        typeText.setText(e.getType());
         startDateText.setText(String.valueOf(e.getStartDate()));
+        endDateText.setText(String.valueOf(e.getEndDate()));
         
         //Convert byte[] to InputStream then read it
         ByteArrayInputStream inputStream = new ByteArrayInputStream(e.getAffiche());
         Image image = new Image(inputStream);
         afficheIv.setImage(image);
-        
+        afficheIv.setPreserveRatio(true);
         //Save event Id:
         eventInfo = e;
     }
@@ -69,17 +73,12 @@ public class SingleEventController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("EventInfo.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Event Info");
-            stage.show();
             EventInfoController controller = loader.getController();
             controller.sendEvent(eventInfo);
-            
+            MCCSaver.mcc.setContent(root);
+              
         } catch (IOException ex) {
-            System.out.println("error" + ex.getMessage());
+            System.out.println(ex.getMessage());
         }
     }
-    
 }

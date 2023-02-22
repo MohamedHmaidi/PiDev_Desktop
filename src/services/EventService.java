@@ -34,7 +34,7 @@ public class EventService implements IService<Event>{
 
     @Override
     public void ajouter(Event t) throws SQLException {
-        String req = "INSERT INTO event(title,type,description,startDate,endDate,ticketCount,host_id,location_id,affiche) VALUES (?,?,?,?,?,?,?,?,?)";
+        String req = "INSERT INTO event(title,type,description,startDate,endDate,ticketCount,host_id,location_id,affiche,ticketPrice) VALUES (?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = cnx.prepareStatement(req);
         ps.setString(1, t.getTitle());
         ps.setString(2, t.getType());
@@ -45,16 +45,25 @@ public class EventService implements IService<Event>{
         ps.setInt(7, t.getHost_id());
         ps.setInt(8, t.getLocation_id());
         ps.setBinaryStream(9, new ByteArrayInputStream(t.getAffiche()), (t.getAffiche()).length);
+        ps.setFloat(10, t.getTicketPrice());
         ps.executeUpdate();
     }
 
     @Override
     public void modifier(Event t) throws SQLException {
-        String req = "UPDATE event SET title = ?, type = ? WHERE event_id = ?";
+        String req = "UPDATE event SET title = ?, type = ?, description = ?, startDate = ?, endDate = ?, ticketCount = ?, location_id = ?, affiche = ?, status = ?, ticketPrice = ? WHERE event_id = ?";
         PreparedStatement ps = cnx.prepareStatement(req);
         ps.setString(1, t.getTitle());
         ps.setString(2, t.getType());
-        ps.setInt(3, t.getEvent_id());
+        ps.setString(3, t.getDescription());
+        ps.setDate(4, t.getStartDate());
+        ps.setDate(5, t.getEndDate());
+        ps.setInt(6, t.getTicketCount());
+        ps.setInt(7, t.getLocation_id());
+        ps.setBinaryStream(8, new ByteArrayInputStream(t.getAffiche()), (t.getAffiche()).length);
+        ps.setString(9, t.getStatus());
+        ps.setFloat(10, t.getTicketPrice());
+        ps.setInt(11, t.getEvent_id());
         ps.executeUpdate();
     }
 
@@ -84,6 +93,7 @@ public class EventService implements IService<Event>{
             e.setTicketCount(rs.getInt("ticketCount"));
             e.setHost_id(rs.getInt("host_id"));
             e.setLocation_id(rs.getInt("location_id"));
+            e.setTicketPrice(rs.getFloat("ticketPrice"));
             
             //BLOB to byte[] array
             byte[] afficheBytes = rs.getBlob("affiche").getBytes(1l, (int)rs.getBlob("affiche").length());
