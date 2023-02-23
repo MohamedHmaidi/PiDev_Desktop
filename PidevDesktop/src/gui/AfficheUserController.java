@@ -93,7 +93,7 @@ public class AfficheUserController implements Initializable {
 
     @FXML
     private void ajouter(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("InscriptionUser.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AjoutUser.fxml"));
             Parent root = loader.load();
         
         

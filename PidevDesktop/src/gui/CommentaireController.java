@@ -23,10 +23,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import services.CommentaireService;
 import utils.MyDB;
 
@@ -49,6 +53,8 @@ public class CommentaireController implements Initializable {
     
     CommentaireService cs = new CommentaireService();
     Commentaire t=new Commentaire();
+    @FXML
+    private Button retbt;
     /**
      * Initializes the controller class.
      */
@@ -156,6 +162,20 @@ public class CommentaireController implements Initializable {
        
         cmtntext.setText("");
        
+    }
+
+    @FXML
+    private void retour(ActionEvent event) throws IOException {
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficheUser.fxml"));
+           Parent root = loader.load();
+//      
+//        
+      Scene scene = new Scene(root);
+      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      stage.setTitle("Affiche Users");
+       stage.setScene(scene);
+      stage.show();
     }
 
         
