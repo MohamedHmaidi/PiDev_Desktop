@@ -1,0 +1,7 @@
+.parent {
+    -fx-background-color : #ffffff;
+    -fx-background-radius : 30px;   
+}
+.sidebar{
+    -fx-background-color: #EE586E ; 
+}
