@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane id="AnchorPane" prefHeight="222.0" prefWidth="554.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AfficherProduitController">
+   <children>
+      <ScrollPane hmax="11.0" hmin="5.0" hvalue="1.0" layoutY="-4.0" prefHeight="686.0" prefWidth="1022.0">
+         <content>
+            <GridPane fx:id="gridProduit" prefHeight="690.0" prefWidth="946.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="595.4000183105469" minWidth="10.0" prefWidth="416.9999633789063" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="478.60003662109375" minWidth="10.0" prefWidth="478.60003662109375" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="383.1999877929687" minHeight="-Infinity" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
