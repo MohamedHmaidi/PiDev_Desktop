@@ -107,6 +107,7 @@
                   <DropShadow />
                </effect>
             </Label>
+            <Button fx:id="NotifBtn" layoutX="32.0" layoutY="449.0" mnemonicParsing="false" onAction="#ShowNotifPanel" stylesheets="@btnStyle.css" text="Voir Notifications" />
          </children>
       </AnchorPane>
    </right>

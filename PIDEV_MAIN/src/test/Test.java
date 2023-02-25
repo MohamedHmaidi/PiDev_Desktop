@@ -15,7 +15,7 @@ public class Test {
         
         try {
             // Creer Nouvelle reclam
-            Reclamation r = new Reclamation(10, "Probleme de paiment","Paiment","Probleme paiment quand je...", "Open");
+            Reclamation r = new Reclamation(10, "Probleme de paiment","Paiment","Probleme paiment quand je...", "Ouvert");
             rs.ajouter(r);
             System.out.println("Reclamation ajoutée");
 //            
@@ -27,12 +27,32 @@ public class Test {
             }
             
             rs.ModifierEtat(72);
+            
+            // Test recupererByStatus
+                try {
+                    List<Reclamation> reclamationsOuvertes = rs.recupererByStatus("Ouvert");
+                    List<Reclamation> reclamationsFermees = rs.recupererByStatus("Fermé");
+
+                    System.out.println("Reclamations Ouvertes:");
+                    for (Reclamation recl : reclamationsOuvertes) {
+                        System.out.println(recl.toString());
+                    }
+
+                    System.out.println("Reclamations Fermées:");
+                    for (Reclamation recl : reclamationsFermees) {
+                        System.out.println(recl.toString());
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+
+                    
 
             
             
-            // recuperer par id test
-            Reclamation recl = rs.recupererParId(72);
-            System.out.println("Reclamation with id: " + recl.getRec_id()+ " " + recl.toString());
+//            // recuperer par id test
+//            Reclamation recl = rs.recupererParId(72);
+//            System.out.println("Reclamation with id: " + recl.getRec_id()+ " " + recl.toString());
 
             
 ////            

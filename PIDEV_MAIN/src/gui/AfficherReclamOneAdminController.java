@@ -4,6 +4,11 @@
  */
 package gui;
 
+
+
+
+
+
 import entities.Reclamation;
 import entities.Reponses;
 import java.io.IOException;
@@ -70,14 +75,10 @@ public class AfficherReclamOneAdminController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-
     }
 
     @FXML
     private void AjoutRep(ActionEvent event) throws SQLException, IOException {
-        
-        
         // Get the response description from the text area
     String repDesc = RepTextAdmin.getText();
 
@@ -91,7 +92,6 @@ public class AfficherReclamOneAdminController implements Initializable {
         alert.showAndWait();
         return;
     }
-
     // Create a new Reponses object with the rec_id, user_id, and response description
     Reponses rep = new Reponses();
     rep.setRec_id(recId);
@@ -109,21 +109,13 @@ public class AfficherReclamOneAdminController implements Initializable {
     alert.setHeaderText(null);
     alert.setContentText("Your reply has been added.");
     alert.showAndWait();
-
     // Clear the reply text area
     RepTextAdmin.clear();
-    
-    
     // RefreshPage
     SetReclamation(recId, AdminID, r);
-
-    
     }
+    
 
-    
-    
-    
-    
     //methode pour changer l'etat du reclamation
     @FXML
     private void ChangeStateToClosed(ActionEvent event) {
@@ -146,15 +138,11 @@ public class AfficherReclamOneAdminController implements Initializable {
             }
         }
 }
-
-
-
+    
     @FXML
     private void GoBck(MouseEvent event) {
     }
 
-    
-    
     
     //Methode Set reclamation avec appel reponses
     void SetReclamation(int rec_id, int AdminIdentificateur, Reclamation reclamation) throws SQLException, IOException {
@@ -174,6 +162,10 @@ public class AfficherReclamOneAdminController implements Initializable {
         AnchorPane reponseNode = loader.load();
         ReponseController reponseController = loader.getController();
         reponseController.setAdminData(rep, AdminID);
+        
+        AffichReclamOneController controller = new AffichReclamOneController();
+        controller.setAdminIdentificateur(AdminID);
+        
         System.out.println("msg de AffichReclamOneAdminController" + AdminID);
         DescRep.getChildren().add(reponseNode);
         numRep++;
@@ -190,9 +182,5 @@ public class AfficherReclamOneAdminController implements Initializable {
     AddRepAdmin.setDisable(true);
     RepTextAdmin.setDisable(true);
     }
-    
 }
-
-
-    
 }

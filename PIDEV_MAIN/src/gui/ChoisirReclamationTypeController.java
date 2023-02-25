@@ -2,6 +2,7 @@ package gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -30,6 +33,8 @@ public class ChoisirReclamationTypeController implements Initializable {
     private Button BtnViewOwnRec;
     @FXML
     private Label IdUser;
+    @FXML
+    private Button NotifBtn;
 
     /**
      * Initializes the controller class.
@@ -90,6 +95,20 @@ private void GoToRec(ActionEvent event) throws IOException {
         // Set the loaded FXML file as the scene root
         BtnViewOwnRec.getScene().setRoot(root);
 }
+
+    @FXML
+    private void ShowNotifPanel(ActionEvent event) throws IOException, SQLException {
+        // Load the AfficherReclamations.fxml file
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("NotifPanelUser.fxml"));
+        Parent root = loader.load();
+        NotifPanelUserController controller = loader.getController();
+        String userId = IdUser.getText().substring(9);
+        System.out.println("User ID selected: " + userId);
+        controller.setNewUserId(Integer.parseInt(userId));
+
+        // Set the loaded FXML file as the scene root
+        BtnViewOwnRec.getScene().setRoot(root);
+    }
 
 
 

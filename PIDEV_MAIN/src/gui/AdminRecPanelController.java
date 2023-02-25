@@ -10,9 +10,12 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
@@ -37,39 +40,79 @@ public class AdminRecPanelController implements Initializable {
     private ReclamationService rs = new ReclamationService();
     @FXML
     private Label AdminId;
+    @FXML
+    private ComboBox<String> ChooseStts;
 
     /**
      * Initializes the controller class.
      */
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        try {
-            // Recuperer toutes les reclam
-            List<Reclamation> reclamations = rs.recuperer();          
-            //Créez une nouvelle instance de ReclamationController pour chaque récupération et ajoutez-la au FlowPane
-            for (Reclamation r : reclamations) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("ReclamationAdmin.fxml"));
-                Pane reclamationNode = loader.load();
-                // Récupérer le contrôleur ReclamationController
-                ReclamationAdminController recAdController = loader.getController();
-                
-                String AdminIdentificateur = AdminId.getText().substring(11);
-                System.out.println( AdminIdentificateur); //debugging
-                
-                // Définir les données de la réclamation, recid, admin_id dans le contrôleur
-                recAdController.SetReclamation(r, r.getRec_id(),Integer.parseInt(AdminIdentificateur));
-                
-                // Ajouter le nœud de réclamation à FlowPane
-                AllRecFlow.getChildren().add(reclamationNode);
-            }
-        } catch (IOException ex) {
-            System.err.println("erreur: " + ex.getMessage());
+public void initialize(URL url, ResourceBundle rb) {
+    try {
+        // Create an observable list with the desired values
+        ObservableList<String> statusList = FXCollections.observableArrayList("Ouvert", "Fermé");
+        // Set the items of the combo box to the observable list
+        ChooseStts.setItems(statusList);
 
-        } catch (SQLException ex) {
-            System.err.println("erreur BD: " + ex.getMessage());
+        // Recuperer toutes les reclam
+        List<Reclamation> reclamations = rs.recuperer();
+        //Créez une nouvelle instance de ReclamationController pour chaque récupération et ajoutez-la au FlowPane
+        for (Reclamation r : reclamations) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReclamationAdmin.fxml"));
+            Pane reclamationNode = loader.load();
+            // Récupérer le contrôleur ReclamationController
+            ReclamationAdminController recAdController = loader.getController();
+
+            String AdminIdentificateur = AdminId.getText().substring(11);
+            System.out.println( AdminIdentificateur); //debugging
+
+            // Définir les données de la réclamation, recid, admin_id dans le contrôleur
+            recAdController.SetReclamation(r, r.getRec_id(),Integer.parseInt(AdminIdentificateur));
+
+            // Ajouter le nœud de réclamation à FlowPane
+            AllRecFlow.getChildren().add(reclamationNode);
         }
 
-    }     
+        // Add an action listener to the ChooseStts combo box
+        ChooseStts.setOnAction((event) -> {
+            try {
+                // Get the selected status
+                String selectedStatus = ChooseStts.getSelectionModel().getSelectedItem();
+                // Retrieve the reclamations with the selected status
+                List<Reclamation> filteredReclamations = rs.recupererByStatus(selectedStatus);
+                // Clear the FlowPane
+                AllRecFlow.getChildren().clear();
+                // Add the filtered reclamations to the FlowPane
+                for (Reclamation r : filteredReclamations) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("ReclamationAdmin.fxml"));
+                    Pane reclamationNode = loader.load();
+                    // Récupérer le contrôleur ReclamationController
+                    ReclamationAdminController recAdController = loader.getController();
+
+                    String AdminIdentificateur = AdminId.getText().substring(11);
+                    System.out.println( AdminIdentificateur); //debugging
+
+                    // Définir les données de la réclamation, recid, admin_id dans le contrôleur
+                    recAdController.SetReclamation(r, r.getRec_id(),Integer.parseInt(AdminIdentificateur));
+
+                    // Ajouter le nœud de réclamation à FlowPane
+                    AllRecFlow.getChildren().add(reclamationNode);
+                }
+            } catch (IOException ex) {
+                System.err.println("erreur: " + ex.getMessage());
+
+            } catch (SQLException ex) {
+                System.err.println("erreur BD: " + ex.getMessage());
+            }
+        });
+    } catch (IOException ex) {
+        System.err.println("erreur: " + ex.getMessage());
+
+    } catch (SQLException ex) {
+        System.err.println("erreur BD: " + ex.getMessage());
+    }
+}
+
     
 }

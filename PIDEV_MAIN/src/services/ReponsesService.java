@@ -16,7 +16,7 @@ import utils.MyDB;
  *
  * @author Theto
  */
-public class ReponsesService implements IRService<Reponses>{
+public class ReponsesService implements RepInterface<Reponses>{
     
     Connection cnx;
     PreparedStatement pst;
@@ -53,6 +53,7 @@ public class ReponsesService implements IRService<Reponses>{
             rep.setRep_id(rs.getInt("rep_id"));
             rep.setRec_id(rs.getInt("rec_id"));
             rep.setUser_id(rs.getInt("user_id"));
+            rep.setAdmin_id(rs.getInt("admin_id"));
             rep.setRep_desc(rs.getString("rep_description"));
             rep.setDate_rep(rs.getDate("date_rep"));
             reponsesList.add(rep);

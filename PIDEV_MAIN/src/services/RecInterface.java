@@ -13,7 +13,7 @@ import java.util.List;
  * @author Skander
  * @param <T>
  */
-public interface IService<T> {
+public interface RecInterface<T> {
     
     public void ajouter(T t) throws SQLException;
     public void modifier(T t) throws SQLException;

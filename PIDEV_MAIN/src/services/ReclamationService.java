@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import utils.MyDB;
 
-public class ReclamationService implements IService<Reclamation> {
+public class ReclamationService implements RecInterface<Reclamation> {
     
     Connection cnx;
     PreparedStatement pst;
@@ -119,6 +119,7 @@ public class ReclamationService implements IService<Reclamation> {
             }
             return reclamations;
 }
+        
 
     @Override
     //recuperer une reclamation specifique par id reclamation
@@ -137,7 +138,26 @@ public class ReclamationService implements IService<Reclamation> {
         } else {
             return null;
     }
+            
 }
+            public List<Reclamation> recupererByStatus(String status) throws SQLException {
+                List<Reclamation> reclamations = new ArrayList<>();
+                String query = "SELECT * FROM reclamation WHERE status=?";
+                pst = cnx.prepareStatement(query);
+                pst.setString(1, status);
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    int rec_id = rs.getInt(1); // 1 represents the first column
+                    int user_id = rs.getInt("user_id");
+                    String titre_rec = rs.getString("titre_rec");
+                    String type = rs.getString("type");
+                    String description = rs.getString("description");
+                    Reclamation reclamation = new Reclamation(rec_id, user_id, titre_rec, type, description, status);
+                    reclamations.add(reclamation);
+                }
+                return reclamations;
+            }
+
 
 
 
