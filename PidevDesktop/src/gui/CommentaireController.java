@@ -31,6 +31,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 import services.CommentaireService;
 import utils.MyDB;
 
@@ -138,6 +139,23 @@ public class CommentaireController implements Initializable {
         UserCommentaireController controller = new UserCommentaireController();
         controller = loader.getController();
         controller.setidcmnt(id);
+        
+       String nom = cs.NomUser(UserConnected.getId());
+        
+        Notifications notifications=Notifications.create();
+        notifications.text(" Commentaire ajouté:"+" "+t.getCommentaire());
+        notifications.title(nom +" "+"a ajouté un commentaire");
+        notifications.darkStyle();
+        notifications.show();
+        
+     
+
+
+
+        
+        
+        
+        
         cmtntext.setText("");
        initialize(null, null);
         

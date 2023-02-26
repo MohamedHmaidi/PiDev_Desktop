@@ -5,10 +5,12 @@
 package gui;
 
 import entities.User;
+import entities.mail;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,8 +40,7 @@ public class LoginController implements Initializable {
     @FXML
     private Button cnbt1;
     @FXML
-    private Text mdp_ob;
-    @FXML
+  
     private TextField email;
     @FXML
     private PasswordField mdp;
@@ -47,6 +48,8 @@ public class LoginController implements Initializable {
     
     public static User UserConnected;
     UserService us=new UserService();
+    @FXML
+    private Button icibt;
 
     /**
      * Initializes the controller class.
@@ -200,7 +203,52 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void mdpoublie(MouseEvent event) throws IOException {
-       }
+    private void mdp_ob(MouseEvent event) {
+    }
+
+    @FXML
+    private void passwrd(ActionEvent event) throws IOException {
+        
+        
+        
+        Random rand = new Random();
+      
     
+  int code = rand.nextInt(9000) + 1000;
+      
+     
+      System.out.println("Le code généré est: " + code);
+mail m = new mail();
+
+mail.send("hmaidi185@gmail.com", "mdp", "test API "+String.valueOf(code), "mohamed.hmaidi@esprit.tn", "223AMT1744");
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("CodeMdp.fxml"));
+            Parent root = loader.load();
+        
+        
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("mdp");
+        stage.setScene(scene);
+        stage.show();
+        
+        CodeMdpController controller = loader.getController();
+        controller.setCode(code);
+        
+        
+        
+        
+        
+    }
+
+  
+
+       
+
+   
+
+
+    
+
+  
 }

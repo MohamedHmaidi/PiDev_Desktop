@@ -76,4 +76,24 @@ public CommentaireService() {
    return commentaires;
     }
     
+    
+   public String NomUser(int idc) throws SQLException {
+    String req = "SELECT nom FROM user WHERE id_user=?";
+    PreparedStatement ps = cnx.prepareStatement(req);
+    ps.setInt(1, idc);
+    
+    ResultSet rs = ps.executeQuery();
+    
+    if (rs.next()) {
+        String nom = rs.getString("nom");
+        return nom;
+    } else {
+        return null; 
+    }
+}
+
+
+
+
+    
 }

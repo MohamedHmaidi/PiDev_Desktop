@@ -118,4 +118,42 @@ public UserService() {
         
         return users;
     }  
+    
+    
+    public List<User> rechercherParNom(String nom) throws SQLException {
+     List<User> users = new ArrayList<>();
+      String req = "SELECT * FROM user WHERE (role='Artiste' OR role='simple utilisateur') AND nom LIKE '%" + nom + "%'";
+     Statement stm = cnx.createStatement();
+    ResultSet rs = stm.executeQuery(req);
+    
+    while(rs.next()){
+   User p = new User();
+   p.setId(rs.getInt("id_user"));
+   p.setTel(rs.getInt("tel"));
+   p.setEmail(rs.getString("email"));
+   p.setNom(rs.getString("nom"));
+   p.setPrenom(rs.getString("prenom"));
+   p.setRole(rs.getString("role"));
+  // p.setImage(rs.getString("image"));
+  
+   byte[] ImageBytes = rs.getBlob("image").getBytes(1l, (int)rs.getBlob("image").length());
+            p.setImage(ImageBytes);
+  
+  
+   p.setMdp(rs.getString("mdp"));
+   
+   users.add(p);
+   
+   
+   }
+   
+   
+        
+        
+        return users;
+    }
+    
+    
+    
+    
 }

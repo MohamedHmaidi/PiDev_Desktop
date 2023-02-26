@@ -18,6 +18,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -37,6 +39,8 @@ public class AfficheUserController implements Initializable {
     private Button ajouttbn;
     @FXML
     private Button retourbtn;
+    @FXML
+    private TextField cher;
 
     /**
      * Initializes the controller class.
@@ -121,4 +125,44 @@ public class AfficheUserController implements Initializable {
         stage.show();
         
     }
+
+   
+
+    @FXML
+    private void chercherkey(KeyEvent event) {
+        String nom = cher.getText();
+    try {
+        List<User> users = us.rechercherParNom(nom);
+        grid.getChildren().clear();
+        int row = 0;
+        int column = 0;
+        for (int i = 0; i < users.size(); i++){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("User.fxml"));
+            AnchorPane pane = loader.load();
+            UserController controller = loader.getController();
+            if(users.get(i).getRole().equals("Artiste") || users.get(i).getRole().equals("simple utilisateur")){
+                User user=users.get(i);
+                controller.setUser(user);
+                grid.add(pane, column, row);
+                row++;
+                if (column > 0) {
+                    column = 0;
+                    row++;
+                }
+            }
+        }
+    } catch (SQLException | IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+        
+        
+        
+        
+        
+        
+        
+    }
+        
+        
+    
 }

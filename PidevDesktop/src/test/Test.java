@@ -1,3 +1,7 @@
+
+import entities.mail;
+import java.util.Random;
+
 ///*
 // * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 // * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -15,10 +19,10 @@
 // *
 // * @author Mohamed
 // */
-//public class Test {
+public class Test {
 //    
 //    
-//    public static void main(String[] args) {
+  public static void main(String[] args) {
 //        
 //        
 //  try {
@@ -43,7 +47,20 @@
 //        } catch (SQLException ex) {
 //            System.out.println(ex.getMessage());
 //        }
-//    }
+
+
+Random rand = new Random();
+      
+    
+      int code = rand.nextInt(9000) + 1000;
+      
+     
+      System.out.println("Le code généré est: " + code);
+mail m = new mail();
+
+mail.send("ihebmsaed41@gmail.com", "mdp", "test API "+String.valueOf(code), "mohamed.hmaidi@esprit.tn", "223AMT1744");
+
+   }
 //    
 //    
-//}
+}
