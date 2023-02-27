@@ -78,7 +78,8 @@ public class EditController implements Initializable {
         prenom.setText(user.getPrenom());
         email.setText(user.getEmail());
         tel.setText(Integer.toString(user.getTel()));
-        mdp.setText(user.getMdp());
+  
+       mdp.setText(user.getMdp().replaceAll(".", "*"));
         role.setText(user.getRole());
          ByteArrayInputStream inputStream = new ByteArrayInputStream(user.getImage());
        Image image = new Image(inputStream);

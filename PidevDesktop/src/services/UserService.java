@@ -78,6 +78,13 @@ public UserService() {
          stmt.executeUpdate();
     }
 
+    
+    
+    
+    
+    
+    
+    
     @Override
     public void supprimer(User t) throws SQLException {
         String req="Delete from user where id_user=?";
@@ -86,39 +93,7 @@ public UserService() {
         stmt.executeUpdate();
     }
 
-    @Override
-    public List<User> recuperer() throws SQLException {
-    List<User> users = new ArrayList<>();      
-   String req="select * from user";
-   Statement st = cnx.createStatement();
-   ResultSet rs =  st.executeQuery(req);
-   while(rs.next()){
-   User p = new User();
-   p.setId(rs.getInt("id_user"));
-   p.setTel(rs.getInt("tel"));
-   p.setEmail(rs.getString("email"));
-   p.setNom(rs.getString("nom"));
-   p.setPrenom(rs.getString("prenom"));
-   p.setRole(rs.getString("role"));
-  // p.setImage(rs.getString("image"));
-  
-   byte[] ImageBytes = rs.getBlob("image").getBytes(1l, (int)rs.getBlob("image").length());
-            p.setImage(ImageBytes);
-  
-  
-   p.setMdp(rs.getString("mdp"));
-   
-   users.add(p);
-   
-   
-   }
-   
-   
-        
-        
-        return users;
-    }  
-    
+
     
     public List<User> rechercherParNom(String nom) throws SQLException {
      List<User> users = new ArrayList<>();
@@ -153,6 +128,48 @@ public UserService() {
         return users;
     }
     
+    
+    public void ModifMDP(String email, String mdp) throws SQLException{
+    
+    String req="Update user set mdp=? where email=?";
+    PreparedStatement stmt = cnx.prepareStatement(req);
+    stmt.setString(1, mdp);
+    stmt.setString(2, email);
+    stmt.executeUpdate();
+    }
+
+    @Override
+    public List<User> recuperer() throws SQLException  {
+    List<User> users = new ArrayList<>();      
+   String req="select * from user";
+   Statement st = cnx.createStatement();
+   ResultSet rs =  st.executeQuery(req);
+   while(rs.next()){
+   User p = new User();
+   p.setId(rs.getInt("id_user"));
+   p.setTel(rs.getInt("tel"));
+   p.setEmail(rs.getString("email"));
+   p.setNom(rs.getString("nom"));
+   p.setPrenom(rs.getString("prenom"));
+   p.setRole(rs.getString("role"));
+  // p.setImage(rs.getString("image"));
+  
+   byte[] ImageBytes = rs.getBlob("image").getBytes(1l, (int)rs.getBlob("image").length());
+            p.setImage(ImageBytes);
+  
+  
+   p.setMdp(rs.getString("mdp"));
+   
+   users.add(p);
+   
+   
+   }
+   
+   
+        
+        
+        return users;
+    }  
     
     
     

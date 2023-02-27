@@ -47,7 +47,7 @@ public class LoginController implements Initializable {
     
     
     public static User UserConnected;
-    UserService us=new UserService();
+    UserService us= new UserService();
     @FXML
     private Button icibt;
 
@@ -211,32 +211,15 @@ public class LoginController implements Initializable {
         
         
         
-        Random rand = new Random();
-      
-    
-  int code = rand.nextInt(9000) + 1000;
-      
-     
-      System.out.println("Le code généré est: " + code);
-mail m = new mail();
-
-mail.send("hmaidi185@gmail.com", "mdp", "test API "+String.valueOf(code), "mohamed.hmaidi@esprit.tn", "223AMT1744");
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("CodeMdp.fxml"));
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("email_check.fxml"));
             Parent root = loader.load();
         
         
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("mdp");
+        stage.setTitle("changement de mot de passe");
         stage.setScene(scene);
         stage.show();
-        
-        CodeMdpController controller = loader.getController();
-        controller.setCode(code);
-        
-        
-        
         
         
     }

@@ -45,6 +45,10 @@ public class AfficheUserController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
@@ -95,6 +99,14 @@ public class AfficheUserController implements Initializable {
     
 }
 
+    
+    
+    
+    
+    
+    
+    
+    
     @FXML
     private void ajouter(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AjoutUser.fxml"));
@@ -132,16 +144,16 @@ public class AfficheUserController implements Initializable {
     private void chercherkey(KeyEvent event) {
         String nom = cher.getText();
     try {
-        List<User> users = us.rechercherParNom(nom);
+        List<User> users_ch = us.rechercherParNom(nom);
         grid.getChildren().clear();
         int row = 0;
         int column = 0;
-        for (int i = 0; i < users.size(); i++){
+        for (int i = 0; i < users_ch.size(); i++){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("User.fxml"));
             AnchorPane pane = loader.load();
             UserController controller = loader.getController();
-            if(users.get(i).getRole().equals("Artiste") || users.get(i).getRole().equals("simple utilisateur")){
-                User user=users.get(i);
+            if(users_ch.get(i).getRole().equals("Artiste") || users_ch.get(i).getRole().equals("simple utilisateur")){
+                User user=users_ch.get(i);
                 controller.setUser(user);
                 grid.add(pane, column, row);
                 row++;

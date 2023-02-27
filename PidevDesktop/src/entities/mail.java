@@ -6,6 +6,7 @@
 package entities;
 
 import java.util.Properties;
+import javafx.scene.control.Alert;
 import javax.mail.Session;
 import javax.mail.Message;
 import javax.mail.Transport;
@@ -50,13 +51,23 @@ public class mail {
             message.setText(msg);
 
             Transport.send(message);
-            
-            JOptionPane.showMessageDialog(null,"Email sended!");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+       
+        alert.setContentText("Email envoyé");
+       alert.setHeaderText(null);
+    
+       alert.show();
+           
             
         } catch (MessagingException e) 
         {
-            JOptionPane.showMessageDialog(null,"Something happened!");
             
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+       
+         alert.setContentText("Email non existe");
+       alert.setHeaderText(null);
+    
+       alert.show();
             throw new RuntimeException(e);
         }
         
