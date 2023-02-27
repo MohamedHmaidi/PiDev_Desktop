@@ -18,10 +18,10 @@ public class MainGraphic extends Application {
         
         try {
         // Interface Utilisateur normale
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/ChoisirReclamationType.fxml"));
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/ChoisirReclamationType.fxml"));
         
         //Interface ADMIN
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/AdminRecPanel.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/AdminRecPanel.fxml"));
         
         
         Parent root = loader.load();

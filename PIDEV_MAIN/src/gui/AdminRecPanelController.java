@@ -15,8 +15,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import services.ReclamationService;
@@ -42,6 +45,8 @@ public class AdminRecPanelController implements Initializable {
     private Label AdminId;
     @FXML
     private ComboBox<String> ChooseStts;
+    @FXML
+    private ImageView StatsBtn;
 
     /**
      * Initializes the controller class.
@@ -113,6 +118,15 @@ public void initialize(URL url, ResourceBundle rb) {
         System.err.println("erreur BD: " + ex.getMessage());
     }
 }
+
+    @FXML
+    private void GoToStatistics(MouseEvent event) throws IOException {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("StatisticsAdmin.fxml"));
+            Parent root = loader.load();
+
+            // Set the root of the current scene to the new FXML file
+            StatsBtn.getScene().setRoot(root);
+    }
 
     
 }

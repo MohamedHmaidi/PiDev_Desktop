@@ -157,6 +157,30 @@ public class ReclamationService implements RecInterface<Reclamation> {
                 }
                 return reclamations;
             }
+            
+            
+        public List<Reclamation> rechercherParMotCle(int userId, String motCle) throws SQLException {
+            List<Reclamation> reclamations = new ArrayList<>();
+            String query = "SELECT * FROM reclamation WHERE user_id = ? AND (titre_rec LIKE ? OR description LIKE ? OR type LIKE ?)";
+            pst = cnx.prepareStatement(query);
+            pst.setInt(1, userId);
+            pst.setString(2, "%" + motCle + "%");
+            pst.setString(3, "%" + motCle + "%");
+            pst.setString(4, "%" + motCle + "%");
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                int recId = rs.getInt("rec_id");
+                String titre_rec = rs.getString("titre_rec");
+                String type = rs.getString("type");
+                String description = rs.getString("description");
+                String status = rs.getString("status");
+                Reclamation reclamation = new Reclamation(recId, userId, titre_rec, type, description, status);
+                reclamations.add(reclamation);
+    }
+    return reclamations;
+}
+
+
 
 
 

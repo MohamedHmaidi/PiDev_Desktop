@@ -11,7 +11,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -30,6 +32,8 @@ public class AfficherReclamationsController implements Initializable {
     public int userId;
     @FXML
     private Label UsrNbr;
+    @FXML
+    private TextField SearchBar;
      
     public void setNewUserId(int userId) {
         this.userId = userId;
@@ -67,4 +71,30 @@ public class AfficherReclamationsController implements Initializable {
         // Set the root of the current scene to the new FXML file
         GoBackBtn.getScene().setRoot(root);
     } 
+
+    @FXML
+        private void Search(KeyEvent event) {
+            String searchTerm = SearchBar.getText();
+            if (searchTerm != null && !searchTerm.isEmpty()) {
+                try {
+                    List<Reclamation> reclamations = rs.rechercherParMotCle(userId, searchTerm);
+                    flpRec.getChildren().clear();
+                    for (Reclamation reclamation : reclamations) {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("Reclamation.fxml"));
+                        AnchorPane pane = loader.load();
+
+                        ReclamationController controller = loader.getController();
+                        controller.SetReclamation(reclamation, reclamation.getRec_id());
+                        controller.setUserId(userId);
+                        flpRec.getChildren().add(pane);
+                    }
+                } catch (SQLException | IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            } else {
+                // If the search bar is empty, reload all reclamations
+                setNewUserId(userId);
+    }
+}
+
 }

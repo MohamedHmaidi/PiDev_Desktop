@@ -26,12 +26,12 @@
                   <Font name="Verdana" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="RemRec" alignment="CENTER" contentDisplay="CENTER" layoutX="390.0" layoutY="484.0" mnemonicParsing="false" onAction="#RemoveRec" prefHeight="44.0" prefWidth="335.0" style="-fx-background-color: #7a59e4; -fx-background-radius: 10;" text="Supprimer la réclamation" textFill="WHITE">
+            <Button fx:id="RemRec" alignment="CENTER" contentDisplay="CENTER" layoutX="390.0" layoutY="484.0" mnemonicParsing="false" onAction="#RemoveRec" prefHeight="44.0" prefWidth="335.0" style="-fx-background-color: #7a59e4; -fx-background-radius: 10; -fx-cursor: HAND;" text="Supprimer la réclamation" textFill="WHITE">
                <font>
                   <Font name="Verdana" size="12.0" />
                </font>
             </Button>
-            <ImageView fx:id="GoBckBtn" fitHeight="45.0" fitWidth="45.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#GoBck" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="GoBckBtn" fitHeight="45.0" fitWidth="45.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#GoBck" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: HAND;">
                <image>
                   <Image url="@GoBack.png" />
                </image>

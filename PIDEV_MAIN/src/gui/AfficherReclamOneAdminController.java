@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -140,7 +141,12 @@ public class AfficherReclamOneAdminController implements Initializable {
 }
     
     @FXML
-    private void GoBck(MouseEvent event) {
+    private void GoBck(MouseEvent event) throws IOException {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminRecPanel.fxml"));
+            Parent root = loader.load();
+
+            // Set the root of the current scene to the new FXML file
+            GoBckBtn.getScene().setRoot(root);
     }
 
     
