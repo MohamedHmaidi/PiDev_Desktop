@@ -15,40 +15,45 @@ public class Commande {
     	private int commande_id ; 
         private int id_user ; 
         private String date_commande ;
-        private double prix ; 
-        private int produit_id ;
         private  String rue;
         private  String ville;
-        private  String adresse;
         private  String code_postal;
         private  String tel;
         private String nom ; 
         private String prenom ; 
-        private int quantite;
 
-    public Commande(int commande_id, int user_id, String date_commande, double prix, int produit_id, String rue, String ville, String adresse, String code_postal, String tel, String nom, String prenom, int quantite) {
+    @Override
+    public String toString() {
+        return "Commande{" + "commande_id=" + commande_id + ", id_user=" + id_user + ", date_commande=" + date_commande + ", rue=" + rue + ", ville=" + ville + ", code_postal=" + code_postal + ", tel=" + tel + ", nom=" + nom + ", prenom=" + prenom + '}';
+    }
+
+    public Commande(int commande_id, int id_user, String date_commande, String rue, String ville, String code_postal, String tel, String nom, String prenom) {
         this.commande_id = commande_id;
-        this.id_user = user_id;
+        this.id_user = id_user;
         this.date_commande = date_commande;
-        this.prix = prix;
-        this.produit_id = produit_id;
         this.rue = rue;
         this.ville = ville;
-        this.adresse = adresse;
         this.code_postal = code_postal;
         this.tel = tel;
         this.nom = nom;
         this.prenom = prenom;
-        this.quantite = quantite;
+    }
+        
+        
+
+    public Commande(int id_user, String date_commande, String rue, String ville, String code_postal, String tel, String nom, String prenom) {
+        this.id_user = id_user;
+        this.date_commande = date_commande;
+        this.rue = rue;
+        this.ville = ville;
+        this.code_postal = code_postal;
+        this.tel = tel;
+        this.nom = nom;
+        this.prenom = prenom;
     }
 
-    public int getQuantite() {
-        return quantite;
-    }
-
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
-    }
+   
+  
 
     public String getNom() {
         return nom;
@@ -68,30 +73,6 @@ public class Commande {
 
     public Commande() {
     }
-
-    public Commande( String rue, String ville, String adresse) {        
-        this.rue = rue;
-        this.ville = ville;
-        this.adresse = adresse;
-        
-   
-  
-}
-
-    public Commande(int commande_id, int user_id, String date_commande, double prix, int produit_id, String rue, String ville, String adresse, String code_postal, String tel) {
-        this.commande_id = commande_id;
-        this.id_user = user_id;
-        this.date_commande = date_commande;
-        this.prix = prix;
-        this.produit_id = produit_id;
-        this.rue = rue;
-        this.ville = ville;
-        this.adresse = adresse;
-        this.code_postal = code_postal;
-        this.tel = tel;
-        this.quantite=quantite;
-    }
-
     public int getCommande_id() {
         return commande_id;
     }
@@ -116,21 +97,6 @@ public class Commande {
         this.date_commande = date_commande;
     }
 
-    public double getPrix() {
-        return prix;
-    }
-
-    public void setPrix(double prix) {
-        this.prix = prix;
-    }
-
-    public int getProduit_id() {
-        return produit_id;
-    }
-
-    public void setProduit_id(int produit_id) {
-        this.produit_id = produit_id;
-    }
 
     public String getRue() {
         return rue;
@@ -148,13 +114,6 @@ public class Commande {
         this.ville = ville;
     }
 
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
 
     public String getCode_postal() {
         return code_postal;

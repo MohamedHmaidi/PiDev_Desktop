@@ -82,7 +82,7 @@ public class CommandeController implements Initializable {
        alert.setContentText("format prenom non valide!");
        alert.show();  }
         
-       else if (!nom.matches("[a-zA-Z]+")) {
+       else if (!nom.matches("[a-zA-Z ]+")) {
        Alert alert = new Alert(AlertType.INFORMATION);
        alert.setTitle("Information Dialog");
        alert.setHeaderText(null);
@@ -96,7 +96,8 @@ public class CommandeController implements Initializable {
     alert.setContentText("Format numéro de téléphone non valide !");
     alert.show();
 }
-       else if (!rue.matches("[a-zA-Z0-9]+")) {
+       
+       else if (!rue.matches("[a-zA-Z0-9 ]+")) {
        Alert alert = new Alert(AlertType.INFORMATION);
        alert.setTitle("Information Dialog");
        alert.setHeaderText(null);
@@ -130,7 +131,7 @@ public class CommandeController implements Initializable {
         p.setVille(villeft.getText());
         p.setCode_postal(codeposft.getText());
         p.setUser_id(4);
-        PS.ajouterCommande(p);
+        PS.ajouterCommande(p,4);
         
         
           Alert alert = new Alert(AlertType.INFORMATION);

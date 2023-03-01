@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="184.0" prefWidth="352.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SousAdminCommandeController">
+   <children>
+      <Label fx:id="commande_id" layoutX="135.0" layoutY="22.0" text="id_com" textFill="#d71010">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Text layoutX="5.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commande ID : ">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="4.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID             : " wrappingWidth="130.12811279296875">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Label fx:id="user_id" layoutX="135.0" layoutY="47.0" text="id_us" textFill="#d71010">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="details" layoutX="217.0" layoutY="62.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" text="Détails" textFill="#302e2e">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button fx:id="confirmer" layoutX="124.0" layoutY="127.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="105.0" text="Confirmer" textFill="RED">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <Button fx:id="supprimer" layoutX="14.0" layoutY="127.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="106.0" text="Supprimer" textFill="RED">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
+      <Separator layoutX="-3.0" orientation="VERTICAL" prefHeight="183.0" prefWidth="3.0" styleClass="parent" stylesheets="@StyleSheet.css" />
+      <Separator layoutX="360.0" orientation="VERTICAL" prefHeight="183.0" prefWidth="3.0" styleClass="parent" stylesheets="@StyleSheet.css" />
+      <Separator layoutX="3.0" layoutY="177.0" prefHeight="6.0" prefWidth="364.0" styleClass="parent" stylesheets="@StyleSheet.css" />
+      <Separator layoutX="2.0" layoutY="-1.0" prefHeight="6.0" prefWidth="364.0" styleClass="parent" stylesheets="@StyleSheet.css" />
+      <Text layoutX="203.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voir commande détails">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Separator layoutX="190.0" layoutY="18.0" orientation="VERTICAL" prefHeight="92.0" prefWidth="6.0" styleClass="parent" stylesheets="@StyleSheet.css" />
+   </children>
+</AnchorPane>
