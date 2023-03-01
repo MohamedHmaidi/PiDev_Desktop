@@ -14,6 +14,7 @@ public class Commentaire {
     private int id_user;
     private int id_event;
     private String commentaire;
+    private int LikeCount;
 
     public Commentaire() {}
 
@@ -22,12 +23,14 @@ public class Commentaire {
         this.id_user = id_user;
         this.id_event = id_event;
         this.commentaire = commentaire;
+        
     }
 
     public Commentaire(int id_user, int id_event, String commentaire) {
         this.id_user = id_user;
         this.id_event = id_event;
         this.commentaire = commentaire;
+        
     }
 
     public int getId_com() {
@@ -62,6 +65,17 @@ public class Commentaire {
         this.commentaire = commentaire;
     }
 
+    public int getLikeCount() {
+        return LikeCount;
+    }
+
+    public void setLikeCount(int LikeCount) {
+        this.LikeCount = LikeCount;
+    }
+
+    
+    
+    
     @Override
     public String toString() {
         return "Commentaire{" + "id_com=" + id_com + ", id_user=" + id_user + ", id_event=" + id_event + ", commentaire=" + commentaire + '}';

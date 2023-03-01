@@ -41,10 +41,11 @@ public CommentaireService() {
 
     @Override
     public void modifier(Commentaire t) throws SQLException {
-    String req="update Commentaire set commentaire =? where id_com=?" ;
+    String req="update Commentaire set commentaire =?, LikeCount=? where id_com=? "  ;
     PreparedStatement stmt = cnx.prepareStatement(req);
      stmt.setString(1, t.getCommentaire());
-     stmt.setInt(2, t.getId_com());
+     stmt.setInt(3, t.getId_com());
+     stmt.setInt(2, t.getLikeCount());
       stmt.executeUpdate();
     }
 
@@ -90,10 +91,43 @@ public CommentaireService() {
     } else {
         return null; 
     }
+    
+    
+    
+    
+    
+    
 }
 
-
-
+ public List<User> recuperer_nom_role(int id_event) throws SQLException {
+    List<User> users = new ArrayList<>();
+    String req = "SELECT user.nom , user.id_user , user.role FROM user INNER JOIN commentaire ON user.id_user = commentaire.id_user WHERE commentaire.id_event=?";
+    PreparedStatement ps = cnx.prepareStatement(req);
+    ps.setInt(1, id_event);
+    ResultSet rs = ps.executeQuery();
+    while(rs.next()) {
+        User p = new User();
+        p.setId(rs.getInt("id_user"));
+        p.setNom(rs.getString("nom"));
+        p.setRole(rs.getString("role"));
+        users.add(p);
+    }
+    return users;
+}
 
     
+public int nbrlike(Commentaire c) throws SQLException{
+    int i = 0;
+    String req = "select LikeCount from commentaire where id_com=?" ;
+    PreparedStatement ps = cnx.prepareStatement(req);
+    ps.setInt(1, c.getId_com());
+    ResultSet rs = ps.executeQuery();
+    while(rs.next()) {
+        i = rs.getInt("LikeCount");
+    }
+    return i;
+}
+ 
+ 
+ 
 }

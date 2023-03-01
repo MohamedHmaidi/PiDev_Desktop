@@ -1,7 +1,10 @@
 package test;
+import entities.Commentaire;
 import entities.mail;
 import java.sql.SQLException;
 import java.util.Random;
+import services.CommentaireService;
+import services.LikeService;
 import services.UserService;
 
 ///*
@@ -24,14 +27,14 @@ import services.UserService;
 public class Test {
 //    
 //    
-  public static void main(String[] args) {
-//        
-//        
- try {
-//          User p = new User(14,58229725,"hmaidi","mohamed","aaaa@gmail.com","aaaa","aaaa","aaaa");
+  public static void main(String[] args) throws SQLException {
+      //          User p = new User(14,58229725,"hmaidi","mohamed","aaaa@gmail.com","aaaa","aaaa","aaaa");
 ////            User p2 = new User(2,777777788,"hmaidi","mohamed","aaaa@gmail.com","aaaa","aaaa","aaaa");
-          UserService ps = new UserService();
-          System.out.println(ps.recuperer());
+// UserService ps = new UserService();
+LikeService ls = new LikeService();
+System.out.println(ls.verif_like(32, 40));
+
+//  System.out.println(cs.recuperer_nom_role(4));
 //           ps.supprimer(p);
 ////            ps.ajouter(p);
 ////            ps.modifier(p2);
@@ -45,23 +48,7 @@ public class Test {
 ////          cs.modifier(c2);
 //  //        cs.supprimer(c);
 //  //  ps.existemail(p.getEmail());
-//          
-//          
-      } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-       }
-
-
-//Random rand = new Random();
-//      
-//    
-//      int code = rand.nextInt(9000) + 1000;
-//      
-//     
-//      System.out.println("Le code généré est: " + code);
-//mail m = new mail();
 //
-//mail.send("ihebmsaed41@gmail.com", "mdp", "test API "+String.valueOf(code), "mohamed.hmaidi@esprit.tn", "223AMT1744");
 //
    }
 //    

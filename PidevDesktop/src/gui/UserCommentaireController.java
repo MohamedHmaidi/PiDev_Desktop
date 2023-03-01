@@ -5,17 +5,25 @@
 package gui;
 
 import entities.Commentaire;
+import entities.Like;
 import entities.User;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import services.CommentaireService;
+import services.LikeService;
 
 /**
  * FXML Controller class
@@ -41,24 +49,89 @@ public class UserCommentaireController implements Initializable {
     private TextField zone;
     private Commentaire c2=new Commentaire();
     CommentaireService cs = new CommentaireService();
+    List<User> l = new ArrayList<>();
+    @FXML
+    private Button jaimebtn;
+    @FXML
+    private Button dislikebtn;
+    private int likenbr;
+    @FXML
+    private Label nbr;
+    @FXML
+    private ImageView up;
+    @FXML
+    private ImageView down;
+    LikeService ls = new LikeService();
+    Boolean verif;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
-    
-    
-    
-    
-    public void setcmnt(Commentaire c){
         
-        user.setText(UserConnected.getNom());
-       role.setText(UserConnected.getRole());
+        
+    }  
+    
+    
+    
+    
+    
+    public void setcmnt(Commentaire c) throws SQLException{
+        
+        
+        
+            verif=ls.verif_like(LoginController.UserConnected.getId(),c.getId_com());
+            if (verif==true){
+            
+            jaimebtn.setDisable(true);
+          dislikebtn.setDisable(false);
+            
+            }
+            
+            
+            if(verif==false){
+              dislikebtn.setDisable(true);
+         jaimebtn.setDisable(false);
+            }
+        
+        
+       
+       if (LoginController.UserConnected.getId()==c.getId_user()){
+       
+       user.setText(UserConnected.getNom());
+       user.setText(UserConnected.getRole());
+       
+       } 
+           
+           
+       
+       List<User> cnmts = cs.recuperer_nom_role(c.getId_event());
+        for (int i = 0; i < cnmts.size(); i++){
+        if (c.getId_user()==cnmts.get(i).getId()){
+        
+        user.setText(cnmts.get(i).getNom());
+        role.setText(cnmts.get(i).getRole());
+        
+        
+        
+        }
+            
+        
+        
+        }
+       
+       
+       
+       
+       
+       
+       
        comment.setText(c.getCommentaire());
+       nbr.setText(String.valueOf(cs.nbrlike(c)));
     c2=c;
+    
+
     
     
     }
@@ -102,6 +175,48 @@ public class UserCommentaireController implements Initializable {
         
         
     }
+
+    @FXML
+    private void likeee(ActionEvent event) throws SQLException {
+        
+            Like like = new Like();
+        like.setId_user(c2.getId_user());
+        like.setId_com(c2.getId_com());
+        like.setEtat(Boolean.TRUE);
+        ls.ajouter(like);
+        
+         likenbr=cs.nbrlike(c2);
+        
+        c2.setLikeCount(likenbr+1);
+       
+        cs.modifier(c2);
+          jaimebtn.setDisable(true);
+          dislikebtn.setDisable(false);
+        nbr.setText(String.valueOf(cs.nbrlike(c2)));
+    
+      
+    }
+
+    @FXML
+    private void dislike(ActionEvent event) throws SQLException {
+             Like like = new Like();
+        like.setId_user(c2.getId_user());
+        like.setId_com(c2.getId_com());
+        like.setEtat(Boolean.FALSE);
+        ls.ajouter(like);
+        
+        
+        
+        
+        likenbr=cs.nbrlike(c2);
+        c2.setLikeCount(likenbr-1);
+        cs.modifier(c2);
+         dislikebtn.setDisable(true);
+         jaimebtn.setDisable(false);
+        nbr.setText(String.valueOf(cs.nbrlike(c2)));
+    }
+
+    
     
     
     

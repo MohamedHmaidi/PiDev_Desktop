@@ -74,7 +74,7 @@ public class CommentaireController implements Initializable {
         int column = 0;
             for (int i = 0; i < cnmts.size(); i++){
                 
-                if ((cnmts.get(i).getId_user()==UserConnected.getId())&&(cnmts.get(i).getId_event()==4)){
+                if ((cnmts.get(i).getId_event()==4)){
             
             FXMLLoader loader = new FXMLLoader(getClass().getResource("UserCommentaire.fxml"));
         AnchorPane pane = loader.load();
