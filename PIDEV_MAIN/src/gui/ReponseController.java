@@ -29,8 +29,10 @@ public class ReponseController implements Initializable {
     void setAdminData(Reponses rep, int adminID) {
         if (rep.getAdmin_id()== adminID) {
             RepOwn.setText("Admin avec ID " + Integer.toString(adminID) + ": ");
+            Rep.setText(rep.getRep_desc());
         } else {
             RepOwn.setText("Utilisateur avec ID " + Integer.toString(rep.getUser_id()) + ": ");
+            Rep.setText(rep.getRep_desc());
         }
     }
 

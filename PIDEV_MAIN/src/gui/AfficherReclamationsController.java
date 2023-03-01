@@ -34,6 +34,8 @@ public class AfficherReclamationsController implements Initializable {
     private Label UsrNbr;
     @FXML
     private TextField SearchBar;
+    @FXML
+    private Label NoRecFound;
      
     public void setNewUserId(int userId) {
         this.userId = userId;
@@ -54,7 +56,13 @@ public class AfficherReclamationsController implements Initializable {
             }
         } catch (SQLException | IOException ex) {
             System.out.println(ex.getMessage());
-        }
+        } if (flpRec.getChildren().isEmpty()) {
+        NoRecFound.setText("Vous n'avez créé aucune réclamation");
+        NoRecFound.setVisible(true);
+    } else {
+        NoRecFound.setVisible(false);
+    }
+        
     }   
 
     @Override
@@ -72,7 +80,7 @@ public class AfficherReclamationsController implements Initializable {
         GoBackBtn.getScene().setRoot(root);
     } 
 
-    @FXML
+        @FXML
         private void Search(KeyEvent event) {
             String searchTerm = SearchBar.getText();
             if (searchTerm != null && !searchTerm.isEmpty()) {
@@ -92,9 +100,17 @@ public class AfficherReclamationsController implements Initializable {
                     System.out.println(ex.getMessage());
                 }
             } else {
-                // If the search bar is empty, reload all reclamations
+                // Si la barre de recherche est vide, reload toutes les réclamations
                 setNewUserId(userId);
     }
+            if (flpRec.getChildren().isEmpty()) {
+        NoRecFound.setText("Aucune réclamation trouvée avec le terme recherché");
+        NoRecFound.setVisible(true);
+    } else {
+        NoRecFound.setVisible(false);
+    }
+}
+            
 }
 
-}
+

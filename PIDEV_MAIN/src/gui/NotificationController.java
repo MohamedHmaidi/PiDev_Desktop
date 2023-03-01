@@ -69,14 +69,10 @@ public class NotificationController implements Initializable {
 
 
     void setReclamation(int rec_id, Date date_creation, String type, int newResponseCount, String status) {
-       if ("Ouvert".equals(status)){ 
+       if ("Fermé".equals(status)){ 
        
-       RepNbr.setText("''" + String.valueOf(newResponseCount)+ "''" );
-       recId.setText( "''" + String.valueOf(rec_id)+ "''");
-       RecType.setText("''" + String.valueOf(type)+ "''");
        
-       } else {
-           LabelrecId.setVisible(false);
+       LabelrecId.setVisible(false);
            recId.setVisible(false);
            LabelRecType.setVisible(false);
            RecType.setVisible(false);
@@ -94,6 +90,12 @@ public class NotificationController implements Initializable {
            LabelMaintenantClosed.setVisible(true);
            IsClosed.setVisible(true);
            IsClosed.setText(status);
+       
+       } else {
+           RepNbr.setText("''" + String.valueOf(newResponseCount)+ "''" );
+       recId.setText( "''" + String.valueOf(rec_id)+ "''");
+       RecType.setText("''" + String.valueOf(type)+ "''");
+           
           
       
        }

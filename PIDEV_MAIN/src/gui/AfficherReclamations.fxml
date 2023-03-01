@@ -45,14 +45,23 @@
                               <Font name="Verdana Bold" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="SearchBar" layoutX="437.0" layoutY="22.0" onKeyTyped="#Search" promptText="🔎 Recherche" style="-fx-cursor: TEXT;" />
+                        <TextField fx:id="SearchBar" focusTraversable="false" layoutX="437.0" layoutY="22.0" onKeyTyped="#Search" promptText="🔎 Recherche" style="-fx-cursor: TEXT;" />
                      </children>
                   </AnchorPane>
                </top>
                <center>
                   <ScrollPane prefHeight="481.0" prefWidth="246.0" BorderPane.alignment="CENTER">
                      <content>
-                        <FlowPane fx:id="flpRec" prefHeight="480.0" prefWidth="751.0" />
+                        <AnchorPane>
+                           <children>
+                              <FlowPane fx:id="flpRec" prefHeight="480.0" prefWidth="751.0" />
+                              <Label fx:id="NoRecFound" layoutX="110.0" layoutY="200.0" text="Rec Error" textFill="#ee586e" visible="false">
+                                 <font>
+                                    <Font name="Verdana Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
                      </content>
                   </ScrollPane>
                </center>

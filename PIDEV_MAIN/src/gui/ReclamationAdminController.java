@@ -37,6 +37,8 @@ public class ReclamationAdminController implements Initializable {
     private int rec_id;
     private int AdminIdentificateur;
     private Reclamation reclamation;
+    @FXML
+    private Label DateCreationOrClosure;
 
     /**
      * Initializes the controller class.
@@ -71,7 +73,12 @@ public class ReclamationAdminController implements Initializable {
     System.out.println("Rec id = " + rec_id); //debugging
     System.out.println("admin id= " + AdminIdentificateur); //
     System.out.println(r.toString()); //
+    if (r.getStatus() == "Fermé") {
+    DateCreationOrClosure.setText("Date de Fermeture");
+    DateRecAdmin.setText(r.getDate_fin().toString());
+    } else {
     DateRecAdmin.setText(r.getDate_creation().toString());
+    }
 }
     
 }

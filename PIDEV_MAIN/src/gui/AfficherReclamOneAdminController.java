@@ -87,9 +87,9 @@ public class AfficherReclamOneAdminController implements Initializable {
     if (repDesc.trim().isEmpty()) {
         // Show a popup error message and return
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
+        alert.setTitle("Erreur");
         alert.setHeaderText(null);
-        alert.setContentText("Please enter a response.");
+        alert.setContentText("Veuillez entrer une réponse.");
         alert.showAndWait();
         return;
     }
@@ -106,9 +106,9 @@ public class AfficherReclamOneAdminController implements Initializable {
 
     // Show a popup message to notify the user that the reply has been added
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle("Success");
+    alert.setTitle("Succès");
     alert.setHeaderText(null);
-    alert.setContentText("Your reply has been added.");
+    alert.setContentText("Votre réponse Admin a été ajoutée.");
     alert.showAndWait();
     // Clear the reply text area
     RepTextAdmin.clear();
@@ -121,12 +121,19 @@ public class AfficherReclamOneAdminController implements Initializable {
     @FXML
     private void ChangeStateToClosed(ActionEvent event) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Boîte de dialogue de confirmation");
-        alert.setHeaderText("Définir le statut a \"Fermé\" ?");
-        alert.setContentText("Cliquez sur OK pour confirmer ou sur Annuler pour revenir");
+    alert.setTitle("Boîte de dialogue de confirmation");
+    alert.setHeaderText("Définir le statut a \"Fermé\" ?");
+    alert.setContentText("Cliquez sur OK pour confirmer ou sur Annuler pour revenir");
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.isPresent() && result.get() == ButtonType.OK) {
+        if (DescRep.getChildren().isEmpty()) {
+            Alert noResponsesAlert = new Alert(AlertType.WARNING);
+            noResponsesAlert.setTitle("Attention");
+            noResponsesAlert.setHeaderText("Impossible de fermer la réclamation");
+            noResponsesAlert.setContentText("La réclamation doit avoir au moins une réponse pour pouvoir être fermée");
+            noResponsesAlert.showAndWait();
+        } else {
             try {
                 rs.ModifierEtat(recId);
                 r.setStatus("Fermé");
@@ -138,6 +145,7 @@ public class AfficherReclamOneAdminController implements Initializable {
                 e.printStackTrace();
             }
         }
+    }
 }
     
     @FXML

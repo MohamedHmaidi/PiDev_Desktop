@@ -5,7 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import utils.MyDB;
 
@@ -82,22 +84,25 @@ public class ReclamationService implements RecInterface<Reclamation> {
     @Override
     //Recuperer tous les reclamation , methode ADMIN
     public List<Reclamation> recuperer() throws SQLException {
-            List<Reclamation> reclamations = new ArrayList<>();
-            String query = "SELECT * FROM reclamation";
-            pst = cnx.prepareStatement(query);
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-            int rec_id = rs.getInt(1); // 1 represents the first column
-            int user_id = rs.getInt("user_id");
-            String titre_rec = rs.getString("titre_rec");
-            String type = rs.getString("type");
-            String description = rs.getString("description");
-            String status = rs.getString("status");
-            Reclamation reclamation = new Reclamation(rec_id, user_id, titre_rec, type, description, status);
-            reclamations.add(reclamation);
-        }
-        return reclamations;
+    List<Reclamation> reclamations = new ArrayList<>();
+    String query = "SELECT * FROM reclamation";
+    pst = cnx.prepareStatement(query);
+    ResultSet rs = pst.executeQuery();
+    while (rs.next()) {
+        int rec_id = rs.getInt(1); // 1 represents the first column
+        int user_id = rs.getInt("user_id");
+        String titre_rec = rs.getString("titre_rec");
+        String type = rs.getString("type");
+        String description = rs.getString("description");
+        String status = rs.getString("status");
+        Date date_creation = rs.getDate("date-creation");
+        Date date_fin = rs.getDate("date_fin");
+        Reclamation reclamation = new Reclamation(rec_id, user_id, titre_rec, type, description, status, date_creation, date_fin);
+        reclamations.add(reclamation);
+    }
+    return reclamations;
 }
+
     
 
     @Override
@@ -140,22 +145,26 @@ public class ReclamationService implements RecInterface<Reclamation> {
     }
             
 }
-            public List<Reclamation> recupererByStatus(String status) throws SQLException {
-                List<Reclamation> reclamations = new ArrayList<>();
-                String query = "SELECT * FROM reclamation WHERE status=?";
-                pst = cnx.prepareStatement(query);
-                pst.setString(1, status);
-                ResultSet rs = pst.executeQuery();
-                while (rs.next()) {
-                    int rec_id = rs.getInt(1); // 1 represents the first column
-                    int user_id = rs.getInt("user_id");
-                    String titre_rec = rs.getString("titre_rec");
-                    String type = rs.getString("type");
-                    String description = rs.getString("description");
-                    Reclamation reclamation = new Reclamation(rec_id, user_id, titre_rec, type, description, status);
-                    reclamations.add(reclamation);
-                }
-                return reclamations;
+    
+    
+        public List<Reclamation> recupererByStatus(String status) throws SQLException {
+            List<Reclamation> reclamations = new ArrayList<>();
+            String query = "SELECT * FROM reclamation WHERE status=?";
+            pst = cnx.prepareStatement(query);
+            pst.setString(1, status);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                int rec_id = rs.getInt(1); // 1 represents the first column
+                int user_id = rs.getInt("user_id");
+                String titre_rec = rs.getString("titre_rec");
+                String type = rs.getString("type");
+                String description = rs.getString("description");
+                Date date_creation = rs.getDate("date-creation");
+                Date date_fin = rs.getDate("date_fin");
+                Reclamation reclamation = new Reclamation(rec_id, user_id, titre_rec, type, description, status, date_creation, date_fin);
+                reclamations.add(reclamation);
+            }
+            return reclamations;
             }
             
             

@@ -55,9 +55,9 @@ public class AdminRecPanelController implements Initializable {
     @Override
 public void initialize(URL url, ResourceBundle rb) {
     try {
-        // Create an observable list with the desired values
+        // Créer une Observable-List avec les valeurs souhaitées
         ObservableList<String> statusList = FXCollections.observableArrayList("Ouvert", "Fermé");
-        // Set the items of the combo box to the observable list
+        // Définissez les éléments du ComboBox sur la OBservableList
         ChooseStts.setItems(statusList);
 
         // Recuperer toutes les reclam
@@ -79,10 +79,10 @@ public void initialize(URL url, ResourceBundle rb) {
             AllRecFlow.getChildren().add(reclamationNode);
         }
 
-        // Add an action listener to the ChooseStts combo box
+        // action listener sur ChooseStts combo box
         ChooseStts.setOnAction((event) -> {
             try {
-                // Get the selected status
+                // get status selectionner
                 String selectedStatus = ChooseStts.getSelectionModel().getSelectedItem();
                 // Retrieve the reclamations with the selected status
                 List<Reclamation> filteredReclamations = rs.recupererByStatus(selectedStatus);

@@ -131,9 +131,9 @@ private void AjoutRep(ActionEvent event) throws SQLException, IOException {
     if (repDesc.trim().isEmpty()) {
         // Show a popup error message and return
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
+        alert.setTitle("Erreur");
         alert.setHeaderText(null);
-        alert.setContentText("Please enter a response.");
+        alert.setContentText("Veuillez entrer une réponse.");
         alert.showAndWait();
         return;
     }
@@ -150,9 +150,9 @@ private void AjoutRep(ActionEvent event) throws SQLException, IOException {
 
     // Show a popup message to notify the user that the reply has been added
     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle("Success");
+    alert.setTitle("Succès");
     alert.setHeaderText(null);
-    alert.setContentText("Your reply has been added.");
+    alert.setContentText("Votre réponse a été ajoutée.");
     alert.showAndWait();
 
     // Clear the reply text area
@@ -182,7 +182,7 @@ private void GoBck(MouseEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText(null);
-        alert.setContentText("Are you sure you want to delete this reclamation?");
+        alert.setContentText("Voulez-vous vraiment supprimer cette réclamation ?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
@@ -199,15 +199,15 @@ private void GoBck(MouseEvent event) throws IOException {
                 
             } catch (SQLException ex) {
                 Alert alertError = new Alert(Alert.AlertType.ERROR);
-                alertError.setTitle("Error");
+                alertError.setTitle("Erreur");
                 alertError.setHeaderText(null);
-                alertError.setContentText("An error occurred while deleting the reclamation.");
+                alertError.setContentText("Une erreur s'est produite lors de la suppression de la récupération.");
                 alertError.showAndWait();
             } catch (IOException ex) {
                 Alert alertError = new Alert(Alert.AlertType.ERROR);
-                alertError.setTitle("Error");
+                alertError.setTitle("Erreur");
                 alertError.setHeaderText(null);
-                alertError.setContentText("An error occurred while loading the reclamations list.");
+                alertError.setContentText("Une erreur s'est produite lors du chargement de la liste des réclamations.");
                 alertError.showAndWait();
             }
         }

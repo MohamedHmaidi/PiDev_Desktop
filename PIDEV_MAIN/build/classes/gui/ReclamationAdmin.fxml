@@ -47,12 +47,12 @@
             <Font name="Verdana" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="8.0" layoutY="143.0" text="Date de creation:" textFill="#ee586e">
+      <Label fx:id="DateCreationOrClosure" layoutX="8.0" layoutY="143.0" text="Date de creation:" textFill="#ee586e">
          <font>
             <Font name="Verdana Bold" size="10.0" />
          </font>
       </Label>
-      <Label fx:id="DateRecAdmin" layoutX="10.0" layoutY="158.0" prefHeight="15.0" prefWidth="165.0" text="TypRec" wrapText="true">
+      <Label fx:id="DateRecAdmin" layoutX="10.0" layoutY="158.0" prefHeight="15.0" prefWidth="165.0" text="DateRec" wrapText="true">
          <font>
             <Font name="Verdana" size="12.0" />
          </font>
