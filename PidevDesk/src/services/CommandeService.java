@@ -21,9 +21,8 @@ public class CommandeService implements IService<Commande>  {
        cnx = MyDB.getInstance().getCnx(); 
     }
     
-    @Override
-    public void ajouter(Commande c) throws SQLException {
-    String req = "INSERT INTO commande (commande_id, user_id, date_commande, prix, produit_id, rue, ville, adresse, code_postal, tel, nom prenom, quantite) VALUES (?, ?)";
+    public void ajouterCommande(Commande c) throws SQLException {
+    String req = "INSERT INTO commande (id_user, date_commande, rue, ville, adresse, code_postal, tel, nom, prenom) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = cnx.prepareStatement(req)) {
             ps.setInt(1, c.getCommande_id());
             ps.setInt(2, c.getUser_id());
@@ -32,6 +31,11 @@ public class CommandeService implements IService<Commande>  {
             ps.executeUpdate();
         }
 }
+    
+    
+    
+    
+    
     @Override
     public void modifier (Commande c) throws SQLException {
         
@@ -53,6 +57,11 @@ public class CommandeService implements IService<Commande>  {
     }
 
     public Commande ajouterProduit(int produit_id) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void ajouter(Commande t) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

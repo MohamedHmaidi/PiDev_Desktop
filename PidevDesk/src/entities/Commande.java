@@ -13,7 +13,7 @@ public class Commande {
 
     
     	private int commande_id ; 
-        private int user_id ; 
+        private int id_user ; 
         private String date_commande ;
         private double prix ; 
         private int produit_id ;
@@ -25,6 +25,22 @@ public class Commande {
         private String nom ; 
         private String prenom ; 
         private int quantite;
+
+    public Commande(int commande_id, int user_id, String date_commande, double prix, int produit_id, String rue, String ville, String adresse, String code_postal, String tel, String nom, String prenom, int quantite) {
+        this.commande_id = commande_id;
+        this.id_user = user_id;
+        this.date_commande = date_commande;
+        this.prix = prix;
+        this.produit_id = produit_id;
+        this.rue = rue;
+        this.ville = ville;
+        this.adresse = adresse;
+        this.code_postal = code_postal;
+        this.tel = tel;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.quantite = quantite;
+    }
 
     public int getQuantite() {
         return quantite;
@@ -64,7 +80,7 @@ public class Commande {
 
     public Commande(int commande_id, int user_id, String date_commande, double prix, int produit_id, String rue, String ville, String adresse, String code_postal, String tel) {
         this.commande_id = commande_id;
-        this.user_id = user_id;
+        this.id_user = user_id;
         this.date_commande = date_commande;
         this.prix = prix;
         this.produit_id = produit_id;
@@ -85,11 +101,11 @@ public class Commande {
     }
 
     public int getUser_id() {
-        return user_id;
+        return id_user;
     }
 
     public void setUser_id(int user_id) {
-        this.user_id = user_id;
+        this.id_user = user_id;
     }
 
     public String getDate_commande() {

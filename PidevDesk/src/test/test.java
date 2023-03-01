@@ -4,12 +4,14 @@
  */
 package test;
 
+import entities.Commande;
 import entities.Panier;
-import entities.Produit;
+import entities.produit;
 import utils.MyDB;
 import java.sql.SQLException;
+import services.CommandeService;
 import services.PanierService;
-import services.ProduitService;
+//import services.ProduitService;
 /**
  *
  * @author ashre
@@ -18,19 +20,17 @@ public class test {
     public static void main(String[] args) {
         
         MyDB db = new MyDB();
-        try {
-        Panier p = new Panier(5,1,10); 
+        Panier a = new Panier(2,1,4);
+        Panier b = new Panier(3,1,4);
+//        Panier c = new Panier(1,1);
+//        Panier d = new Panier(11,1);
         PanierService PS = new PanierService() ;
-        ProduitService ProdS = new ProduitService();
-        Produit p1 = new Produit();
-         p1 = ProdS.recupererProduitParId(1);
-        System.out.println(p1);
-        Panier PA = PS.afficherParId(p.getPanier_id());
-            System.out.println(PA.toString());
-            
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+//        PS.afficherPanier(1);
+        
+        PS.ajouterPanier(a);
+        PS.ajouterPanier(b);
+//        PS.ajouterPanier(c);
+        
         }  
     }
 

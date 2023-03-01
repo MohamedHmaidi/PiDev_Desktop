@@ -4,7 +4,11 @@
  */
 package test;
 
+import entities.produit;
+import entities.Panier;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,12 +21,15 @@ import javafx.stage.Stage;
 
 
 public class testfx extends Application {
+    
+    
+//    public static List<produit> panier = new  ArrayList<>();
 
     @Override
     public void start(Stage primaryStage) {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Panier.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Commande.fxml"));
             Parent root = loader.load();
             Scene sc = new Scene(root);
 

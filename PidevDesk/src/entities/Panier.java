@@ -1,79 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entities;
 
 import java.util.Date;
-
+import java.util.List;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-/**
- *
- * @author ashre
- */
+
 public class Panier {
-    private int panier_id ; 
-    private int produit_id ; 
-    private int quantite ; 
-    private String date ; 
-    private int panier_ref;
+        int id_panier;
+        int id_produit;
+        int id_user;
+        int quantite;
 
-    public Panier(int panier_id, int produit_id, int quantite, String date, int panier_ref) {
-        this.panier_id = panier_id;
-        this.produit_id = produit_id;
-        this.quantite = quantite;
-        this.date = date;
-        this.panier_ref = panier_ref;
-    }
-
-    public int getPanier_ref() {
-        return panier_ref;
-    }
-
-    public void setPanier_ref(int panier_ref) {
-        this.panier_ref = panier_ref;
-    }
-
-    public Panier() {
-    }
-
-    public Panier(int quantite) {
+    public Panier(int id_panier, int id_produit, int id_user, int quantite) {
+        this.id_panier = id_panier;
+        this.id_produit = id_produit;
+        this.id_user = id_user;
         this.quantite = quantite;
     }
-    
-    public Panier(int panier_id, int produit_id) {
-        this.panier_id = panier_id;
-        this.produit_id = produit_id;
+
+    public int getId_produit() {
+        return id_produit;
     }
 
-    public Panier(int panier_id, int produit_id, int quantite) {
-        this.panier_id = panier_id;
-        this.produit_id = produit_id;
-        this.quantite = quantite;
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        this.date = now.format(formatter);
-    }
-
-    public Panier(int panierId, int produitId, int quantite, String Date) {
-       
-    }
-
-    public int getPanier_id() {
-        return panier_id;
-    }
-
-    public void setPanier_id(int panier_id) {
-        this.panier_id = panier_id;
-    }
-
-    public int getProduit_id() {
-        return produit_id;
-    }
-
-    public void setProduit_id(int produit_id) {
-        this.produit_id = produit_id;
+    public void setId_produit(int id_produit) {
+        this.id_produit = id_produit;
     }
 
     public int getQuantite() {
@@ -84,13 +34,42 @@ public class Panier {
         this.quantite = quantite;
     }
 
-    public String getDate() {
-        return date;
+    public Panier(int produit_id, int id_user) {
+        this.id_produit = produit_id;
+        this.id_user = id_user;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public Panier(int id_panier, int produit_id, int id_user) {
+        this.id_panier = id_panier;
+        this.id_produit = produit_id;
+        this.id_user = id_user;
     }
 
-  
+    public Panier() {
+    }
+
+    public int getId_panier() {
+        return id_panier;
+    }
+
+    public void setId_panier(int id_panier) {
+        this.id_panier = id_panier;
+    }
+
+    public int getProduit_id() {
+        return id_produit;
+    }
+
+    public void setProduit_id(int produit_id) {
+        this.id_produit = produit_id;
+    }
+
+    public int getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
+
 }
