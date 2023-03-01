@@ -178,31 +178,56 @@ public class UserCommentaireController implements Initializable {
 
     @FXML
     private void likeee(ActionEvent event) throws SQLException {
-        
+       
             Like like = new Like();
-        like.setId_user(c2.getId_user());
+        like.setId_user(LoginController.UserConnected.getId());
         like.setId_com(c2.getId_com());
         like.setEtat(Boolean.TRUE);
+        
+    List<Like> likes = ls.affiche_like(like);
+    if (likes.size()==0){   
         ls.ajouter(like);
-        
-         likenbr=cs.nbrlike(c2);
-        
+        likenbr=cs.nbrlike(c2);
         c2.setLikeCount(likenbr+1);
        
         cs.modifier(c2);
           jaimebtn.setDisable(true);
           dislikebtn.setDisable(false);
-        nbr.setText(String.valueOf(cs.nbrlike(c2)));
+          nbr.setText(String.valueOf(cs.nbrlike(c2)));
+    }
+    
+    
+    else{
+    
+    ls.ModifLike(like);
+    likenbr=cs.nbrlike(c2);
+        c2.setLikeCount(likenbr+1);
+       
+        cs.modifier(c2);
+          jaimebtn.setDisable(true);
+          dislikebtn.setDisable(false);
+          nbr.setText(String.valueOf(cs.nbrlike(c2)));
+    
+    }
+         
+        
+        
+        
     
       
     }
 
     @FXML
     private void dislike(ActionEvent event) throws SQLException {
-             Like like = new Like();
-        like.setId_user(c2.getId_user());
+        //c2.getId_user()     
+        Like like = new Like();
+        like.setId_user(LoginController.UserConnected.getId());
         like.setId_com(c2.getId_com());
         like.setEtat(Boolean.FALSE);
+        List<Like> likes = ls.affiche_like(like);
+        
+        if (likes.size()==0){ 
+        
         ls.ajouter(like);
         
         
@@ -213,7 +238,26 @@ public class UserCommentaireController implements Initializable {
         cs.modifier(c2);
          dislikebtn.setDisable(true);
          jaimebtn.setDisable(false);
+        nbr.setText(String.valueOf(cs.nbrlike(c2))); }
+        
+        
+        else{       
+        
+        ls.ModifLike(like);
+        
+         likenbr=cs.nbrlike(c2);
+        c2.setLikeCount(likenbr-1);
+        cs.modifier(c2);
+         dislikebtn.setDisable(true);
+         jaimebtn.setDisable(false);
         nbr.setText(String.valueOf(cs.nbrlike(c2)));
+        
+        
+        
+        
+        
+        }
+        
     }
 
     

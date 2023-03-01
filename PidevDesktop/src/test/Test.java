@@ -1,5 +1,6 @@
 package test;
 import entities.Commentaire;
+import entities.Like;
 import entities.mail;
 import java.sql.SQLException;
 import java.util.Random;
@@ -31,9 +32,12 @@ public class Test {
       //          User p = new User(14,58229725,"hmaidi","mohamed","aaaa@gmail.com","aaaa","aaaa","aaaa");
 ////            User p2 = new User(2,777777788,"hmaidi","mohamed","aaaa@gmail.com","aaaa","aaaa","aaaa");
 // UserService ps = new UserService();
+Like l=new Like();
+l.setId_com(40);
+l.setId_user(32);
 LikeService ls = new LikeService();
-System.out.println(ls.verif_like(32, 40));
-
+//System.out.println(ls.verif_like(32, 40));
+System.out.println(ls.affiche_like(l));
 //  System.out.println(cs.recuperer_nom_role(4));
 //           ps.supprimer(p);
 ////            ps.ajouter(p);

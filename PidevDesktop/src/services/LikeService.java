@@ -62,6 +62,47 @@ public LikeService() {
     }
     
     
+    public List<Like> affiche_like(Like l) throws SQLException{
+   List<Like> likes = new ArrayList<>();
+     String req = "select * from like_comment where id_com=? and id_user=?"; 
+      PreparedStatement ps = cnx.prepareStatement(req);
+    ps.setInt(1, l.getId_com());
+    ps.setInt(2, l.getId_user());
+    
+    ResultSet rs = ps.executeQuery();
+    
+    
+       while(rs.next()) {
+       Like like = new Like();
+       like.setId_user(rs.getInt("id_user"));
+       like.setId_user(rs.getInt("id_com"));
+       like.setEtat(rs.getBoolean("etat"));
+       likes.add(l);
+       }
+    
+    return likes;
+    
+    
+    }
+    
+    
+    
+    
+    public void ModifLike(Like l) throws SQLException{
+    
+    String req="Update like_comment set etat=? where id_user=? and id_com=?";
+      PreparedStatement stmt = cnx.prepareStatement(req);
+      stmt.setBoolean(1, l.getEtat());
+      stmt.setInt(2, l.getId_user());
+      stmt.setInt(3, l.getId_com());
+    
+     stmt.executeUpdate();
+    
+    
+    
+    }
+    
+    
     
     
 }
