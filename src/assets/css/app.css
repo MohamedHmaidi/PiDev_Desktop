@@ -59,3 +59,35 @@
     -fx-background-color: #eaedee;
 }
 
+.LikeButton {
+    -fx-background-color: #C6C6C6;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+    -fx-border-color: transparent;
+    -fx-text-fill: #000000;
+}
+
+.LikeButton:hover {
+    -fx-background-color: #C1E964;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+    -fx-border-color: transparent;
+    -fx-text-fill: #FFFFFF;
+}
+
+.DislikeButton {
+    -fx-background-color: #C6C6C6;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+    -fx-border-color: transparent;
+    -fx-text-fill: #000000;
+}
+
+.DislikeButton:hover {
+    -fx-background-color: #E96470;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+    -fx-border-color: transparent;
+    -fx-text-fill: #FFFFFF;
+}
+

@@ -20,7 +20,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -44,6 +46,12 @@ public class AfficherListeEventController implements Initializable {
     EventService es = new EventService();
     @FXML
     private Button addEventBtn;
+    @FXML
+    private TextField searchBarTf;
+    @FXML
+    private ChoiceBox<String> sortBoxCB;
+    
+    private String sortCriteria = "Start Date";;
 
     /**
      * Initializes the controller class.
@@ -63,6 +71,22 @@ public class AfficherListeEventController implements Initializable {
                 eventListGP.add(pane, column, row);
                     row++;       
             }
+            //Tri criterias:
+            sortBoxCB.setValue("Start Date");
+            sortBoxCB.getItems().addAll("Title", "Type", "Start Date");
+            sortBoxCB.setOnAction(event -> {
+                sortCriteria = sortBoxCB.getValue();
+            });
+            //Search
+            searchBarTf.textProperty().addListener((observable, oldValue, newValue) -> {
+                searchSort(newValue, sortCriteria);
+            });
+            
+            //Sort
+            sortBoxCB.valueProperty().addListener((observable, oldValue, newValue) -> {
+                searchSort(searchBarTf.getText(), newValue);
+            });
+            
         } catch (SQLException | IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -77,6 +101,25 @@ public class AfficherListeEventController implements Initializable {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+    
+    private void searchSort(String search, String sortBy){
+        try {
+                List<Event> filteredEvents = es.rechercher(search, sortBy);
+                eventListGP.getChildren().clear();
+                int rowS = 1;
+                int columnS = 0;
+                for (int i = 0; i < filteredEvents.size(); i++){
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("SingleEvent.fxml"));
+                    AnchorPane pane = loader.load();
+                    SingleEventController controller = loader.getController();
+                    controller.setData(filteredEvents.get(i));
+                    eventListGP.add(pane, columnS, rowS);
+                    rowS++;
+                }
+            } catch (SQLException | IOException ex) {
+                System.out.println(ex.getMessage());
+            }
     }
     
 }

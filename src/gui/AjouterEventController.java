@@ -23,6 +23,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -125,21 +127,44 @@ public class AjouterEventController implements Initializable {
     @FXML
     private void addEvent(ActionEvent event) {
         try {
-            Event e = new Event();
-            e.setTitle(titleTf.getText());
-            e.setType(typeTf.getText());
-            e.setDescription(descTa.getText());
-            e.setStartDate(java.sql.Date.valueOf(startDateDp.getValue())); //Gives a local date so I converted to Date
-            e.setEndDate(java.sql.Date.valueOf(endDateDp.getValue()));
-            e.setTicketCount(Integer.parseInt(ticketCountTf.getText()));
-            e.setHost_id(LoginController.UserConnected.getId());
-            e.setLocation_id(selectedLocId);
-            e.setAffiche(imageData);
-            e.setTicketPrice(Integer.parseInt(ticketPriceTf.getText()));
-            es.ajouter(e);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherListeEvent.fxml"));
-            Parent root = loader.load();
-            MCCSaver.mcc.setContent(root); 
+            String verifTicketCount = ticketCountTf.getText();
+            String verifTicketPrice = ticketPriceTf.getText();
+            if (!verifTicketCount.matches("\\d+")){
+                Alert warn = new Alert(AlertType.INFORMATION);
+                warn.setTitle("Invalid Input");
+                warn.setContentText("The ticket count value is not valid.");
+                warn.setHeaderText(null);
+                warn.showAndWait();
+            } else if (!verifTicketPrice.matches("\\d+(\\.\\d+)?")) {
+                Alert warn = new Alert(AlertType.INFORMATION);
+                warn.setTitle("Invalid Input");
+                warn.setContentText("The ticket price value is not valid.");
+                warn.setHeaderText(null);
+                warn.showAndWait();
+            } else if (titleTf.getText().isEmpty() && typeTf.getText().isEmpty() && descTa.getText().isEmpty() && startDateDp.getValue()==null && endDateDp.getValue()==null) {
+                Alert warn = new Alert(AlertType.INFORMATION);
+                warn.setTitle("Invalid Input");
+                warn.setContentText("Please enter values in all fields.");
+                warn.setHeaderText(null);
+                warn.showAndWait();
+            } else {
+                Event e = new Event();
+                e.setTitle(titleTf.getText());
+                e.setType(typeTf.getText());
+                e.setDescription(descTa.getText());
+                e.setStartDate(java.sql.Date.valueOf(startDateDp.getValue())); //Gives a local date so I converted to Date
+                e.setEndDate(java.sql.Date.valueOf(endDateDp.getValue()));
+                e.setTicketCount(Integer.parseInt(ticketCountTf.getText()));
+                e.setHost_id(LoginController.UserConnected.getId());
+                e.setLocation_id(selectedLocId);
+                e.setAffiche(imageData);
+                e.setTicketPrice(Float.parseFloat(ticketPriceTf.getText()));
+                es.ajouter(e);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherListeEvent.fxml"));
+                Parent root = loader.load();
+                MCCSaver.mcc.setContent(root); 
+            }
+            
         } catch (SQLException | IOException ex) {
             System.out.println(ex.getMessage());
         }

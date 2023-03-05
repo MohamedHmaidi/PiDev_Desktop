@@ -2,7 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,11 +15,11 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #eaedee;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AfficherListeEventController">
    <children>
-      <Button fx:id="addEventBtn" layoutX="866.0" layoutY="56.0" mnemonicParsing="false" onAction="#addEventRedirect" prefHeight="34.0" prefWidth="114.0" styleClass="GeneralButton2" text="+ Add Event">
+      <Button fx:id="addEventBtn" layoutX="866.0" layoutY="116.0" mnemonicParsing="false" onAction="#addEventRedirect" prefHeight="34.0" prefWidth="114.0" styleClass="GeneralButton2" text="+ Add Event">
          <font>
             <Font name="Leelawadee UI Semilight" size="14.0" />
          </font></Button>
-      <ScrollPane fx:id="eListScrollPane" layoutX="27.0" layoutY="100.0" maxWidth="953.0" prefHeight="568.0" prefWidth="953.0">
+      <ScrollPane fx:id="eListScrollPane" layoutX="27.0" layoutY="163.0" maxWidth="953.0" prefHeight="525.0" prefWidth="953.0">
         <content>
             <GridPane fx:id="eventListGP" alignment="TOP_CENTER" prefHeight="112.0" prefWidth="950.0" vgap="10.0">
               <columnConstraints>
@@ -42,5 +45,12 @@
             <Font name="Leelawadee UI Semilight" size="15.0" />
          </font>
       </Text>
+      <TextField fx:id="searchBarTf" layoutX="27.0" layoutY="116.0" prefHeight="34.0" prefWidth="399.0" promptText="Search.." />
+      <ChoiceBox fx:id="sortBoxCB" layoutX="568.0" layoutY="116.0" prefHeight="34.0" prefWidth="137.0" />
+      <Label layoutX="505.0" layoutY="120.0" text="Sort by:">
+         <font>
+            <Font name="Leelawadee UI Semilight" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

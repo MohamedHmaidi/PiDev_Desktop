@@ -12,21 +12,24 @@ package entities;
 public class Ticket {
     private int ticket_id, event_id, user_id;
     private float price;
+    private String qrCodeImg;
 
     public Ticket() {
     }
 
-    public Ticket(int event_id, int user_id, float price) {
+    public Ticket(int event_id, int user_id, float price, String qrCodeImg) {
         this.event_id = event_id;
         this.user_id = user_id;
         this.price = price;
+        this.qrCodeImg = qrCodeImg;
     }
 
-    public Ticket(int ticket_id, int event_id, int user_id, float price) {
+    public Ticket(int ticket_id, int event_id, int user_id, float price, String qrCodeImg) {
         this.ticket_id = ticket_id;
         this.event_id = event_id;
         this.user_id = user_id;
         this.price = price;
+        this.qrCodeImg = qrCodeImg;
     }
 
     public int getTicket_id() {
@@ -60,6 +63,16 @@ public class Ticket {
     public void setPrice(float price) {
         this.price = price;
     }
+
+    public String getQrCodeImg() {
+        return qrCodeImg;
+    }
+
+    public void setQrCodeImg(String qrCodeImg) {
+        this.qrCodeImg = qrCodeImg;
+    }
+    
+    
 
     @Override
     public String toString() {

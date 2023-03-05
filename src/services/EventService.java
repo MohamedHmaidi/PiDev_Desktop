@@ -104,5 +104,67 @@ public class EventService implements IService<Event>{
         }
         return events;
     }
+    
+    public Event getEvent(int id) throws SQLException {
+        String req = "SELECT * FROM event WHERE event_id = ?";
+        PreparedStatement st = cnx.prepareStatement(req);
+        st.setInt(1, id);
+        ResultSet rs = st.executeQuery();
+        Event e = new Event();
+        if (rs.next()) {
+          e.setEvent_id(rs.getInt("event_id"));
+          e.setTitle(rs.getString("title"));
+          e.setStartDate(rs.getDate("startDate"));
+          e.setEndDate(rs.getDate("endDate"));
+          e.setTicketPrice(rs.getFloat("ticketPrice"));
+        }
+        return e;
+    }
+    
+    public List<Event> rechercher(String search, String sortBy) throws SQLException {
+        List<Event> filteredEvents = new ArrayList<>();
+        String sql = "SELECT * FROM event WHERE title LIKE ?";
+        //if (sortBy != null) {
+            switch (sortBy) {
+                case "Title":
+                    sql += " ORDER BY title ASC";
+                    break;
+                case "Type":
+                    sql += " ORDER BY type ASC";
+                    break;
+                case "Start Date":
+                    sql += " ORDER BY startDate ASC";
+                    break;
+                default:
+                    // No sorting
+                    break;
+            }
+        //}
+        PreparedStatement ps = cnx.prepareStatement(sql);
+        ps.setString(1, "%" + search + "%");
+        ResultSet rs =  ps.executeQuery();
+        while (rs.next()) {
+            Event e = new Event();
+            e.setEvent_id(rs.getInt("event_id"));
+            e.setTitle(rs.getString("title"));
+            e.setType(rs.getString("type"));
+            e.setDescription(rs.getString("description"));
+            e.setStartDate(rs.getDate("startDate"));
+            e.setEndDate(rs.getDate("endDate"));
+            e.setStatus(rs.getString("status"));
+            e.setTicketCount(rs.getInt("ticketCount"));
+            e.setHost_id(rs.getInt("host_id"));
+            e.setLocation_id(rs.getInt("location_id"));
+            e.setTicketPrice(rs.getFloat("ticketPrice"));
+            
+            //BLOB to byte[] array
+            byte[] afficheBytes = rs.getBlob("affiche").getBytes(1l, (int)rs.getBlob("affiche").length());
+            e.setAffiche(afficheBytes);
+            
+            filteredEvents.add(e);
+        }
+    
+        return filteredEvents;
+    }
 
 }

@@ -28,21 +28,23 @@ public class TicketService implements IService<Ticket>{
 
     @Override
     public void ajouter(Ticket t) throws SQLException {
-        String req = "INSERT INTO ticket(event_id,user_id,price) VALUES (?,?,?)";
+        String req = "INSERT INTO ticket(event_id,user_id,price,qrCodeImg) VALUES (?,?,?,?)";
         PreparedStatement ps = cnx.prepareStatement(req);
         ps.setInt(1, t.getEvent_id());
         ps.setInt(2, t.getUser_id());
         ps.setFloat(3, t.getPrice());
+        ps.setString(4, t.getQrCodeImg());
         ps.executeUpdate();
     }
 
     @Override
     public void modifier(Ticket t) throws SQLException {
-        String req = "UPDATE ticket SET event_id = ?,user_id = ?,price = ?";
+        String req = "UPDATE ticket SET event_id = ?,user_id = ?,price = ? WHERE ticket_id = ?";
         PreparedStatement ps = cnx.prepareStatement(req);
         ps.setInt(1, t.getEvent_id());
         ps.setInt(2, t.getUser_id());
         ps.setFloat(3, t.getPrice());
+        ps.setInt(4, t.getTicket_id());
         ps.executeUpdate();
     }
 
@@ -66,6 +68,7 @@ public class TicketService implements IService<Ticket>{
             t.setEvent_id(rs.getInt("event_id"));
             t.setUser_id(rs.getInt("user_id"));
             t.setPrice(rs.getFloat("price"));
+            t.setQrCodeImg(rs.getString("qrCodeImg"));
             tickets.add(t); 
         }
         return tickets;

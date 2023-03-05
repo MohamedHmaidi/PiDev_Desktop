@@ -17,11 +17,11 @@
                   <Font name="Leelawadee UI Semilight" size="13.0" />
                </font>
             </Text>
-            <Button fx:id="deleteBtn" layoutX="355.0" layoutY="392.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="30.0" prefWidth="70.0" styleClass="GeneralButton" text="Remove">
+            <Button fx:id="deleteBtn" layoutX="912.0" layoutY="125.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="30.0" prefWidth="70.0" styleClass="GeneralButton" text="Remove">
                <font>
                   <Font name="Leelawadee UI Semilight" size="12.0" />
                </font></Button>
-            <Button fx:id="updateBtn" layoutX="264.0" layoutY="392.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="30.0" prefWidth="70.0" styleClass="GeneralButton" text="Update">
+            <Button fx:id="updateBtn" layoutX="912.0" layoutY="72.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="30.0" prefWidth="70.0" styleClass="GeneralButton" text="Update">
                <font>
                   <Font name="Leelawadee UI Semilight" size="12.0" />
                </font></Button>
@@ -85,7 +85,7 @@
                   <Font name="Leelawadee UI Semilight" size="17.0" />
                </font>
             </Text>
-            <Text fx:id="hostNameText" layoutX="709.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hostName">
+            <Text fx:id="hostNameText" layoutX="714.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hostName">
                <font>
                   <Font name="Leelawadee UI Semilight" size="13.0" />
                </font>
@@ -110,6 +110,18 @@
                   <Font name="Leelawadee UI Semilight" size="16.0" />
                </font>
             </Button>
+            <Button fx:id="payPopBtn" layoutX="895.0" layoutY="373.0" mnemonicParsing="false" onAction="#handlePopup" text="popup test" />
+            <Button fx:id="likeButton" layoutX="390.0" layoutY="375.0" mnemonicParsing="false" onAction="#likeEventHandler" prefHeight="30.0" prefWidth="104.0" styleClass="LikeButton" text="Like: 55">
+               <font>
+                  <Font name="Leelawadee UI Semilight" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="dislikeButton" layoutX="494.0" layoutY="375.0" mnemonicParsing="false" onAction="#dislikeEventHandler" prefHeight="30.0" prefWidth="104.0" styleClass="DislikeButton" text="Dislike: 55">
+               <font>
+                  <Font name="Leelawadee UI Semilight" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="purchaseBtn" layoutX="855.0" layoutY="616.0" mnemonicParsing="false" onAction="#purchaseAPIHandler" text="purchase ticket" />
          </children>
       </AnchorPane>
    </content>

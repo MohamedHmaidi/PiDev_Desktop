@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="60.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SingleTicketController">
+   <children>
+      <Text fx:id="ticketPriceText" layoutX="563.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ticket Price" />
+      <Text fx:id="eventNameText" layoutX="101.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EventName" />
+      <Text fx:id="eventStartDateText" layoutX="248.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="eventStartDate" />
+      <Text fx:id="eventEndDateText" layoutX="400.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="eventEndDate" />
+      <ImageView fx:id="qrCodeDisplay" fitHeight="100.0" fitWidth="100.0" layoutX="700.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

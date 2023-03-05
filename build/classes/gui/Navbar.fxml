@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="76.0" prefWidth="1057.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.NavbarController">
    <children>
-      <ImageView fitHeight="52.0" fitWidth="53.0" layoutX="971.0" layoutY="12.0">
+      <ImageView fx:id="profileIcon" fitHeight="52.0" fitWidth="53.0" layoutX="971.0" layoutY="12.0" onMouseClicked="#openProfile">
          <image>
             <Image url="@../assets/images/avatar_1.png" />
          </image>
