@@ -24,7 +24,7 @@
                <top>
                   <AnchorPane prefHeight="69.0" prefWidth="750.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="105.0" layoutY="23.0" text="Mes demandes d'aide récentes " textFill="#ee586e">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="65.0" layoutY="23.0" text="Nombre total de Réclamations :" textFill="#ee586e">
                            <font>
                               <Font name="Verdana Bold" size="18.0" />
                            </font>
@@ -35,17 +35,12 @@
                               <Image url="@GoBack.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="UsrNbr" alignment="CENTER" contentDisplay="CENTER" layoutX="646.0" layoutY="23.0" prefHeight="23.0" prefWidth="92.0" text="Nbr" textFill="#ee586e">
+                        <Label fx:id="NbrRec" alignment="BOTTOM_LEFT" contentDisplay="CENTER" layoutX="386.0" layoutY="23.0" prefHeight="23.0" prefWidth="58.0" text="Nbr" textFill="#ee586e">
                            <font>
                               <Font name="Verdana Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="594.0" layoutY="23.0" prefHeight="23.0" prefWidth="92.0" text="User :" textFill="#ee586e">
-                           <font>
-                              <Font name="Verdana Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="SearchBar" focusTraversable="false" layoutX="437.0" layoutY="22.0" onKeyTyped="#Search" promptText="🔎 Recherche" style="-fx-cursor: TEXT;" />
+                        <TextField fx:id="SearchBar" focusTraversable="false" layoutX="513.0" layoutY="22.0" onKeyTyped="#Search" prefHeight="25.0" prefWidth="214.0" promptText="🔎 Recherche" style="-fx-cursor: TEXT;" />
                      </children>
                   </AnchorPane>
                </top>

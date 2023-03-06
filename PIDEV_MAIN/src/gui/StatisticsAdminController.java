@@ -21,6 +21,8 @@ import javafx.scene.Parent;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
@@ -39,6 +41,16 @@ public class StatisticsAdminController implements Initializable {
     private PieChart StatsChart;
     
     ReclamationService rs = new ReclamationService();
+    @FXML
+    private ScrollPane StatisticsScroll;
+    @FXML
+    private Label NbrReclamAll;
+    @FXML
+    private Label NbrReclamOpen;
+    @FXML
+    private Label NbrReclamClosed;
+    @FXML
+    private Label TypeRecMost;
     /**
      * Initializes the controller class.
      */
@@ -99,6 +111,9 @@ public class StatisticsAdminController implements Initializable {
                 alert.showAndWait();
             })
         );
+        // Update the statistics labels
+        updateStatisticsLabels();
+        
 
     } catch (SQLException ex) {
         ex.printStackTrace();
@@ -117,4 +132,34 @@ public class StatisticsAdminController implements Initializable {
             GoBackBtn.getScene().setRoot(root);
     }
     
+    public void updateStatisticsLabels() {
+    try {
+        // Retrieve all the reclamations
+        List<Reclamation> reclamations = rs.recuperer();
+
+        // Calculate the number of reclamations for each status
+        long allCount = reclamations.size();
+        long openCount = reclamations.stream().filter(r -> r.getStatus().equals("Ouvert")).count();
+        long closedCount = reclamations.stream().filter(r -> r.getStatus().equals("Fermé")).count();
+
+        // Calculate the type with the most reclamations
+        Map<String, Long> reclamationsParType = reclamations.stream()
+            .collect(Collectors.groupingBy(Reclamation::getType, Collectors.counting()));
+        Map.Entry<String, Long> mostReclamationsType = null;
+        for (Map.Entry<String, Long> entry : reclamationsParType.entrySet()) {
+            if (mostReclamationsType == null || entry.getValue() > mostReclamationsType.getValue()) {
+                mostReclamationsType = entry;
+            }
+        }
+
+        // Set the labels with the results
+        NbrReclamAll.setText(String.valueOf(allCount));
+        NbrReclamOpen.setText(String.valueOf(openCount));
+        NbrReclamClosed.setText(String.valueOf(closedCount));
+        TypeRecMost.setText(mostReclamationsType.getKey());
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+}
+
 }
