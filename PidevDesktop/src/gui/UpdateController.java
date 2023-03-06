@@ -28,6 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import services.UserService;
@@ -70,6 +71,7 @@ UserService us = new UserService();
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+           
          role.getItems().add("Artiste");
         role.getItems().add("simple utilisateur");
         role.getSelectionModel().select("Artiste");
