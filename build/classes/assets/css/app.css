@@ -21,6 +21,14 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.2, 0, 2);
 }
 
+.qrBox {
+    -fx-background-color: white;
+    -fx-border-color: #000000;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.2, 0, 2);
+}
+
 .GeneralButton {
     -fx-background-color: #3a1aa2;
     -fx-background-radius: 0;
@@ -51,7 +59,7 @@
     -fx-border-color: transparent;
 }
 
-#eListScrollPane, #sPane {
+#eListScrollPane, #sPane, #ticketListScrollPane {
     -fx-background-color: #eaedee;
 }
 
