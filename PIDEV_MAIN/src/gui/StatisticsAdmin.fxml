@@ -11,16 +11,16 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.StatisticsAdminController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.StatisticsAdminController">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="800.0" fitWidth="1280.0" pickOnBounds="true">
          <image>
             <Image url="@BackgroundRec.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="25.0" layoutY="25.0" prefHeight="550.0" prefWidth="750.0" style="-fx-background-color: WHITE;">
+      <AnchorPane layoutX="50.0" layoutY="50.0" prefHeight="700.0" prefWidth="1180.0" style="-fx-background-color: WHITE;">
          <children>
-            <BorderPane prefHeight="550.0" prefWidth="750.0">
+            <BorderPane prefHeight="700.0" prefWidth="1180.0">
                <top>
                   <AnchorPane prefHeight="69.0" prefWidth="750.0" BorderPane.alignment="CENTER">
                      <children>
@@ -29,7 +29,7 @@
                               <Font name="Verdana Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Line endX="358.0" layoutX="378.0" layoutY="61.0" startX="-362.0" stroke="#ee586e" strokeWidth="2.0" />
+                        <Line endX="785.0" layoutX="378.0" layoutY="61.0" startX="-362.0" stroke="#ee586e" strokeWidth="2.0" />
                         <ImageView fx:id="GoBackBtn" fitHeight="45.0" fitWidth="45.0" layoutX="14.0" layoutY="10.0" onMouseClicked="#GoBk" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: HAND;">
                            <image>
                               <Image url="@GoBack.png" />
@@ -41,12 +41,12 @@
                <center>
                   <AnchorPane BorderPane.alignment="CENTER">
                      <children>
-                        <ScrollPane fx:id="StatisticsScroll" prefHeight="467.0" prefWidth="750.0">
+                        <ScrollPane fx:id="StatisticsScroll" prefHeight="630.0" prefWidth="1180.0">
                            <content>
-                              <AnchorPane prefHeight="605.0" prefWidth="747.0">
+                              <AnchorPane prefHeight="616.0" prefWidth="1179.0">
                                  <children>
-                                    <PieChart fx:id="StatsChart" prefHeight="349.0" prefWidth="747.0" />
-                                    <HBox layoutX="19.0" layoutY="405.0" prefHeight="125.0" prefWidth="705.0" style="-fx-spacing: 30;">
+                                    <PieChart fx:id="StatsChart" prefHeight="349.0" prefWidth="1159.0" />
+                                    <HBox layoutX="23.0" layoutY="405.0" prefHeight="125.0" prefWidth="1138.0" style="-fx-spacing: 160;">
                                        <children>
                                           <AnchorPane prefHeight="125.0" prefWidth="110.0" style="-fx-border-radius: 30; -fx-border-width: 5; -fx-border-color: #ee586e;">
                                              <children>

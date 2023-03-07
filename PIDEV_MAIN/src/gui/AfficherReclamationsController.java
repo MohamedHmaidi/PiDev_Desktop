@@ -30,16 +30,16 @@ public class AfficherReclamationsController implements Initializable {
     private ImageView GoBackBtn;
 
     public int userId;
-
+    @FXML
+    private Label UsrNbr;
     @FXML
     private TextField SearchBar;
     @FXML
     private Label NoRecFound;
-    @FXML
-    private Label NbrRec;
      
     public void setNewUserId(int userId) {
         this.userId = userId;
+        UsrNbr.setText(String.valueOf(userId));
         System.out.println("userId = " + userId);
         try {
             List<Reclamation> reclamations = rs.recupererParUtilisateur(userId);
@@ -53,10 +53,6 @@ public class AfficherReclamationsController implements Initializable {
                 controller.SetReclamation(reclamation, reclamation.getRec_id());
                 controller.setUserId(userId);
                 flpRec.getChildren().add(pane);
-                int totalRecs = flpRec.getChildren().size();
-                NbrRec.setText(String.valueOf(totalRecs));
-
-
             }
         } catch (SQLException | IOException ex) {
             System.out.println(ex.getMessage());

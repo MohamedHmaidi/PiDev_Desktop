@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="66.0" prefWidth="710.0" style="-fx-border-color: #A05385; -fx-border-radius: 10; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.NotificationController">
+<AnchorPane id="AnchorPane" prefHeight="66.0" prefWidth="1000.0" style="-fx-border-color: #A05385; -fx-border-radius: 10; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.NotificationController">
    <children>
-      <HBox layoutX="1.0" minHeight="-Infinity" prefHeight="60.0" prefWidth="614.0" style="-fx-spacing: 2; -fx-padding: 25;">
+      <HBox layoutX="1.0" minHeight="-Infinity" prefHeight="60.0" prefWidth="1000.0" style="-fx-spacing: 2; -fx-padding: 25;">
          <children>
             <Label fx:id="LabelrecId" text="Reclamation ID" textFill="#ee586e" wrapText="true">
                <font>
@@ -45,7 +45,7 @@
             </Label>
          </children>
       </HBox>
-      <VBox prefHeight="60.0" prefWidth="579.0">
+      <VBox prefHeight="60.0" prefWidth="1000.0">
          <children>
             <HBox minHeight="-Infinity" prefHeight="60.0" prefWidth="614.0" style="-fx-spacing: 2; -fx-padding: 25;">
                <children>
@@ -82,7 +82,7 @@
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="RmvNotif" layoutX="598.0" layoutY="16.0" mnemonicParsing="false" onAction="#removeNotification" prefHeight="36.0" prefWidth="98.0" stylesheets="@style.css" text="Supprimer" textFill="WHITE" wrapText="true">
+      <Button fx:id="RmvNotif" layoutX="884.0" layoutY="15.0" mnemonicParsing="false" onAction="#removeNotification" prefHeight="36.0" prefWidth="98.0" stylesheets="@styleMorph.css" text="Supprimer" textFill="WHITE" wrapText="true">
          <font>
             <Font name="Verdana Bold" size="12.0" />
          </font>

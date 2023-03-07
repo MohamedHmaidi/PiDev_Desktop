@@ -65,24 +65,19 @@ public class AffichReclamOneController implements Initializable {
     @FXML
     private VBox DescRep;
     
-    private int adminIdentificateur;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("Admin ID received: " + adminIdentificateur);
     }    
     
     //setUserId mab3outha men aand ReclamationController
     public void setUserId(int userId) {
     this.userId = userId;
 }
-    
-    public void setAdminIdentificateur(int AdminID) {
-        this.adminIdentificateur = AdminID;
-    }
+   
     
 
     @FXML

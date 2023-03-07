@@ -11,15 +11,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ChoisirReclamationTypeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@styleMorph.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ChoisirReclamationTypeController">
    <left>
-      <AnchorPane prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="600.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
          <children>
-                   <Text fill="#ee586e" layoutX="130.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choisissez une catégorie d'assistance" textAlignment="CENTER" wrappingWidth="340.0">               <font>
-                  <Font name="Verdana Bold" size="24.0" />
+                   <Text fill="#ee586e" layoutX="37.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choisissez une catégorie d'assistance" textAlignment="CENTER" wrappingWidth="793.0">               <font>
+                  <Font name="Verdana Bold" size="36.0" />
                </font>
             </Text>
-            <Button fx:id="BtnUsrHelp" alignment="CENTER" layoutX="165.0" layoutY="206.0" mnemonicParsing="false" onAction="#GoToRec" prefHeight="47.0" prefWidth="270.0" styleClass="button" stylesheets="@style.css" text="Besoin d'aide avec votre compte ?" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="BtnUsrHelp" alignment="CENTER" layoutX="213.0" layoutY="278.0" mnemonicParsing="false" onAction="#GoToRec" prefHeight="70.0" prefWidth="440.0" styleClass="button" stylesheets="@styleMorph.css" text="Besoin d'aide avec votre compte ?" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -27,7 +27,7 @@
                   <DropShadow height="5.0" radius="2.0" width="5.0" />
                </effect>
             </Button>
-            <Button fx:id="BtnTcktHelp" alignment="CENTER" layoutX="165.0" layoutY="320.0" mnemonicParsing="false" onAction="#GoToRec" prefHeight="47.0" prefWidth="270.0" styleClass="button" stylesheets="@style.css" text="Besoin d'aide avec les billets?" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="BtnTcktHelp" alignment="CENTER" layoutX="213.0" layoutY="452.0" mnemonicParsing="false" onAction="#GoToRec" prefHeight="70.0" prefWidth="440.0" styleClass="button" stylesheets="@styleMorph.css" text="Besoin d'aide avec les billets?" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -35,7 +35,7 @@
                   <DropShadow height="5.0" radius="2.0" width="5.0" />
                </effect>
             </Button>
-            <Button fx:id="BtnEvntHelp" alignment="CENTER" layoutX="165.0" layoutY="263.0" mnemonicParsing="false" onAction="#GoToRec" prefHeight="47.0" prefWidth="270.0" styleClass="button" stylesheets="@style.css" text="Besoin d'aide avec les événements?" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="BtnEvntHelp" alignment="CENTER" layoutX="213.0" layoutY="365.0" mnemonicParsing="false" onAction="#GoToRec" prefHeight="70.0" prefWidth="440.0" styleClass="button" stylesheets="@styleMorph.css" text="Besoin d'aide avec les événements?" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -43,7 +43,7 @@
                   <DropShadow height="5.0" radius="2.0" width="5.0" />
                </effect>
             </Button>
-            <Button fx:id="BtnOthrHelp" alignment="CENTER" layoutX="165.0" layoutY="377.0" mnemonicParsing="false" onAction="#GoToRec" prefHeight="47.0" prefWidth="270.0" styleClass="button" stylesheets="@style.css" text="Autres" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="BtnOthrHelp" alignment="CENTER" layoutX="213.0" layoutY="538.0" mnemonicParsing="false" onAction="#GoToRec" prefHeight="70.0" prefWidth="440.0" styleClass="button" stylesheets="@styleMorph.css" text="Autres" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -51,7 +51,7 @@
                   <DropShadow height="5.0" radius="2.0" width="5.0" />
                </effect>
             </Button>
-            <Button fx:id="BtnViewOwnRec" alignment="CENTER" layoutX="165.0" layoutY="434.0" mnemonicParsing="false" onAction="#GoToViewRec" prefHeight="47.0" prefWidth="270.0" styleClass="button" stylesheets="@style.css" text="Voir mes demandes d'aide" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="BtnViewOwnRec" alignment="CENTER" layoutX="213.0" layoutY="626.0" mnemonicParsing="false" onAction="#GoToViewRec" prefHeight="70.0" prefWidth="440.0" styleClass="button" stylesheets="@styleMorph.css" text="Voir mes demandes d'aide" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -63,9 +63,9 @@
       </AnchorPane>
    </left>
    <right>
-      <AnchorPane prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #EE586E;" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="801.0" prefWidth="416.0" style="-fx-background-color: #EE586E;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="2.0" layoutY="223.0" prefHeight="30.0" prefWidth="198.0" text="Touskieart" textFill="WHITE" wrapText="true">
+            <Label alignment="CENTER" layoutX="2.0" layoutY="217.0" prefHeight="30.0" prefWidth="409.0" text="Touskieart" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Verdana Bold" size="24.0" />
                </font>
@@ -73,12 +73,12 @@
                   <DropShadow />
                </effect>
             </Label>
-            <ImageView fitHeight="134.0" fitWidth="183.0" layoutX="20.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="174.0" fitWidth="209.0" layoutX="104.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Logo.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" layoutX="3.0" layoutY="253.0" prefHeight="35.0" prefWidth="197.0" text="Assistance" textFill="WHITE" wrapText="true">
+            <Label alignment="CENTER" layoutX="3.0" layoutY="251.0" prefHeight="35.0" prefWidth="408.0" text="Assistance" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Dubai Regular" size="20.0" />
                </font>
@@ -86,7 +86,7 @@
                   <DropShadow />
                </effect>
             </Label>
-            <Line endX="115.0" layoutX="68.0" layoutY="175.0" startX="-50.0" stroke="WHITE" strokeWidth="2.0">
+            <Line endX="323.0" layoutX="68.0" layoutY="194.0" startX="-50.0" stroke="WHITE" strokeWidth="2.0">
                <effect>
                   <DropShadow />
                </effect>
@@ -99,7 +99,7 @@
                   <DropShadow />
                </effect>
             </Label>
-            <Label fx:id="IdUser" alignment="CENTER" layoutX="7.0" layoutY="355.0" prefHeight="35.0" prefWidth="197.0" text="User ID: 10" textFill="WHITE" wrapText="true">
+            <Label fx:id="UserName" alignment="CENTER" layoutX="7.0" layoutY="355.0" prefHeight="35.0" prefWidth="403.0" text="UserName" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Dubai Regular" size="20.0" />
                </font>
@@ -107,7 +107,7 @@
                   <DropShadow />
                </effect>
             </Label>
-            <Button fx:id="NotifBtn" layoutX="32.0" layoutY="449.0" mnemonicParsing="false" onAction="#ShowNotifPanel" stylesheets="@btnStyle.css" text="Voir Notifications" />
+            <Button fx:id="NotifBtn" layoutX="109.0" layoutY="412.0" mnemonicParsing="false" onAction="#ShowNotifPanel" prefHeight="20.0" prefWidth="200.0" stylesheets="@btnStyleMorph.css" text="Voir Notifications" />
          </children>
       </AnchorPane>
    </right>

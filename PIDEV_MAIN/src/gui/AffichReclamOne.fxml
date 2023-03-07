@@ -12,37 +12,37 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AffichReclamOneController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AffichReclamOneController">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="800.0" fitWidth="1280.0" pickOnBounds="true">
          <image>
             <Image url="@BackgroundRec.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="25.0" layoutY="25.0" prefHeight="550.0" prefWidth="750.0" style="-fx-background-color: WHITE;">
+      <AnchorPane layoutX="50.0" layoutY="50.0" prefHeight="700.0" prefWidth="1180.0" style="-fx-background-color: WHITE;">
          <children>
-            <Button fx:id="AddRep1" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="483.0" mnemonicParsing="false" onAction="#AjoutRep" prefHeight="45.0" prefWidth="335.0" stylesheets="@style.css" text="Ajouter une réponse">
+            <Button fx:id="AddRep1" alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="614.0" mnemonicParsing="false" onAction="#AjoutRep" prefHeight="45.0" prefWidth="335.0" stylesheets="@styleMorph.css" text="Ajouter une réponse">
                <font>
                   <Font name="Verdana" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="RemRec" alignment="CENTER" contentDisplay="CENTER" layoutX="390.0" layoutY="484.0" mnemonicParsing="false" onAction="#RemoveRec" prefHeight="44.0" prefWidth="335.0" style="-fx-background-color: #7a59e4; -fx-background-radius: 10; -fx-cursor: HAND;" text="Supprimer la réclamation" textFill="WHITE">
+            <Button fx:id="RemRec" alignment="CENTER" contentDisplay="CENTER" layoutX="767.0" layoutY="615.0" mnemonicParsing="false" onAction="#RemoveRec" prefHeight="44.0" prefWidth="335.0" style="-fx-background-color: #7a59e4; -fx-background-radius: 10; -fx-cursor: HAND;" text="Supprimer la réclamation" textFill="WHITE">
                <font>
                   <Font name="Verdana" size="12.0" />
                </font>
             </Button>
-            <ImageView fx:id="GoBckBtn" fitHeight="45.0" fitWidth="45.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#GoBck" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: HAND;">
+            <ImageView fx:id="GoBckBtn" fitHeight="45.0" fitWidth="45.0" layoutX="33.0" layoutY="33.0" onMouseClicked="#GoBck" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: HAND;">
                <image>
                   <Image url="@GoBack.png" />
                </image>
             </ImageView>
-            <Label layoutX="14.0" layoutY="324.0" text="Rédigez une réponse :" textFill="#ee586e">
+            <Label layoutX="33.0" layoutY="451.0" text="Rédigez une réponse :" textFill="#ee586e">
                <font>
                   <Font name="Verdana Bold" size="20.0" />
                </font>
             </Label>
-            <TextArea fx:id="RepText" layoutX="14.0" layoutY="357.0" prefHeight="100.0" prefWidth="711.0" wrapText="true" />
-            <HBox layoutX="65.0" layoutY="17.0" prefHeight="67.0" prefWidth="436.0" style="-fx-spacing: 5;">
+            <TextArea fx:id="RepText" layoutX="33.0" layoutY="490.0" prefHeight="100.0" prefWidth="1065.0" wrapText="true" />
+            <HBox layoutX="101.0" layoutY="22.0" prefHeight="67.0" prefWidth="436.0" style="-fx-spacing: 5;">
                <children>
                   <Label fx:id="TypeRec" text="TypeRec" textFill="#ee586e">
                      <font>
@@ -51,7 +51,7 @@
                   </Label>
                </children>
             </HBox>
-            <VBox alignment="TOP_RIGHT" layoutX="507.0" layoutY="17.0" prefHeight="67.0" prefWidth="235.0" style="-fx-spacing: 10;">
+            <VBox alignment="TOP_RIGHT" layoutX="914.0" layoutY="17.0" prefHeight="67.0" prefWidth="235.0" style="-fx-spacing: 10;">
                <children>
                   <Label fx:id="DateCreation" prefHeight="33.0" prefWidth="235.0" text="DateCreation" textFill="#ee586e" wrapText="true">
                      <font>
@@ -68,11 +68,11 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </opaqueInsets>
             </VBox>
-            <ScrollPane layoutY="83.0" prefHeight="237.0" prefWidth="750.0">
+            <ScrollPane layoutX="35.0" layoutY="97.0" prefHeight="328.0" prefWidth="1121.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="650.0" prefWidth="748.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="606.0" prefWidth="1119.0">
                      <children>
-                        <VBox layoutX="8.0" layoutY="8.0" prefHeight="641.0" prefWidth="716.0" style="-fx-spacing: 5;">
+                        <VBox layoutX="8.0" layoutY="8.0" prefHeight="228.0" prefWidth="716.0" style="-fx-spacing: 5;">
                            <children>
                               <Label text="Titre de la réclamation :" textFill="#ee586e">
                                  <font>

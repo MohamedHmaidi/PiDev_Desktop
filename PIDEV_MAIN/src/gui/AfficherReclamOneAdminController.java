@@ -64,7 +64,6 @@ public class AfficherReclamOneAdminController implements Initializable {
     @FXML
     private VBox DescRep;
     private int recId;
-    private int AdminID;
     private Reclamation r;
     
     ReclamationService rs = new ReclamationService();
@@ -97,7 +96,7 @@ public class AfficherReclamOneAdminController implements Initializable {
     Reponses rep = new Reponses();
     rep.setRec_id(recId);
     rep.setUser_id(r.getUser_id());
-    rep.setAdmin_id(AdminID);
+    rep.setAdmin_id(1);
     rep.setRep_desc(repDesc);
     rep.setDate_rep(new Date());
 
@@ -113,7 +112,7 @@ public class AfficherReclamOneAdminController implements Initializable {
     // Clear the reply text area
     RepTextAdmin.clear();
     // RefreshPage
-    SetReclamation(recId, AdminID, r);
+    SetReclamation(recId, r);
     }
     
 
@@ -121,30 +120,30 @@ public class AfficherReclamOneAdminController implements Initializable {
     @FXML
     private void ChangeStateToClosed(ActionEvent event) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
-    alert.setTitle("Boîte de dialogue de confirmation");
-    alert.setHeaderText("Définir le statut a \"Fermé\" ?");
-    alert.setContentText("Cliquez sur OK pour confirmer ou sur Annuler pour revenir");
+        alert.setTitle("Boîte de dialogue de confirmation");
+        alert.setHeaderText("Définir le statut a \"Fermé\" ?");
+        alert.setContentText("Cliquez sur OK pour confirmer ou sur Annuler pour revenir");
 
-    Optional<ButtonType> result = alert.showAndWait();
-    if (result.isPresent() && result.get() == ButtonType.OK) {
-        if (DescRep.getChildren().isEmpty()) {
-            Alert noResponsesAlert = new Alert(AlertType.WARNING);
-            noResponsesAlert.setTitle("Attention");
-            noResponsesAlert.setHeaderText("Impossible de fermer la réclamation");
-            noResponsesAlert.setContentText("La réclamation doit avoir au moins une réponse pour pouvoir être fermée");
-            noResponsesAlert.showAndWait();
-        } else {
-            try {
-                rs.ModifierEtat(recId);
-                r.setStatus("Fermé");
-                StatusRec.setText("Status: " + r.getStatus());
-                SetStatusClosed.setDisable(true);
-                AddRepAdmin.setDisable(true);
-                RepTextAdmin.setDisable(true);
-            } catch (SQLException e) {
-                e.printStackTrace();
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            if (DescRep.getChildren().isEmpty()) {
+                Alert noResponsesAlert = new Alert(AlertType.WARNING);
+                noResponsesAlert.setTitle("Attention");
+                noResponsesAlert.setHeaderText("Impossible de fermer la réclamation");
+                noResponsesAlert.setContentText("La réclamation doit avoir au moins une réponse pour pouvoir être fermée");
+                noResponsesAlert.showAndWait();
+            } else {
+                try {
+                    rs.ModifierEtat(recId);
+                    r.setStatus("Fermé");
+                    StatusRec.setText("Status: " + r.getStatus());
+                    SetStatusClosed.setDisable(true);
+                    AddRepAdmin.setDisable(true);
+                    RepTextAdmin.setDisable(true);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
-        }
     }
 }
     
@@ -159,42 +158,40 @@ public class AfficherReclamOneAdminController implements Initializable {
 
     
     //Methode Set reclamation avec appel reponses
-    void SetReclamation(int rec_id, int AdminIdentificateur, Reclamation reclamation) throws SQLException, IOException {
-    this.recId = rec_id;
-    this.AdminID = AdminIdentificateur;
-    this.r = reclamation;
+    void SetReclamation(int rec_id, Reclamation reclamation) throws SQLException, IOException {
+            this.recId = rec_id;
+            this.r = reclamation;
 
-    // Get the reclamation with the specified ID from the database
-    Reclamation r = rs.recupererParId(recId);
-    List<Reponses> reponses = Reps.recupererParRecId(recId);
+            // Get the reclamation with the specified ID from the database
+            Reclamation r = rs.recupererParId(recId);
+            List<Reponses> reponses = Reps.recupererParRecId(recId);
 
-    // Set the labels to display the reclamation data
-    DescRep.getChildren().clear();
-    int numRep = 1;
-    for (Reponses rep : reponses) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Reponse.fxml"));
-        AnchorPane reponseNode = loader.load();
-        ReponseController reponseController = loader.getController();
-        reponseController.setAdminData(rep, AdminID);
-        
-        AffichReclamOneController controller = new AffichReclamOneController();
-        controller.setAdminIdentificateur(AdminID);
-        
-        System.out.println("msg de AffichReclamOneAdminController" + AdminID);
-        DescRep.getChildren().add(reponseNode);
-        numRep++;
-    }
-    TypeRec.setText("Type de Reclamation: " + r.getType());
-    TitreRec.setText(r.getTitre_rec());
-    DescRec.setText(r.getDescription());
-    DateCreation.setText(r.getDate_creation().toString());
-    StatusRec.setText("Status: " + r.getStatus());
+            // Set the labels to display the reclamation data
+            DescRep.getChildren().clear();
+            
+            
+            int numRep = 1;
+            for (Reponses rep : reponses) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Reponse.fxml"));
+                AnchorPane reponseNode = loader.load();
+                ReponseController reponseController = loader.getController();
+                reponseController.setAdminData(rep);
 
-    // Check the status of the reclamation and hide the buttons if the status is "Closed"
-    if (r.getStatus().equals("Fermé")) {
-    SetStatusClosed.setDisable(true);
-    AddRepAdmin.setDisable(true);
-    RepTextAdmin.setDisable(true);
-    }
+
+                DescRep.getChildren().add(reponseNode);
+                numRep++;
+            }
+            TypeRec.setText("Type de Reclamation: " + r.getType());
+            TitreRec.setText(r.getTitre_rec());
+            DescRec.setText(r.getDescription());
+            DateCreation.setText(r.getDate_creation().toString());
+            StatusRec.setText("Status: " + r.getStatus());
+
+            // Check the status of the reclamation and hide the buttons if the status is "Closed"
+            if (r.getStatus().equals("Fermé")) {
+            SetStatusClosed.setDisable(true);
+            AddRepAdmin.setDisable(true);
+            RepTextAdmin.setDisable(true);
+            }
 }
 }

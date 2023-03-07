@@ -41,8 +41,7 @@ public class AdminRecPanelController implements Initializable {
     
     //initiation Service Reclamation
     private ReclamationService rs = new ReclamationService();
-    @FXML
-    private Label AdminId;
+    
     @FXML
     private ComboBox<String> ChooseStts;
     @FXML
@@ -69,11 +68,9 @@ public void initialize(URL url, ResourceBundle rb) {
             // Récupérer le contrôleur ReclamationController
             ReclamationAdminController recAdController = loader.getController();
 
-            String AdminIdentificateur = AdminId.getText().substring(11);
-            System.out.println( AdminIdentificateur); //debugging
 
             // Définir les données de la réclamation, recid, admin_id dans le contrôleur
-            recAdController.SetReclamation(r, r.getRec_id(),Integer.parseInt(AdminIdentificateur));
+            recAdController.SetReclamation(r, r.getRec_id());
 
             // Ajouter le nœud de réclamation à FlowPane
             AllRecFlow.getChildren().add(reclamationNode);
@@ -95,11 +92,8 @@ public void initialize(URL url, ResourceBundle rb) {
                     // Récupérer le contrôleur ReclamationController
                     ReclamationAdminController recAdController = loader.getController();
 
-                    String AdminIdentificateur = AdminId.getText().substring(11);
-                    System.out.println( AdminIdentificateur); //debugging
-
                     // Définir les données de la réclamation, recid, admin_id dans le contrôleur
-                    recAdController.SetReclamation(r, r.getRec_id(),Integer.parseInt(AdminIdentificateur));
+                    recAdController.SetReclamation(r, r.getRec_id());
 
                     // Ajouter le nœud de réclamation à FlowPane
                     AllRecFlow.getChildren().add(reclamationNode);

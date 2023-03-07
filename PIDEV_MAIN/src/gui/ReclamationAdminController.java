@@ -35,7 +35,6 @@ public class ReclamationAdminController implements Initializable {
     @FXML
     private Label DateRecAdmin;
     private int rec_id;
-    private int AdminIdentificateur;
     private Reclamation reclamation;
     @FXML
     private Label DateCreationOrClosure;
@@ -54,7 +53,7 @@ public class ReclamationAdminController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherReclamOneAdmin.fxml"));
             Parent root = loader.load();
             AfficherReclamOneAdminController controller = loader.getController();
-            controller.SetReclamation(this.rec_id, AdminIdentificateur, this.reclamation);
+            controller.SetReclamation(this.rec_id, this.reclamation);
 
             BtnOpnRecAdmin.getScene().setRoot(root);
         } catch (IOException e)
@@ -64,14 +63,12 @@ public class ReclamationAdminController implements Initializable {
 }
 
 
-    public void SetReclamation(Reclamation r, int rec_id, int AdminIdentificateur) {
+    public void SetReclamation(Reclamation r, int rec_id) {
     TypRecAdmin.setText(r.getType());
     StatusRecAdmin.setText(r.getStatus());
     this.rec_id = rec_id;
-    this.AdminIdentificateur = AdminIdentificateur;
     this.reclamation = r; 
     System.out.println("Rec id = " + rec_id); //debugging
-    System.out.println("admin id= " + AdminIdentificateur); //
     System.out.println(r.toString()); //
     if (r.getStatus() == "Fermé") {
     DateCreationOrClosure.setText("Date de Fermeture");

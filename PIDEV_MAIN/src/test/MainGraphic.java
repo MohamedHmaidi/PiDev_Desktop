@@ -27,7 +27,7 @@ public class MainGraphic extends Application {
         Parent root = loader.load();
 
         // new scene avec root node
-        Scene scene = new Scene(root,800,600);
+        Scene scene = new Scene(root,1280,800);
         
         primaryStage.setResizable(false);
 

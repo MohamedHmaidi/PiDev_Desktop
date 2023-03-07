@@ -31,17 +31,18 @@ public class ChoisirReclamationTypeController implements Initializable {
     private Button BtnOthrHelp;
     @FXML
     private Button BtnViewOwnRec;
-    @FXML
-    private Label IdUser;
+    
     @FXML
     private Button NotifBtn;
+    @FXML
+    private Label UserName;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        UserName.setText(LoginController.UserConnected.getPrenom()); 
     }    
 
     @FXML
@@ -71,10 +72,10 @@ private void GoToRec(ActionEvent event) throws IOException {
     // Get the controller of the loaded FXML file
     AjouterReclamationController controller = loader.getController();
     // Extract the user ID from the IdUser label
-    String userId = IdUser.getText().substring(9);
+    int userId = LoginController.UserConnected.getId();
 
     // Set the user ID in the AjouterReclamationController
-    controller.setUserId(Integer.parseInt(userId));
+    controller.setUserId(userId);
     // Set the selected reclamation type
     controller.setReclamationType(reclamationType);
 
@@ -88,9 +89,9 @@ private void GoToRec(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherReclamations.fxml"));
         Parent root = loader.load();
         AfficherReclamationsController controller = loader.getController();
-        String userId = IdUser.getText().substring(9);
+        int userId = LoginController.UserConnected.getId();
         System.out.println("User ID selected: " + userId);
-        controller.setNewUserId(Integer.parseInt(userId));
+        controller.setNewUserId(userId);
 
         // Set the loaded FXML file as the scene root
         BtnViewOwnRec.getScene().setRoot(root);
@@ -102,9 +103,9 @@ private void GoToRec(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("NotifPanelUser.fxml"));
         Parent root = loader.load();
         NotifPanelUserController controller = loader.getController();
-        String userId = IdUser.getText().substring(9);
+        int userId = LoginController.UserConnected.getId();
         System.out.println("User ID selected: " + userId);
-        controller.setNewUserId(Integer.parseInt(userId));
+        controller.setNewUserId(userId);
 
         // Set the loaded FXML file as the scene root
         BtnViewOwnRec.getScene().setRoot(root);
