@@ -26,39 +26,64 @@ public class PanierService implements IService<Panier> {
         cnx = MyDB.getInstance().getCnx();
     }
 
-    public void ajouterPanier(Panier p) {
-
-        try {
-            String req = "INSERT INTO panier (id_produit,id_user,quantite) VALUES (?,?,?)";
-            PreparedStatement pst = cnx.prepareStatement(req);
-            /*pst.setInt(1,t.getIdp());
-            pst.setInt(2, t.getCategory_id());*/
-            pst.setInt(1, p.getProduit_id());
-            pst.setInt(2, p.getId_user());
-            pst.setInt(3, p.getQuantite());
-
-            pst.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-    }
+//    public void ajouterPanier(Panier p) throws SQLException  {
+//
+//        
+//            String req = "INSERT INTO panier (id_produit,id_user,quantite) VALUES (?,?,?)";
+//            PreparedStatement pst = cnx.prepareStatement(req);
+//            /*pst.setInt(1,t.getIdp());
+//            pst.setInt(2, t.getCategory_id());*/
+//            pst.setInt(1, p.getProduit_id());
+//            pst.setInt(2, p.getId_user());
+//            pst.setInt(3, p.getQuantite());
+//
+//            pst.executeUpdate();
+//            
+//    ResultSet generatedKeys = pst.getGeneratedKeys();
+//    if (generatedKeys.next()) {
+//        int id = generatedKeys.getInt(1);
+//        System.out.println(id);
+//        } 
+//
+//    }
+//    
     
+    public void ajouterPanier(Panier p) throws SQLException {
     
-    public void supprimerPanier(int id_user) {
-        try {
-            
-            String req = "DELETE FROM panier WHERE id_user=? " ;
-            PreparedStatement pst = cnx.prepareStatement(req);
+    String req = "INSERT INTO panier (id_produit,id_user,quantite,id_panier) VALUES (?,?,?,?)";
+    PreparedStatement pst = cnx.prepareStatement(req, Statement.RETURN_GENERATED_KEYS);
 
-            
-            pst.setInt(1, id_user);
+    pst.setInt(1, p.getProduit_id());
+    pst.setInt(2, p.getId_user());
+    pst.setInt(3, p.getQuantite());
+    pst.setInt(4,p.getId_panier());
 
-            pst.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+    pst.executeUpdate();
+
+    ResultSet generatedKeys = pst.getGeneratedKeys();
+    if (generatedKeys.next()) {
+        int id = generatedKeys.getInt(1);
+        System.out.println(id);
     }
+
+}
+
+  
+    public void recupererlastPanier(int id_user) {
+    try {
+        String req = "SELECT MAX(id_panier) FROM panier WHERE id_user = ? ;" ;
+        PreparedStatement pst = cnx.prepareStatement(req);
+        pst.setInt(1, id_user);
+        ResultSet rs = pst.executeQuery();
+        
+        // Traitez le résultat de la requête ici
+        
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+    }
+}
+
+    
     
  public void supprimerProduitParId(int id_produit) {
         try {
@@ -146,7 +171,24 @@ public produit recupererProduitParId(int id_produit) {
 
     }
     
-
+ 
+ public List<Integer> recuperer() throws SQLException {
+        List<Integer> p = new ArrayList<>(); 
+        String req="SELECT id_panier FROM panier ORDER BY id_panier";
+   Statement st = cnx.createStatement();
+   ResultSet rs =  st.executeQuery(req);
+      while(rs.next()){
+   
+  int c= rs.getInt("id_panier");
+       p.add(c);
+      }
+ 
+   return p;
+    }
+ 
+ 
+ 
+ 
     @Override
     public void modifier(Panier t) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -171,6 +213,10 @@ public produit recupererProduitParId(int id_produit) {
 
     @Override
     public void ajouter(Panier t) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void supprimerPanier(int i) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

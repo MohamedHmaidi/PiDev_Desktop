@@ -11,6 +11,15 @@ public class Panier {
         int id_user;
         int quantite;
 
+    public Panier(int id_panier) {
+        this.id_panier = id_panier;
+    }
+
+    @Override
+    public String toString() {
+        return "Panier{" + "id_panier=" + id_panier + "}";
+    }
+
     public Panier(int id_panier, int id_produit, int id_user, int quantite) {
         this.id_panier = id_panier;
         this.id_produit = id_produit;

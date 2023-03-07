@@ -9,8 +9,12 @@ import entities.Panier;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +24,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import services.PanierService;
 
 
@@ -41,40 +47,59 @@ public class SousProduitController implements Initializable {
     PanierService ps =new PanierService();
     
     private produit po=new produit();
+    int q;
+    @FXML
+    private Text sstotal;
+    @FXML
+    private AnchorPane anchorpane;
+
     
-    private Label sstotal;
+    private int i ;
+    private List<Integer> L = new ArrayList(); 
     @FXML
     private Button ajoutprod;
     @FXML
     private Button supprod;
-    @FXML
-    private AnchorPane anchorpane;
-
+    
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    public void initialize(URL url, ResourceBundle rb)  {
+        
+        try {
+            L=ps.recuperer();
+        } catch (SQLException ex) {
+            Logger.getLogger(SousProduitController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+         i = L.get(L.size()-1);
+         System.out.println(i);
     }    
 
     void setProd(produit p) {
       codeNom.setText(p.getCodeProduit());
         produitprix.setText(Float.toString(p.getPrixUnite()));
         caltotal.setText(Integer.toString(pp.getQuantite()));
+        
         pp.setId_produit(p.getId());
         pp.setId_user(4);
-    }
+
     
-//    private void calculsom(KeyEvent event) throws SQLException {
-//       int q = Integer.parseInt(caltotal.getText()) ; 
-//        System.out.println(q);
-//        int p = Integer.parseInt(produitprix.getText());
-//        int s = p*q ; 
-//        sstotal.setText(String.valueOf(s));
-//        pp.setQuantite(q);
-//      
-//    }
+}
+
+    
+    
+    @FXML
+    private void calculsom(KeyEvent event) throws SQLException {
+        q = Integer.parseInt(caltotal.getText()) ; 
+        System.out.println(q);
+        int p = Integer.parseInt(produitprix.getText());
+        int s = p*q ; 
+        sstotal.setText(String.valueOf(s));
+        pp.setQuantite(q);
+      
+    }
     
     private void sstotal(int t) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Panier.fxml"));
@@ -84,15 +109,20 @@ public class SousProduitController implements Initializable {
     }
 
     @FXML
-    private void ajoutProd(ActionEvent event) {
-        if (ps.productExist(pp, 4)) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-       alert.setTitle("Information Dialog");
-       alert.setHeaderText(null);
-       alert.setContentText("Le produit existe déjà dans le panier!");
-       alert.show();
-        }
-        else  ps.ajouterPanier(pp);
+    private void ajoutProd(ActionEvent event) throws SQLException {
+ pp.setQuantite(Integer.parseInt(caltotal.getText()));
+
+    if(pp.getQuantite() == 0) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Attention");
+        alert.setHeaderText("La quantité ne doit pas être égale à zéro.");
+        alert.setContentText("Veuillez saisir une quantité valide.");
+        alert.showAndWait();
+    } else {
+        pp.setId_panier(i+1);
+        System.out.println(pp.toString());
+        ps.ajouterPanier(pp);
+    }
     }
 
     @FXML
@@ -100,7 +130,6 @@ public class SousProduitController implements Initializable {
         anchorpane.getChildren().clear();
         ps.supprimerProduitParId(1);
     }
-    
 }
 
 

@@ -16,10 +16,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import services.CommandeService;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
 /**
  * FXML Controller class
@@ -31,14 +37,15 @@ public class AdminCommandeController implements Initializable {
     @FXML
     private ChoiceBox<String> trichoix;
     @FXML
-    private AnchorPane affichfinale;
-    @FXML
     private FlowPane flowp;
 
     CommandeService CS = new CommandeService();
+    @FXML
+    private AnchorPane affichfinale;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
 
         try {
             List<Commande> CM = CS.recupererCommande();
@@ -54,14 +61,21 @@ public class AdminCommandeController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(AdminCommandeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+        trichoix.setValue("Trié par");
         trichoix.getItems().add("Date");
+        trichoix.getItems().add("UserID");
+        
         trichoix.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             try {
                 List<Commande> filteredCM;
-                if (newValue.equals("date_commande")) {
+                if (newValue.equals("Date")) {
                     filteredCM = CS.recupererCommandeOrderByDate();
-                } else {
+                } else if ((newValue.equals("UserID"))){
+                filteredCM = CS.recupererCommandeOrderByUserID();
+                } 
+                
+                else {
                     filteredCM = CS.recupererCommande();
                 }
                 flowp.getChildren().clear();
@@ -79,7 +93,11 @@ public class AdminCommandeController implements Initializable {
             }
         });
     }
+
 }
+
+
+
 
           
 

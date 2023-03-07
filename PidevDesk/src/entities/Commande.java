@@ -21,6 +21,84 @@ public class Commande {
         private  String tel;
         private String nom ; 
         private String prenom ; 
+        private int id_panier;
+        private int prix ; 
+
+    public Commande(int id_user, String date_commande, String rue, String ville, String code_postal, String tel, String nom, String prenom, int id_panier, int prix) {
+        this.id_user = id_user;
+        this.date_commande = date_commande;
+        this.rue = rue;
+        this.ville = ville;
+        this.code_postal = code_postal;
+        this.tel = tel;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.id_panier = id_panier;
+        this.prix = prix;
+    }
+
+    public int getPrix() {
+        return prix;
+    }
+
+    public void setPrix(int prix) {
+        this.prix = prix;
+    }
+
+    public Commande(int commande_id, int id_user, String date_commande, String rue, String ville, String code_postal, String tel, String nom, String prenom, int id_panier, int prix) {
+        this.commande_id = commande_id;
+        this.id_user = id_user;
+        this.date_commande = date_commande;
+        this.rue = rue;
+        this.ville = ville;
+        this.code_postal = code_postal;
+        this.tel = tel;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.id_panier = id_panier;
+        this.prix = prix;
+    }
+
+    public Commande(int id_user, String date_commande, String rue, String ville, String code_postal, String tel, String nom, String prenom, int id_panier) {
+        this.id_user = id_user;
+        this.date_commande = date_commande;
+        this.rue = rue;
+        this.ville = ville;
+        this.code_postal = code_postal;
+        this.tel = tel;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.id_panier = id_panier;
+    }
+
+    public int getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
+
+    public int getId_panier() {
+        return id_panier;
+    }
+
+    public void setId_panier(int id_panier) {
+        this.id_panier = id_panier;
+    }
+
+    public Commande(int commande_id, int id_user, String date_commande, String rue, String ville, String code_postal, String tel, String nom, String prenom, int id_panier) {
+        this.commande_id = commande_id;
+        this.id_user = id_user;
+        this.date_commande = date_commande;
+        this.rue = rue;
+        this.ville = ville;
+        this.code_postal = code_postal;
+        this.tel = tel;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.id_panier = id_panier;
+    }
 
     @Override
     public String toString() {

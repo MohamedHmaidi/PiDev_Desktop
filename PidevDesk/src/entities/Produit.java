@@ -14,6 +14,7 @@ public class produit {
     private int id_produit ;
     private String CodeProduit;
     private String Desgination ;
+    private int id_panier;
 
     @Override
     public String toString() {

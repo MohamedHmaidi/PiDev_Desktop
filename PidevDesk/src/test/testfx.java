@@ -29,7 +29,8 @@ public class testfx extends Application {
     public void start(Stage primaryStage) {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/AdminCommande.fxml"));
+           //FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Panier.fxml"));
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Panier.fxml"));
             Parent root = loader.load();
             Scene sc = new Scene(root);
 

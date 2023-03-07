@@ -3,17 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ashre/OneDrive/Documents/NetBeansProjects/PidevDesk/src/gui/PanierController.java</file>
-            <file>file:/C:/Users/ashre/OneDrive/Documents/NetBeansProjects/PidevDesk/src/test/testfx.java</file>
-            <file>file:/C:/Users/ashre/OneDrive/Documents/NetBeansProjects/PidevDesk/src/gui/PaiementController.java</file>
-            <file>file:/C:/Users/ashre/OneDrive/Documents/NetBeansProjects/PidevDesk/src/gui/SousProduitController.java</file>
-            <file>file:/C:/Users/ashre/OneDrive/Documents/NetBeansProjects/PidevDesk/src/gui/SousAdminCommandeController.java</file>
-            <file>file:/C:/Users/ashre/OneDrive/Documents/NetBeansProjects/PidevDesk/src/gui/DetailsCommandeController.java</file>
-            <file>file:/C:/Users/ashre/OneDrive/Documents/NetBeansProjects/PidevDesk/src/services/CommandeService.java</file>
-            <file>file:/C:/Users/ashre/OneDrive/Documents/NetBeansProjects/PidevDesk/src/gui/AdminCommandeController.java</file>
-            <file>file:/C:/Users/ashre/OneDrive/Documents/NetBeansProjects/PidevDesk/src/entities/Commande.java</file>
-            <file>file:/C:/Users/ashre/OneDrive/Documents/NetBeansProjects/PidevDesk/src/gui/CommandeController.java</file>
-            <file>file:/C:/Users/ashre/OneDrive/Documents/NetBeansProjects/PidevDesk/src/services/IProduitService.java</file>
+            <file>file:/C:/Users/ashre/OneDrive/Desktop/PidevDesk/src/gui/PanierController.java</file>
+            <file>file:/C:/Users/ashre/OneDrive/Desktop/PidevDesk/src/services/CommandeService.java</file>
+            <file>file:/C:/Users/ashre/OneDrive/Desktop/PidevDesk/src/test/test.java</file>
+            <file>file:/C:/Users/ashre/OneDrive/Desktop/PidevDesk/src/entities/Panier.java</file>
+            <file>file:/C:/Users/ashre/OneDrive/Desktop/PidevDesk/src/entities/EmailSender.java</file>
+            <file>file:/C:/Users/ashre/OneDrive/Desktop/PidevDesk/src/gui/FinalisationCommandeController.java</file>
+            <file>file:/C:/Users/ashre/OneDrive/Desktop/PidevDesk/src/entities/produit.java</file>
+            <file>file:/C:/Users/ashre/OneDrive/Desktop/PidevDesk/src/entities/SMSSender.java</file>
+            <file>file:/C:/Users/ashre/OneDrive/Desktop/PidevDesk/src/gui/SousProduitController.java</file>
+            <file>file:/C:/Users/ashre/OneDrive/Desktop/PidevDesk/src/gui/FinalisationCommande.fxml</file>
+            <file>file:/C:/Users/ashre/OneDrive/Desktop/PidevDesk/src/entities/Commande.java</file>
+            <file>file:/C:/Users/ashre/OneDrive/Desktop/PidevDesk/src/gui/SousAdminCommandeController.java</file>
+            <file>file:/C:/Users/ashre/OneDrive/Desktop/PidevDesk/src/services/PanierService.java</file>
+            <file>file:/C:/Users/ashre/OneDrive/Desktop/PidevDesk/src/gui/SousCommandeDetailsController.java</file>
+            <file>file:/C:/Users/ashre/OneDrive/Desktop/PidevDesk/src/test/testfx.java</file>
+            <file>file:/C:/Users/ashre/OneDrive/Desktop/PidevDesk/src/gui/CommandeDetailsController.java</file>
+            <file>file:/C:/Users/ashre/OneDrive/Desktop/PidevDesk/src/gui/SousProduit.fxml</file>
+            <file>file:/C:/Users/ashre/OneDrive/Desktop/PidevDesk/src/test/test1.java</file>
         </group>
     </open-files>
 </project-private>
