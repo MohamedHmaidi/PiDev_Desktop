@@ -200,13 +200,7 @@ for (produit produit : produits) {
         p.setCode_postal(codeposft.getText());
         p.setUser_id(4);
         CS.ajouterCommande(p,4);
-        
-        
-          Alert alert = new Alert(AlertType.INFORMATION);
-       alert.setTitle("Information Dialog");
-       alert.setHeaderText(null);
-       alert.setContentText("Commande passer");
-       alert.show();    
+         
         }
         
         catch (SQLException ex) {
