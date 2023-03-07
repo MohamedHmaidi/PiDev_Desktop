@@ -37,7 +37,7 @@ public UserService() {
              stmt.setString(3, t.getEmail());
             stmt.setString(4, t.getMdp());
              stmt.setInt(5, t.getTel());
-              stmt.setBinaryStream(6, new ByteArrayInputStream(t.getImage()), t.getImage().length);
+              stmt.setString(6, t.getImage());
 
                stmt.setString(7, t.getRole());
             int result=stmt.executeUpdate();
@@ -71,7 +71,7 @@ public UserService() {
              stmt.setString(3, t.getEmail());
             stmt.setString(4, t.getMdp());
              stmt.setInt(5, t.getTel());
-              stmt.setBinaryStream(6, new ByteArrayInputStream(t.getImage()), t.getImage().length);
+              stmt.setString(6, t.getImage());
                stmt.setString(7, t.getRole());
          stmt.setInt(8, t.getId());
          
@@ -97,7 +97,7 @@ public UserService() {
     
     public List<User> rechercherParNom(String nom) throws SQLException {
      List<User> users = new ArrayList<>();
-      String req = "SELECT * FROM user WHERE (role='Artiste' OR role='simple utilisateur') AND nom LIKE '%" + nom + "%'";
+      String req = "SELECT * FROM user WHERE (role='Artiste' OR role='simple utilisateur') AND (nom LIKE '%" + nom + "%' OR email LIKE '%" + nom + "%' OR prenom LIKE '%" + nom + "%')";
      Statement stm = cnx.createStatement();
     ResultSet rs = stm.executeQuery(req);
     
@@ -111,8 +111,8 @@ public UserService() {
    p.setRole(rs.getString("role"));
   // p.setImage(rs.getString("image"));
   
-   byte[] ImageBytes = rs.getBlob("image").getBytes(1l, (int)rs.getBlob("image").length());
-            p.setImage(ImageBytes);
+  
+            p.setImage(rs.getString("image"));
   
   
    p.setMdp(rs.getString("mdp"));
@@ -154,8 +154,8 @@ public UserService() {
    p.setRole(rs.getString("role"));
   // p.setImage(rs.getString("image"));
   
-   byte[] ImageBytes = rs.getBlob("image").getBytes(1l, (int)rs.getBlob("image").length());
-            p.setImage(ImageBytes);
+  
+   p.setImage(rs.getString("image"));
   
   
    p.setMdp(rs.getString("mdp"));

@@ -6,6 +6,7 @@ package gui;
 
 import entities.User;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -97,8 +98,11 @@ pdp.fitHeightProperty().bind(clip.radiusProperty().multiply(2));
   
        mdp.setText(user.getMdp().replaceAll(".", "*"));
         role.setText(user.getRole());
-         ByteArrayInputStream inputStream = new ByteArrayInputStream(user.getImage());
-       Image image = new Image(inputStream);
+         //ByteArrayInputStream inputStream = new ByteArrayInputStream(user.getImage());
+          File imageFile = new File(user.getImage());
+          Image image = new Image(imageFile.toURI().toString());
+      // Image image = new Image(inputStream);
+      // pdp.setImage(image);
        pdp.setImage(image);
         
     }

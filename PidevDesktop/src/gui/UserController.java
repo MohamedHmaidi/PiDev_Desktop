@@ -6,6 +6,7 @@ package gui;
 
 import entities.User;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -74,9 +75,13 @@ pdp.fitHeightProperty().bind(clip.radiusProperty().multiply(2));
    nom.setText(p.getPrenom()+" "+p.getNom());
    email.setText(p.getEmail());
   
-  ByteArrayInputStream inputStream = new ByteArrayInputStream(p.getImage());
-       Image image = new Image(inputStream);
+//  ByteArrayInputStream inputStream = new ByteArrayInputStream(p.getImage());
+//       Image image = new Image(inputStream);
+//       pdp.setImage(image);
+File imageFile = new File(p.getImage());
+          Image image = new Image(imageFile.toURI().toString());
        pdp.setImage(image);
+        
    
    
    

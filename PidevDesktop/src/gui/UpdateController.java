@@ -63,7 +63,7 @@ UserService us = new UserService();
     private ImageView pdp;
     @FXML
     private Button upbtn;
-    private byte[] imageData;
+    private String imageData;
     @FXML
     private ImageView backbt;
     /**
@@ -83,8 +83,11 @@ UserService us = new UserService();
     public void senduser(User p){
     user_test=p;
     user=p;
-    ByteArrayInputStream inputStream = new ByteArrayInputStream(user.getImage());
-       Image image = new Image(inputStream);
+//    ByteArrayInputStream inputStream = new ByteArrayInputStream(user.getImage());
+//       Image image = new Image(inputStream);
+
+File imageFile = new File(user.getImage());
+          Image image = new Image(imageFile.toURI().toString());
        pdp.setImage(image);
         
     
@@ -171,11 +174,8 @@ user.setImage(imageData);
         new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
-            try {
-                imageData = Files.readAllBytes(selectedFile.toPath());
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
+            //imageData = Files.readAllBytes(selectedFile.toPath());
+            imageData=selectedFile.getPath();
         }
         
         

@@ -15,9 +15,9 @@ public class User {
     
     private int id,tel;
     private String nom, prenom,email,mdp,role;
-    private byte[] image;
+    private String image;
 
-    public User(int id, int tel, String nom, String prenom, String email, String mdp, String role, byte[] image) {
+    public User(int id, int tel, String nom, String prenom, String email, String mdp, String role, String image) {
         this.id = id;
         this.tel = tel;
         this.nom = nom;
@@ -28,7 +28,7 @@ public class User {
         this.image = image;
     }
 
-    public User(int tel, String nom, String prenom, String email, String mdp, String role, byte[] image) {
+    public User(int tel, String nom, String prenom, String email, String mdp, String role, String image) {
         this.tel = tel;
         this.nom = nom;
         this.prenom = prenom;
@@ -97,11 +97,11 @@ public class User {
         this.role = role;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
