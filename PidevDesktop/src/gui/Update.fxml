@@ -29,7 +29,7 @@
             <Font name="Verdana Bold" size="15.0" />
          </font>
       </Button>
-      <ImageView fx:id="pdp" fitHeight="142.0" fitWidth="77.0" layoutX="459.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="pdp" fitHeight="126.0" fitWidth="181.0" layoutX="403.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="backbt" fitHeight="46.0" fitWidth="51.0" layoutX="25.0" layoutY="14.0" onMouseClicked="#back">
          <image>
             <Image url="@GoBack.png" />

@@ -23,7 +23,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import services.UserService;
 
@@ -64,21 +63,6 @@ public class EditController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
-        
-Circle clip = new Circle();
-clip.setCenterX(pdp.getFitWidth() / 2);
-clip.setCenterY(pdp.getFitHeight() / 2);
-clip.setRadius(Math.min(pdp.getFitWidth(), pdp.getFitHeight()) / 2);
-
-
-pdp.setClip(clip);
-
-
-pdp.fitWidthProperty().bind(clip.radiusProperty().multiply(2));
-pdp.fitHeightProperty().bind(clip.radiusProperty().multiply(2));
-        
         if (LoginController.UserConnected.getRole().equals("Admin")){
         
         backbtn.setVisible(true);

@@ -20,7 +20,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -46,25 +45,6 @@ private User u;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-        Circle clip = new Circle();
-clip.setCenterX(pdp.getFitWidth() / 2);
-clip.setCenterY(pdp.getFitHeight() / 2);
-clip.setRadius(Math.min(pdp.getFitWidth(), pdp.getFitHeight()) / 2);
-
-
-pdp.setClip(clip);
-
-
-pdp.fitWidthProperty().bind(clip.radiusProperty().multiply(2));
-pdp.fitHeightProperty().bind(clip.radiusProperty().multiply(2));
-        
-        
-        
-        
-        
-        
-        
     }    
     
     

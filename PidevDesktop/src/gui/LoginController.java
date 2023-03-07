@@ -12,10 +12,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,11 +23,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import services.UserService;
 
 /**
@@ -56,10 +50,6 @@ public class LoginController implements Initializable {
     UserService us= new UserService();
     @FXML
     private Button icibt;
-    @FXML
-    private ImageView logo;
-    @FXML
-    private Text slogan;
 
     /**
      * Initializes the controller class.
@@ -67,20 +57,6 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-    
-        
-        
-    
-TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(5), slogan);
-translateTransition.setFromX(-slogan.getBoundsInParent().getWidth());
-translateTransition.setToX(logo.getBoundsInParent().getWidth());
-translateTransition.setCycleCount(Timeline.INDEFINITE);
-translateTransition.play();    
-        
-        
-        
-        
     }    
 
     @FXML
