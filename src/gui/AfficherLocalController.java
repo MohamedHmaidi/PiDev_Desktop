@@ -5,6 +5,8 @@
 package gui;
 
 import Entities.Local;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -28,10 +30,17 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.poi.ss.usermodel.Row;
+//import org.apache.poi.sl.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import services.LocalService;
 
 /*
@@ -93,6 +102,10 @@ public class AfficherLocalController implements Initializable {
     LocalService ls = new LocalService();
     @FXML
     private Label lab;
+    @FXML
+    private ImageView excel;
+    @FXML
+    private ImageView statistique;
 
 
     /* @FXML
@@ -294,6 +307,84 @@ public class AfficherLocalController implements Initializable {
             System.out.println("error" + ex.getMessage());
         }
         
+        
+    }
+
+    @FXML
+    private void handleImageViewClick(MouseEvent event) {
+        
+         try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Enregistrer le fichier Excel");
+           fileChooser.setInitialFileName(".xlsx");
+            File file = fileChooser.showSaveDialog(null);
+            
+            if (file != null) {
+                Workbook workbook = new XSSFWorkbook();
+                Sheet sheet =  workbook.createSheet("locaux");
+                
+                // écrire les en-têtes de colonne
+                Row headerRow = sheet.createRow(0);
+                headerRow.createCell(0).setCellValue("NumLocal");
+                headerRow.createCell(1).setCellValue("Description");
+                headerRow.createCell(2).setCellValue("LieuLocal");
+                headerRow.createCell(3).setCellValue("Surface en metre");
+                headerRow.createCell(4).setCellValue("Code categorie");
+                
+        
+        
+         // écrire les données de TableView dans la feuille de calcul
+                ObservableList<Local> locaux = locTv.getItems();
+                for (int i = 0; i < locaux.size(); i++) {
+                    Local local = locaux.get(i);
+                    Row row = sheet.createRow(i + 1);
+                    row.createCell(0).setCellValue(local.getNum());
+                    row.createCell(1).setCellValue(local.getDescript());
+                    row.createCell(2).setCellValue(local.getLieu());
+                    row.createCell(3).setCellValue(local.getNbper());
+                    row.createCell(4).setCellValue(local.getCodec());
+                }
+                
+                FileOutputStream fos = new FileOutputStream(file);
+                workbook.write(fos);
+                workbook.close();
+                fos.close();
+                
+        
+        
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Enregistrement réussi");
+                alert.setHeaderText("Le fichier Excel a été enregistré avec succès.");
+                alert.showAndWait();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+   
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+
+    @FXML
+    private void statistique(MouseEvent event) {
+        
+        
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("statistiquelocal.fxml"));
+            Parent root = loader.load();
+       
+            pane.getScene().setRoot(root);
+           
+
+        } catch (IOException ex) {
+            System.out.println("error" + ex.getMessage());
+        }
         
     }
 

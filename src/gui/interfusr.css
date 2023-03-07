@@ -1,0 +1,26 @@
+/*
+ * Empty Stylesheet file.
+ */
+.primary_color{
+    
+    
+   -fx-background-color:   #121212;
+}
+.secondary_color{
+    
+    
+   -fx-background-color:  #d4d1d4
+}
+ 
+   .search-container{
+    -fx-background-color: #fff;
+    -fx-background-radius: 100;
+}
+
+    
+.mainFxmlClass {
+
+    
+   
+    
+}

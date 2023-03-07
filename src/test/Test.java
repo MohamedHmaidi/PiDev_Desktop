@@ -6,6 +6,7 @@ package test;
 
 import Entities.CategorieLocal;
 import Entities.Local;
+import Entities.Mail;
 import java.sql.SQLException;
 import services.CategorieLocalService;
 import services.LocalService;
@@ -21,6 +22,8 @@ public class Test {
 
     public static void main(String[] args) throws SQLException {
         Mybd db = new Mybd.getInstance();
+        Mail m=new Mail();
+        m.send("saws55457@gmail.com","helooo","xxxx","saws55457@gmail.com","dptkvofegptwzirs");
 
      //   System.out.println("db");*/
 
@@ -28,7 +31,7 @@ public class Test {
         //connecter une seule fois a la base  ---une seule instance db 
         
         
-        try{
+       /* try{
            Local l =new Local(888881,"aa","eee",52.1f,15,999);
             LocalService loc = new LocalService();
            loc.ajouter(l);
@@ -52,5 +55,6 @@ public class Test {
       
  
         
-    }
+    }*/
+}
 }

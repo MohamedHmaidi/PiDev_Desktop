@@ -5,6 +5,7 @@
 package services;
 
 import Entities.CategorieLocal;
+import Entities.Local;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -89,8 +90,74 @@ Connection cnx;
     
     
     
+      
+    //fonction recuprer une liste dont code entrée
+     public List<CategorieLocal>  recupererCode(int code) throws SQLException{
+    List< CategorieLocal> categories=new ArrayList();
+    String req="SELECT * FROM categorie_loc WHERE codeC_loc=?";
+    PreparedStatement ps = cnx.prepareStatement(req);
+       ps.setInt(1,code);
+      
+    ResultSet rs=ps.executeQuery();
+     
+     while(rs.next()){
+          CategorieLocal c =new CategorieLocal();
+          c.setCode(rs.getInt("codeC_loc"));
+          c.setLibelle(rs.getString("libelleC_loc"));
+          categories.add(c);
+     }
+             
+    System.out.println( categories);
+    return categories;
+     
+        
+    }
+    
+    public List<CategorieLocal>  triCode() throws SQLException{
+    List< CategorieLocal> categories=new ArrayList();
+    String req="SELECT * FROM categorie_loc ORDER BY codeC_loc DESC"  ;
+    PreparedStatement ps = cnx.prepareStatement(req);
+       //ps.setInt(1,code);
+      
+    ResultSet rs=ps.executeQuery();
+     
+     while(rs.next()){
+          CategorieLocal c =new CategorieLocal();
+          c.setCode(rs.getInt("codeC_loc"));
+          c.setLibelle(rs.getString("libelleC_loc"));
+          categories.add(c);
+     }
+             
+    System.out.println( categories);
+    return categories;
+     
+        
+    }
+     
     
     
     
-    
+    public List<CategorieLocal>  triLibelle() throws SQLException{
+    List< CategorieLocal> categories=new ArrayList();
+    String req="SELECT * FROM categorie_loc ORDER BY libelleC_loc "  ;
+    PreparedStatement ps = cnx.prepareStatement(req);
+       //ps.setInt(1,code);
+      
+    ResultSet rs=ps.executeQuery();
+     
+     while(rs.next()){
+          CategorieLocal c =new CategorieLocal();
+          c.setCode(rs.getInt("codeC_loc"));
+          c.setLibelle(rs.getString("libelleC_loc"));
+          categories.add(c);
+     }
+             
+    System.out.println( categories);
+    return categories;
+     
+        
+    }
+     
+     
+     
 }
