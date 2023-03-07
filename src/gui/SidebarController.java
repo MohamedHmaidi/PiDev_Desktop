@@ -29,7 +29,17 @@ public class SidebarController implements Initializable {
     private Button eventListBtn;
     private MainContainerController mcc;
     @FXML
-    private Button artistsBtn;
+    private Button homeBtn;
+    @FXML
+    private Button produitsBtn;
+    @FXML
+    private Button reclamationsBtn;
+    @FXML
+    private Button commandeBtn;
+    @FXML
+    private Button LocationBtn;
+    @FXML
+    private Button utilisateursBtn;
     /**
      * Initializes the controller class.
      */
@@ -57,7 +67,27 @@ public class SidebarController implements Initializable {
     }
 
     @FXML
-    private void ArtistsPage(ActionEvent event) {
+    private void homePage(ActionEvent event) {
+    }
+
+    @FXML
+    private void produitsPage(ActionEvent event) {
+    }
+
+    @FXML
+    private void reclamationPage(ActionEvent event) {
+    }
+
+    @FXML
+    private void commandePage(ActionEvent event) {
+    }
+
+    @FXML
+    private void locationPage(ActionEvent event) {
+    }
+
+    @FXML
+    private void utilisateursPage(ActionEvent event) {
     }
     
 }

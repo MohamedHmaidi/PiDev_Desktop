@@ -13,9 +13,8 @@ import java.sql.Date;
  */
 public class Event {
     private int event_id, ticketCount, host_id, location_id;
-    private String title, type, description, status;
+    private String title, type, description, status, affiche;
     private Date startDate, endDate;
-    private byte[] affiche;
     private float ticketPrice;
 
     public Event() {
@@ -25,7 +24,7 @@ public class Event {
         this.event_id = event_id;
     }
 
-    public Event(int event_id, int ticketCount, int host_id, int location_id, String title, String type, String description, String status, Date startDate, Date endDate, byte[] affiche) {
+    public Event(int event_id, int ticketCount, int host_id, int location_id, String title, String type, String description, String status, Date startDate, Date endDate, String affiche) {
         this.event_id = event_id;
         this.ticketCount = ticketCount;
         this.host_id = host_id;
@@ -39,7 +38,7 @@ public class Event {
         this.affiche = affiche;
     }
 
-    public Event(int ticketCount, int host_id, int location_id, String title, String type, String description, String status, Date startDate, Date endDate, byte[] affiche) {
+    public Event(int ticketCount, int host_id, int location_id, String title, String type, String description, String status, Date startDate, Date endDate, String affiche) {
         this.ticketCount = ticketCount;
         this.host_id = host_id;
         this.location_id = location_id;
@@ -138,11 +137,11 @@ public class Event {
         this.endDate = endDate;
     }
 
-    public byte[] getAffiche() {
+    public String getAffiche() {
         return affiche;
     }
 
-    public void setAffiche(byte[] affiche) {
+    public void setAffiche(String affiche) {
         this.affiche = affiche;
     }
     

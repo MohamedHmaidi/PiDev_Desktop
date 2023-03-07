@@ -44,7 +44,7 @@ public class EventService implements IService<Event>{
         ps.setInt(6, t.getTicketCount());
         ps.setInt(7, t.getHost_id());
         ps.setInt(8, t.getLocation_id());
-        ps.setBinaryStream(9, new ByteArrayInputStream(t.getAffiche()), (t.getAffiche()).length);
+        ps.setString(9, t.getAffiche());
         ps.setFloat(10, t.getTicketPrice());
         ps.executeUpdate();
     }
@@ -60,7 +60,7 @@ public class EventService implements IService<Event>{
         ps.setDate(5, t.getEndDate());
         ps.setInt(6, t.getTicketCount());
         ps.setInt(7, t.getLocation_id());
-        ps.setBinaryStream(8, new ByteArrayInputStream(t.getAffiche()), (t.getAffiche()).length);
+        ps.setString(8, t.getAffiche());
         ps.setString(9, t.getStatus());
         ps.setFloat(10, t.getTicketPrice());
         ps.setInt(11, t.getEvent_id());
@@ -94,10 +94,7 @@ public class EventService implements IService<Event>{
             e.setHost_id(rs.getInt("host_id"));
             e.setLocation_id(rs.getInt("location_id"));
             e.setTicketPrice(rs.getFloat("ticketPrice"));
-            
-            //BLOB to byte[] array
-            byte[] afficheBytes = rs.getBlob("affiche").getBytes(1l, (int)rs.getBlob("affiche").length());
-            e.setAffiche(afficheBytes);
+            e.setAffiche(rs.getString("affiche"));
             
             events.add(e);
             
@@ -156,10 +153,7 @@ public class EventService implements IService<Event>{
             e.setHost_id(rs.getInt("host_id"));
             e.setLocation_id(rs.getInt("location_id"));
             e.setTicketPrice(rs.getFloat("ticketPrice"));
-            
-            //BLOB to byte[] array
-            byte[] afficheBytes = rs.getBlob("affiche").getBytes(1l, (int)rs.getBlob("affiche").length());
-            e.setAffiche(afficheBytes);
+            e.setAffiche(rs.getString("affiche"));
             
             filteredEvents.add(e);
         }

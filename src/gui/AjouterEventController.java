@@ -47,7 +47,7 @@ public class AjouterEventController implements Initializable {
     @FXML
     private TextField titleTf;
     @FXML
-    private TextField typeTf;
+    private ChoiceBox<String> typeTf;
     @FXML
     private TextArea descTa;
     @FXML
@@ -64,7 +64,7 @@ public class AjouterEventController implements Initializable {
     @FXML
     private Button eventListBtn;
     
-    private byte[] imageData;
+    private String imagePath;
     private String selectedLoc;
     private int selectedLocId;
     
@@ -85,6 +85,8 @@ public class AjouterEventController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            
+            //Location choice Box
             List<Location> locations = locS.recuperer();
             locationCBox.setValue(locations.get(0).getLieu_loc());
             for (int i = 0; i < locations.size(); i++){
@@ -99,6 +101,13 @@ public class AjouterEventController implements Initializable {
                     }
                 }
             });
+            
+            //Event Type choice box
+            typeTf.setValue("Plein air");
+            typeTf.getItems().addAll("Plein air", "A l'intérieur", "Cérémonie");
+            typeTf.setOnAction(event -> {
+                String selected = typeTf.getValue();
+            });
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -112,15 +121,11 @@ public class AjouterEventController implements Initializable {
         new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
-            try {
-                imageData = Files.readAllBytes(selectedFile.toPath());
-                //Convert byte[] to InputStream then preview it
-                ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData);
-                Image image = new Image(inputStream);
-                imagePreview.setImage(image);
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
+            String imageName = selectedFile.getName();
+            imagePath = "src/assets/images/affiches/"+imageName;
+            File imageFile = new File(imagePath);
+            Image image = new Image(imageFile.toURI().toString());
+            imagePreview.setImage(image);
         }
     }
 
@@ -141,23 +146,29 @@ public class AjouterEventController implements Initializable {
                 warn.setContentText("The ticket price value is not valid.");
                 warn.setHeaderText(null);
                 warn.showAndWait();
-            } else if (titleTf.getText().isEmpty() && typeTf.getText().isEmpty() && descTa.getText().isEmpty() && startDateDp.getValue()==null && endDateDp.getValue()==null) {
+            } else if (titleTf.getText().isEmpty() || typeTf.getValue().isEmpty() || descTa.getText().isEmpty() || startDateDp.getValue()==null || endDateDp.getValue()==null) {
                 Alert warn = new Alert(AlertType.INFORMATION);
                 warn.setTitle("Invalid Input");
                 warn.setContentText("Please enter values in all fields.");
                 warn.setHeaderText(null);
                 warn.showAndWait();
+            } else if (endDateDp.getValue().isBefore(startDateDp.getValue())) {
+                Alert warn = new Alert(AlertType.INFORMATION);
+                warn.setTitle("Invalid Input");
+                warn.setContentText("End date cannot be before start date.");
+                warn.setHeaderText(null);
+                warn.showAndWait();
             } else {
                 Event e = new Event();
                 e.setTitle(titleTf.getText());
-                e.setType(typeTf.getText());
+                e.setType(typeTf.getValue());
                 e.setDescription(descTa.getText());
                 e.setStartDate(java.sql.Date.valueOf(startDateDp.getValue())); //Gives a local date so I converted to Date
                 e.setEndDate(java.sql.Date.valueOf(endDateDp.getValue()));
                 e.setTicketCount(Integer.parseInt(ticketCountTf.getText()));
                 e.setHost_id(LoginController.UserConnected.getId());
                 e.setLocation_id(selectedLocId);
-                e.setAffiche(imageData);
+                e.setAffiche(imagePath);
                 e.setTicketPrice(Float.parseFloat(ticketPriceTf.getText()));
                 es.ajouter(e);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherListeEvent.fxml"));

@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -46,11 +47,16 @@
          </font>
       </Text>
       <TextField fx:id="searchBarTf" layoutX="27.0" layoutY="116.0" prefHeight="34.0" prefWidth="399.0" promptText="Search.." />
-      <ChoiceBox fx:id="sortBoxCB" layoutX="568.0" layoutY="116.0" prefHeight="34.0" prefWidth="137.0" />
-      <Label layoutX="505.0" layoutY="120.0" text="Sort by:">
+      <ChoiceBox fx:id="sortBoxCB" layoutX="498.0" layoutY="116.0" prefHeight="34.0" prefWidth="137.0" />
+      <Label layoutX="435.0" layoutY="120.0" text="Sort by:">
          <font>
             <Font name="Leelawadee UI Semilight" size="18.0" />
          </font>
       </Label>
+      <RadioButton fx:id="showOnlyActiveRb" layoutX="655.0" layoutY="121.0" mnemonicParsing="false" text="Active">
+         <font>
+            <Font name="Leelawadee UI Semilight" size="16.0" />
+         </font>
+      </RadioButton>
    </children>
 </AnchorPane>

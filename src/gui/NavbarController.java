@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -28,6 +29,8 @@ public class NavbarController implements Initializable {
     private Text welcomeText;
     @FXML
     private ImageView profileIcon;
+    @FXML
+    private ImageView panierIcon;
 
     /**
      * Initializes the controller class.
@@ -45,6 +48,17 @@ public class NavbarController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("UserProfileDemo.fxml"));
             Parent root = loader.load(); 
             MCCSaver.mcc.setContent(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void openPanier(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/Panier.fxml"));
+            Parent root = loader.load();
+            welcomeText.getScene().setRoot(root);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }

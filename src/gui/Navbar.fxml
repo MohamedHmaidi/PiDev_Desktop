@@ -23,5 +23,10 @@
             <Font name="Leelawadee UI Semilight" size="18.0" />
          </font>
       </Text>
+      <ImageView fx:id="panierIcon" fitHeight="52.0" fitWidth="53.0" layoutX="866.0" layoutY="12.0" onMouseClicked="#openPanier">
+         <image>
+            <Image url="@../assets/images/Panier.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

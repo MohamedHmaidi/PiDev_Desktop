@@ -23,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -45,7 +46,7 @@ public class ModifierEventController implements Initializable {
     @FXML
     private TextField titleTf;
     @FXML
-    private TextField typeTf;
+    private ChoiceBox<String> typeTf;
     @FXML
     private TextArea descTa;
     @FXML
@@ -63,7 +64,7 @@ public class ModifierEventController implements Initializable {
     
     private Event eventInfo;
     
-    private byte[] imageData;
+    private String imageData;
     
     EventService es = new EventService();
     LocationService locS = new LocationService();
@@ -91,6 +92,13 @@ public class ModifierEventController implements Initializable {
             String selected = statusCBox.getValue();
         });
         
+        //Event Type choice box
+            typeTf.setValue("Plein air");
+            typeTf.getItems().addAll("Plein air", "A l'intérieur", "Cérémonie");
+            typeTf.setOnAction(event -> {
+                String selected = typeTf.getValue();
+        });
+        
         //Set location choice box values
         try {
             List<Location> locations = locS.recuperer();
@@ -116,7 +124,7 @@ public class ModifierEventController implements Initializable {
         try {
             eventInfo = eventInfoStore;
             titleTf.setText(eventInfoStore.getTitle());
-            typeTf.setText(eventInfoStore.getType());
+            typeTf.setValue(eventInfoStore.getType());
             descTa.setText(eventInfoStore.getDescription());
             startDateDp.setValue((eventInfoStore.getStartDate()).toLocalDate());
             endDateDp.setValue((eventInfoStore.getEndDate()).toLocalDate());
@@ -125,10 +133,8 @@ public class ModifierEventController implements Initializable {
             statusCBox.setValue(eventInfoStore.getStatus());
             locationCBox.setValue(locS.getLieu(eventInfoStore.getLocation_id()));
             ticketPriceTf.setText(Float.toString(eventInfoStore.getTicketPrice()));
-            
-            //Convert byte[] to InputStream then show it
-            ByteArrayInputStream inputStream = new ByteArrayInputStream(eventInfoStore.getAffiche());
-            Image image = new Image(inputStream);
+            File imageFile = new File(eventInfo.getAffiche());
+            Image image = new Image(imageFile.toURI().toString());
             imagePreview.setImage(image);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -143,25 +149,48 @@ public class ModifierEventController implements Initializable {
         new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
-            try {
-                imageData = Files.readAllBytes(selectedFile.toPath());
-                //Convert byte[] to InputStream then show it
-                ByteArrayInputStream inputStream = new ByteArrayInputStream(imageData);
-                Image image = new Image(inputStream);
-                imagePreview.setImage(image);
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
+            String imageName = selectedFile.getName();
+            imageData = "src/assets/images/affiches/"+imageName;
+            File imageFile = new File(imageData);
+            Image image = new Image(imageFile.toURI().toString());
+            imagePreview.setImage(image);
         }
     }
 
     @FXML
     private void updateEvent(ActionEvent event) {
         try {
+            String verifTicketCount = ticketCountTf.getText();
+            String verifTicketPrice = ticketPriceTf.getText();
+            if (!verifTicketCount.matches("\\d+")){
+                Alert warn = new Alert(Alert.AlertType.INFORMATION);
+                warn.setTitle("Invalid Input");
+                warn.setContentText("The ticket count value is not valid.");
+                warn.setHeaderText(null);
+                warn.showAndWait();
+            } else if (!verifTicketPrice.matches("\\d+(\\.\\d+)?")) {
+                Alert warn = new Alert(Alert.AlertType.INFORMATION);
+                warn.setTitle("Invalid Input");
+                warn.setContentText("The ticket price value is not valid.");
+                warn.setHeaderText(null);
+                warn.showAndWait();
+            } else if (titleTf.getText().isEmpty() || typeTf.getValue().isEmpty() || descTa.getText().isEmpty() || startDateDp.getValue()==null || endDateDp.getValue()==null) {
+                Alert warn = new Alert(Alert.AlertType.INFORMATION);
+                warn.setTitle("Invalid Input");
+                warn.setContentText("Please enter values in all fields.");
+                warn.setHeaderText(null);
+                warn.showAndWait();
+            } else if (endDateDp.getValue().isBefore(startDateDp.getValue())) {
+                Alert warn = new Alert(Alert.AlertType.INFORMATION);
+                warn.setTitle("Invalid Input");
+                warn.setContentText("End date cannot be before start date.");
+                warn.setHeaderText(null);
+                warn.showAndWait();
+            } else {
             Event e = new Event();
             e.setEvent_id(eventInfo.getEvent_id());
             e.setTitle(titleTf.getText());
-            e.setType(typeTf.getText());
+            e.setType(typeTf.getValue());
             e.setDescription(descTa.getText());
             e.setStartDate(java.sql.Date.valueOf(startDateDp.getValue())); //Gives a local date so I converted to Date
             e.setEndDate(java.sql.Date.valueOf(endDateDp.getValue()));
@@ -178,6 +207,7 @@ public class ModifierEventController implements Initializable {
             MCCSaver.mcc.setContent(root);
             EventInfoController controller = loader.getController();
             controller.sendEvent(eventInfo);
+            }
         } catch (SQLException | IOException ex) {
             System.out.println(ex.getMessage());
         }

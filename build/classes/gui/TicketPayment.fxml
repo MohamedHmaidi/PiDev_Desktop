@@ -41,16 +41,6 @@
             <Font name="Leelawadee UI Semilight" size="14.0" />
          </font>
       </Button>
-      <Label fx:id="statusLabel" layoutX="423.0" layoutY="323.0" text="Pending" textFill="#757575">
-         <font>
-            <Font name="Leelawadee UI Semilight" size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="423.0" layoutY="293.0" text="Payment status">
-         <font>
-            <Font name="Leelawadee UI Semilight" size="18.0" />
-         </font>
-      </Label>
       <TextField fx:id="exprMonthField" layoutX="20.0" layoutY="236.0" prefHeight="34.0" prefWidth="74.0" promptText="MM" />
       <Label layoutX="20.0" layoutY="216.0" text="Month">
          <font>

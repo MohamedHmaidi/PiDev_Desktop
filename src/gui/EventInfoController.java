@@ -127,12 +127,17 @@ public class EventInfoController implements Initializable {
             hostNameText.setText(us.getNom(eventInfo.getHost_id()));
             ticketCountText.setText(String.valueOf(eventInfo.getTicketCount()));
             descText.setText(eventInfo.getDescription());
-            ByteArrayInputStream inputStream = new ByteArrayInputStream(eventInfo.getAffiche());
-            Image image = new Image(inputStream);
+            File imageFile = new File(eventInfo.getAffiche());
+            Image image = new Image(imageFile.toURI().toString());
             afficheIv.setImage(image);
             buyBtn.setText("Get your ticket! "+eventInfo.getTicketPrice()+" dt.");
             likeButton.setText("LIKE: "+ers.reactionCount(eventInfoStore.getEvent_id(), EventReaction.Reaction.like));
             dislikeButton.setText("DISLIKE: "+ers.reactionCount(eventInfoStore.getEvent_id(), EventReaction.Reaction.dislike));
+            //Check if Admin:
+            if(!LoginController.UserConnected.getRole().equals("Admin") || LoginController.UserConnected.getId() != eventInfoStore.getHost_id()){
+                updateBtn.setVisible(false);
+                deleteBtn.setVisible(false);
+            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -176,91 +181,21 @@ public class EventInfoController implements Initializable {
     }
 
     @FXML
-    private void buyTicket(ActionEvent event) {
-        try {
-            String qrImgName = "";
-            
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation Dialog");
-            alert.setHeaderText("Are you sure you want to proceed?");
-            alert.setContentText("Click OK to proceed or Cancel to cancel the action.");
-
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
-                Ticket t = new Ticket();
-                t.setEvent_id(eventInfoStore.getEvent_id());
-                t.setPrice(eventInfoStore.getTicketPrice());
-                t.setUser_id(LoginController.UserConnected.getId());
-                
-                //QR Code Generator
-                String str = "Ticket number: "+eventInfoStore.getTicketCount()+" | event: "+t.getEvent_id()+" | User: "+t.getUser_id();
-                qrImgName = "t"+eventInfoStore.getTicketCount()+"e"+t.getEvent_id()+"u"+t.getUser_id();
-                String path = "src/assets/images/"+qrImgName+".png";
-                String charset = "UTF-8";
-                Map<EncodeHintType, ErrorCorrectionLevel> hashMap = new HashMap<EncodeHintType, ErrorCorrectionLevel>();  
-                hashMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
-                generateQRcode(str, path, charset, hashMap, 200, 200);
-                
-                t.setQrCodeImg(path);
-                ts.ajouter(t);
-                //Update TicketCount
-                int newTicketCount = (eventInfoStore.getTicketCount())-1;
-                eventInfoStore.setTicketCount(newTicketCount);
-                es.modifier(eventInfoStore);
-                  
-                //Extra: Refresh content pane
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("EventInfo.fxml"));
-                Parent root = loader.load();
-                MCCSaver.mcc.setContent(root);
-                EventInfoController controller = loader.getController();
-                controller.sendEvent(eventInfoStore);
-                
-                // Show QR code image
-                Alert successAlert = new Alert(AlertType.INFORMATION);
-                successAlert.setTitle("Congratulation!");
-                successAlert.setHeaderText("Ticket was successfully bought!");
-                successAlert.setContentText("Here's your Ticket QR Code, please scan it!");
-
-                // Load the image from the saved file
-                File imageFile = new File(t.getQrCodeImg());
-                Image image = new Image(imageFile.toURI().toString());
-
-                // Create an ImageView to display the image
-                ImageView imageView = new ImageView(image);
-                imageView.setFitWidth(200); // Set the width of the image view
-                imageView.setFitHeight(200); // Set the height of the image view
-
-                // Set the graphic of the alert to the image view
-                successAlert.setGraphic(imageView);
-                successAlert.showAndWait();
-
-                
-            } else {
-                // User clicked Cancel, do not proceed with the action
-            }
-            
-        } catch (SQLException | IOException | WriterException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-    
-    //ZXING QR Code Generator API
-    public void generateQRcode(String data, String path, String charset, Map map, int h, int w) throws WriterException, IOException  
-        {  
-            BitMatrix matrix = new MultiFormatWriter().encode(new String(data.getBytes(charset), charset), BarcodeFormat.QR_CODE, w, h);  
-            MatrixToImageWriter.writeToFile(matrix, path.substring(path.lastIndexOf('.') + 1), new File(path));  
-        }  
-
-    @FXML
     private void handlePopup(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TicketPayment.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
+            Parent root = (Parent) fxmlLoader.load();
+            TicketPaymentController controller = fxmlLoader.getController();
+            controller.sendInfo(eventInfoStore);
             Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            String css = this.getClass().getResource("../assets/css/app.css").toExternalForm();
+            scene.getStylesheets().add(css);
             stage.setTitle("Buy a Ticket!");
-            stage.setScene(new Scene(root1));
+            stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
+            
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -311,20 +246,4 @@ public class EventInfoController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
-
-    @FXML
-    private void purchaseAPIHandler(ActionEvent event) {
-        try {
-            Stripe.apiKey = "sk_test_51MgtelLLCNeC0hr0mCf88VawiUWkhHUT31HrUOJieGeZXcph8jTHoXYvULZB8micyWQVupMyHx5meCHom3D80TVA00roslqe44";
-            System.out.println("API set");
-            
-            Customer a = Customer.retrieve("cus_NRnHlXgHLRwjAr");
-            System.out.println("customer created");
-        } catch (StripeException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-    
-    
-    
 }

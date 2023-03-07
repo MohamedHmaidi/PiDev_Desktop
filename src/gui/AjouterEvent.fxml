@@ -14,7 +14,6 @@
 <AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1000.0" styleClass="Box" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterEventController">
    <children>
       <TextField fx:id="titleTf" layoutX="29.0" layoutY="145.0" prefHeight="27.0" prefWidth="338.0" promptText="title" />
-      <TextField fx:id="typeTf" layoutX="27.0" layoutY="228.0" prefHeight="27.0" prefWidth="338.0" promptText="type" />
       <TextArea fx:id="descTa" layoutX="27.0" layoutY="300.0" prefHeight="112.0" prefWidth="338.0" promptText="description" />
       <DatePicker fx:id="startDateDp" layoutX="28.0" layoutY="466.0" prefHeight="21.0" prefWidth="338.0" promptText="start date" />
       <DatePicker fx:id="endDateDp" layoutX="28.0" layoutY="537.0" prefHeight="25.0" prefWidth="338.0" promptText="end date" />
@@ -86,5 +85,6 @@
             <Font name="Leelawadee UI Semilight" size="18.0" />
          </font>
       </Label>
+      <ChoiceBox fx:id="typeTf" layoutX="29.0" layoutY="229.0" prefHeight="15.0" prefWidth="338.0" />
    </children>
 </AnchorPane>

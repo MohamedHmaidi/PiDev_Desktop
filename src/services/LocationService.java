@@ -45,7 +45,7 @@ public class LocationService {
     }
     
     public String getLieu(int id) throws SQLException {
-      String req = "SELECT lieu_loc FROM location WHERE id_loc = ?";
+      String req = "SELECT lieu_loc FROM location WHERE num_loc = ?";
       PreparedStatement st = cnx.prepareStatement(req);
       st.setInt(1, id);
       ResultSet rs = st.executeQuery();

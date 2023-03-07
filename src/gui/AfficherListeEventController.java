@@ -8,10 +8,14 @@ import entities.Event;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +25,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -52,6 +57,9 @@ public class AfficherListeEventController implements Initializable {
     private ChoiceBox<String> sortBoxCB;
     
     private String sortCriteria = "Start Date";;
+    private boolean showOnlyActiveEvents = false;
+    @FXML
+    private RadioButton showOnlyActiveRb;
 
     /**
      * Initializes the controller class.
@@ -59,6 +67,12 @@ public class AfficherListeEventController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            showOnlyActiveRb.setOnAction(event -> {
+                showOnlyActiveEvents = showOnlyActiveRb.isSelected();
+                searchSort(searchBarTf.getText(), sortCriteria);
+            });
+            
+            
             eListScrollPane.setFitToWidth(true);
             List<Event> events = es.recuperer();
             int row = 1;
@@ -106,6 +120,11 @@ public class AfficherListeEventController implements Initializable {
     private void searchSort(String search, String sortBy){
         try {
                 List<Event> filteredEvents = es.rechercher(search, sortBy);
+                if (showOnlyActiveEvents) {
+                    filteredEvents = filteredEvents.stream()
+                            .filter(event -> event.getEndDate().after(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())))
+                            .collect(Collectors.toList());
+                }
                 eventListGP.getChildren().clear();
                 int rowS = 1;
                 int columnS = 0;

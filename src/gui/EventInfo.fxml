@@ -105,12 +105,11 @@
                   <Image url="@../assets/images/TicketIcon.png" />
                </image>
             </ImageView>
-            <Button fx:id="buyBtn" layoutX="630.0" layoutY="365.0" mnemonicParsing="false" onAction="#buyTicket" prefHeight="40.0" prefWidth="205.0" styleClass="GeneralButton2" text="Get your ticket!">
+            <Button fx:id="buyBtn" layoutX="630.0" layoutY="365.0" mnemonicParsing="false" onAction="#handlePopup" prefHeight="40.0" prefWidth="205.0" styleClass="GeneralButton2" text="Get your ticket!">
                <font>
                   <Font name="Leelawadee UI Semilight" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="payPopBtn" layoutX="895.0" layoutY="373.0" mnemonicParsing="false" onAction="#handlePopup" text="popup test" />
             <Button fx:id="likeButton" layoutX="390.0" layoutY="375.0" mnemonicParsing="false" onAction="#likeEventHandler" prefHeight="30.0" prefWidth="104.0" styleClass="LikeButton" text="Like: 55">
                <font>
                   <Font name="Leelawadee UI Semilight" size="12.0" />
@@ -121,7 +120,6 @@
                   <Font name="Leelawadee UI Semilight" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="purchaseBtn" layoutX="855.0" layoutY="616.0" mnemonicParsing="false" onAction="#purchaseAPIHandler" text="purchase ticket" />
          </children>
       </AnchorPane>
    </content>

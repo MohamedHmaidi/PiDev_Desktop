@@ -6,6 +6,7 @@ package gui;
 
 import entities.Event;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -59,9 +60,8 @@ public class SingleEventController implements Initializable {
         startDateText.setText(String.valueOf(e.getStartDate()));
         endDateText.setText(String.valueOf(e.getEndDate()));
         
-        //Convert byte[] to InputStream then read it
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(e.getAffiche());
-        Image image = new Image(inputStream);
+        File imageFile = new File(e.getAffiche());
+        Image image = new Image(imageFile.toURI().toString());
         afficheIv.setImage(image);
         afficheIv.setPreserveRatio(true);
         //Save event Id:
