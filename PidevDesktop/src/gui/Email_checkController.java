@@ -63,7 +63,7 @@ public class Email_checkController implements Initializable {
         code2 = rand.nextInt(9000) + 1000;
          mail m = new mail();
 
-mail.send(email_check.getText(), "code de vérification", "le code est: "+String.valueOf(code2), "mohamed.hmaidi@esprit.tn", "223AMT1744");
+mail.send(email_check.getText(), "code de vérification", "le code est: "+String.valueOf(code2), "", "");
 
 email_check.setVisible(false);
 valbtn.setVisible(false);

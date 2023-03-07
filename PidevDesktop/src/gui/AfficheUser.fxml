@@ -56,7 +56,7 @@
                   <Font name="Verdana Bold" size="24.0" />
                </font>
             </Text>
-            <TextField fx:id="cher" alignment="CENTER" layoutX="567.0" layoutY="43.0" onKeyPressed="#chercherkey" promptText="chercher">
+            <TextField fx:id="cher" layoutX="567.0" layoutY="43.0" onKeyPressed="#chercherkey" prefHeight="18.0" prefWidth="113.0" promptText="Chercher">
                <effect>
                   <InnerShadow>
                      <color>

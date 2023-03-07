@@ -31,6 +31,7 @@ public class testFX extends Application {
             
             primaryStage.setTitle("Login");
             primaryStage.setScene(sc);
+            primaryStage.sizeToScene();
             primaryStage.show();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

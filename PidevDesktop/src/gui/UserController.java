@@ -6,6 +6,7 @@ package gui;
 
 import entities.User;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -45,6 +47,25 @@ private User u;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        Circle clip = new Circle();
+clip.setCenterX(pdp.getFitWidth() / 2);
+clip.setCenterY(pdp.getFitHeight() / 2);
+clip.setRadius(Math.min(pdp.getFitWidth(), pdp.getFitHeight()) / 2);
+
+
+pdp.setClip(clip);
+
+
+pdp.fitWidthProperty().bind(clip.radiusProperty().multiply(2));
+pdp.fitHeightProperty().bind(clip.radiusProperty().multiply(2));
+        
+        
+        
+        
+        
+        
+        
     }    
     
     
@@ -54,9 +75,13 @@ private User u;
    nom.setText(p.getPrenom()+" "+p.getNom());
    email.setText(p.getEmail());
   
-  ByteArrayInputStream inputStream = new ByteArrayInputStream(p.getImage());
-       Image image = new Image(inputStream);
+//  ByteArrayInputStream inputStream = new ByteArrayInputStream(p.getImage());
+//       Image image = new Image(inputStream);
+//       pdp.setImage(image);
+File imageFile = new File(p.getImage());
+          Image image = new Image(imageFile.toURI().toString());
        pdp.setImage(image);
+        
    
    
    

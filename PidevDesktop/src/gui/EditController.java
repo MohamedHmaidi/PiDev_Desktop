@@ -6,6 +6,7 @@ package gui;
 
 import entities.User;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -23,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import services.UserService;
 
@@ -63,6 +65,21 @@ public class EditController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        
+        
+Circle clip = new Circle();
+clip.setCenterX(pdp.getFitWidth() / 2);
+clip.setCenterY(pdp.getFitHeight() / 2);
+clip.setRadius(Math.min(pdp.getFitWidth(), pdp.getFitHeight()) / 2);
+
+
+pdp.setClip(clip);
+
+
+pdp.fitWidthProperty().bind(clip.radiusProperty().multiply(2));
+pdp.fitHeightProperty().bind(clip.radiusProperty().multiply(2));
+        
         if (LoginController.UserConnected.getRole().equals("Admin")){
         
         backbtn.setVisible(true);
@@ -81,8 +98,11 @@ public class EditController implements Initializable {
   
        mdp.setText(user.getMdp().replaceAll(".", "*"));
         role.setText(user.getRole());
-         ByteArrayInputStream inputStream = new ByteArrayInputStream(user.getImage());
-       Image image = new Image(inputStream);
+         //ByteArrayInputStream inputStream = new ByteArrayInputStream(user.getImage());
+          File imageFile = new File(user.getImage());
+          Image image = new Image(imageFile.toURI().toString());
+      // Image image = new Image(inputStream);
+      // pdp.setImage(image);
        pdp.setImage(image);
         
     }

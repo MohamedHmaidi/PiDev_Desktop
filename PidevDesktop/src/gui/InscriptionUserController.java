@@ -58,7 +58,7 @@ public class InscriptionUserController implements Initializable {
     @FXML
     private Button uploadImgBtn;
     
-    private byte[] imageData;
+    private String imageData;
     @FXML
     private Text iscriL;
     @FXML
@@ -177,12 +177,9 @@ public class InscriptionUserController implements Initializable {
         fileChooser.getExtensionFilters().addAll(
         new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
         File selectedFile = fileChooser.showOpenDialog(null);
-        if (selectedFile != null) {
-            try {
-                imageData = Files.readAllBytes(selectedFile.toPath());
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
+       if (selectedFile != null) {
+            //imageData = Files.readAllBytes(selectedFile.toPath());
+            imageData=selectedFile.getPath();
         }
         
         
