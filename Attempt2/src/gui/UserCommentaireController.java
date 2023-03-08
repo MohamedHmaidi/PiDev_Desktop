@@ -26,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import services.CommentaireService;
 import services.LikeService;
 
@@ -67,6 +68,9 @@ public class UserCommentaireController implements Initializable {
     private ImageView down;
     LikeService ls = new LikeService();
     Boolean verif;
+    @FXML
+    private AnchorPane anchre;
+    
     
     /**
      * Initializes the controller class.
@@ -144,14 +148,17 @@ public class UserCommentaireController implements Initializable {
 
     @FXML
     private void supprimer(ActionEvent event) throws SQLException {
-//       int i = c2.getId_event();
-//       Event ev = new Event();
-//       ev.setEvent_id(i);
+//     int i = c2.getId_event();
+//      Event ev = new Event();
+//      ev.setEvent_id(i);
        cs.supprimer(c2);
        System.out.println(c2);
-//       FXMLLoader loader = new FXMLLoader(getClass().getResource("Commentaire.fxml"));
-//       CommentaireController controller = loader.getController();
-//       controller.sendInfo(ev);
+       anchre.getChildren().clear();
+       anchre.requestLayout();
+       anchre.layout();
+//      FXMLLoader loader = new FXMLLoader(getClass().getResource("Commentaire.fxml"));
+//     CommentaireController controller = loader.getController();
+//      controller.sendInfo(ev);
     }
 
     @FXML

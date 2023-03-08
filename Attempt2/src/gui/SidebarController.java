@@ -13,10 +13,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -34,6 +36,8 @@ public class SidebarController implements Initializable {
     private Button produitsBtn;
     @FXML
     private Button reclamationsBtn;
+    @FXML
+    private Button locauxBtn;
     /**
      * Initializes the controller class.
      */
@@ -74,7 +78,13 @@ public class SidebarController implements Initializable {
     }
 
     @FXML
-    private void produitsPage(ActionEvent event) {
+    private void produitsPage(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherProduit.fxml"));
+            Parent root = loader.load();
+
+            // Set the root of the current scene to the new FXML file
+            produitsBtn.getScene().setRoot(root);
+        
     }
 
     @FXML
@@ -84,6 +94,20 @@ public class SidebarController implements Initializable {
 
             // Set the root of the current scene to the new FXML file
             reclamationsBtn.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void locauxPage(ActionEvent event) {
+        try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("interfaceU.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     
