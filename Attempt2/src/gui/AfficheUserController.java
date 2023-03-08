@@ -41,6 +41,8 @@ public class AfficheUserController implements Initializable {
     private Button retourbtn;
     @FXML
     private TextField cher;
+    @FXML
+    private Button stat;
 
     /**
      * Initializes the controller class.
@@ -141,7 +143,7 @@ public class AfficheUserController implements Initializable {
    
 
     @FXML
-    private void chercherkey(KeyEvent event) {
+    private void chercherkey(KeyEvent event) throws IOException {
         String nom = cher.getText();
     try {
         List<User> users_ch = us.rechercherParNom(nom);
@@ -170,6 +172,21 @@ public class AfficheUserController implements Initializable {
         
         
         
+        
+    }
+
+    @FXML
+    private void stats(ActionEvent event) throws IOException {
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StatUser.fxml"));
+            Parent root = loader.load();
+        
+        
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setTitle("Statistique");
+        stage.setScene(scene);
+        stage.show();
         
         
         

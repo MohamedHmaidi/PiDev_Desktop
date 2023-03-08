@@ -64,6 +64,12 @@
                      </color>
                   </InnerShadow>
                </effect></TextField>
+            <Button fx:id="stat" layoutX="26.0" layoutY="34.0" mnemonicParsing="false" onAction="#stats" prefHeight="49.0" prefWidth="70.0" stylesheets="@style.css" />
+            <ImageView fitHeight="36.0" fitWidth="45.0" layoutX="38.0" layoutY="42.0">
+               <image>
+                  <Image url="@stats.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
