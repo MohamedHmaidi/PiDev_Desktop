@@ -35,6 +35,8 @@ public class LocalController implements Initializable {
     private Label nbper;
     @FXML
     public Button louer;
+    @FXML
+    public Label numloc;
 
     /**
      * Initializes the controller class.
@@ -47,7 +49,7 @@ public class LocalController implements Initializable {
     
     
     public void setData(Local l) {
-     
+          numloc.setText(String.valueOf(l.getNum()));
            desc.setText(String.valueOf(l.getDescript()));
            lieu.setText(l.getLieu());
            surf.setText(String.valueOf(l.getSurface()));

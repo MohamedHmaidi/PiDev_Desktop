@@ -17,7 +17,23 @@
     -fx-background-radius: 100;
 }
 
+.button:pressed{
     
+    -fx-background-color: #312d99;
+}
+    
+.button:hover{
+    
+    -fx-background-color:#ffffff;
+}
+
+
+
+
+
+
+
+
 .mainFxmlClass {
 
     

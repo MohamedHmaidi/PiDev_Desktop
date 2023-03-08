@@ -31,9 +31,9 @@ public class NewFXMain extends Application {
        
         */
    try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/interfaceU.fxml"));//appel interface graphique
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../gui/GESTIONLOCAUX.fxml"));//appel interface graphique
             Parent root = loader.load(); //charger linteface de type parent classe mere de tous conteneurs
-            Scene sc = new Scene(root,870,730);//interface actuel
+            Scene sc = new Scene(root,990,730);//interface actuel
         // sc.getStylesheets().add(getClass().getResource("../gui/interfusr.css").toExternalForm());
         
             primaryStage.setTitle("Dashbord");//nommer stage

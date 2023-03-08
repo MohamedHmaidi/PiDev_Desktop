@@ -277,8 +277,9 @@ afficher();
         }
         
     }
-   
-    m.send(to, "Client", "le client est intersse à louer", "saws55457@gmail.com", "dptkvofegptwzirs");
+    String s=controller.numloc.getText();
+   String msg="le client est interssé à louer le local dont num ="+s;
+    m.send(to, "Client", msg, "saws55457@gmail.com", "dptkvofegptwzirs");
     
     
     
@@ -380,7 +381,7 @@ afficher();
         }
         
     }
-   String s=controller.lieu.getText();
+   String s=controller.numloc.getText();
    String msg="le client est intersse à louer LE LOCAL à"+s;
     m.send(to, "Client", msg, "saws55457@gmail.com", "dptkvofegptwzirs");
     

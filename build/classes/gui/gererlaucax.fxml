@@ -10,45 +10,48 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="574.0" prefWidth="846.0" style="-fx-background-color: #ffffff;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GererlocauxController">
+<AnchorPane id="AnchorPane" prefHeight="592.0" prefWidth="1003.0" style="-fx-background-color: #ffffff;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GererlocauxController">
    
    <children>
-      <TextField fx:id="numField" layoutX="23.0" layoutY="102.0" prefHeight="36.0" prefWidth="150.0" promptText="Numlocal" />
-      <TextField fx:id="descripField" layoutX="23.0" layoutY="174.0" prefHeight="36.0" prefWidth="150.0" promptText="Description" />
-      <TextField fx:id="lieuField" layoutX="23.0" layoutY="248.0" prefHeight="36.0" prefWidth="150.0" promptText="Lieu" />
-      <TextField fx:id="surfaceField" layoutX="23.0" layoutY="321.0" prefHeight="36.0" prefWidth="150.0" promptText="Surface" />
-      <TextField fx:id="nbPersField" layoutX="23.0" layoutY="394.0" prefHeight="36.0" prefWidth="150.0" promptText="NbrePersonnes" />
-      <ComboBox fx:id="cmbx" layoutX="378.0" layoutY="326.0" prefHeight="26.0" prefWidth="166.0" promptText="        parcourir" style="-fx-background-color: #fa2c56;" />
-      <Label layoutX="378.0" layoutY="294.0" prefHeight="26.0" prefWidth="126.0" text="CodeCategorie" textFill="#fa2c56">
+      <TextField fx:id="numField" layoutX="23.0" layoutY="143.0" prefHeight="36.0" prefWidth="186.0" promptText="Numlocal" />
+      <TextField fx:id="descripField" layoutX="23.0" layoutY="220.0" prefHeight="36.0" prefWidth="186.0" promptText="Description" />
+      <TextField fx:id="lieuField" layoutX="23.0" layoutY="298.0" prefHeight="36.0" prefWidth="186.0" promptText="Lieu" />
+      <TextField fx:id="surfaceField" layoutX="23.0" layoutY="367.0" prefHeight="36.0" prefWidth="186.0" promptText="Surface" />
+      <TextField fx:id="nbPersField" layoutX="23.0" layoutY="435.0" prefHeight="36.0" prefWidth="186.0" promptText="NbrePersonnes" />
+      <ComboBox fx:id="cmbx" layoutX="422.0" layoutY="367.0" prefHeight="46.0" prefWidth="166.0" style="-fx-background-color: #fa2c56;" styleClass="combo-box" stylesheets="@interfaceu.css" />
+      <Label layoutX="438.0" layoutY="377.0" prefHeight="26.0" prefWidth="134.0" text="CodeCategorie" textFill="WHITE">
          <font>
-            <Font name="Bookman Old Style" size="12.0" />
+            <Font name="Bookman Old Style" size="16.0" />
          </font>
       </Label>
-      <Button layoutX="568.0" layoutY="326.0" mnemonicParsing="false" onAction="#addcombox" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #FA2C56;" text="load" textFill="WHITE" />
-      <Button layoutX="654.0" layoutY="465.0" mnemonicParsing="false" onAction="#afficherLocal" prefHeight="46.0" prefWidth="126.0" style="-fx-background-color: #FA2C56;" text="Afficher" textFill="#fafaff">
+      <Button layoutX="619.0" layoutY="367.0" mnemonicParsing="false" onAction="#addcombox" prefHeight="46.0" prefWidth="106.0" style="-fx-background-color: #FA2C56;" text="load" textFill="WHITE" />
+      <Button layoutX="682.0" layoutY="500.0" mnemonicParsing="false" onAction="#afficherLocal" prefHeight="46.0" prefWidth="143.0" styleClass="button1" stylesheets="@interfaceu.css" text="Afficher" textFill="#fafaff">
          <font>
-            <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+            <Font name="Berlin Sans FB Demi Bold" size="21.0" />
          </font>
       </Button>
-      <Label fx:id="num" layoutX="216.0" layoutY="111.0" prefHeight="18.0" prefWidth="150.0" textFill="#e72121" />
-      <Label fx:id="descript" layoutX="209.0" layoutY="183.0" prefHeight="18.0" prefWidth="150.0" textFill="#e72121" />
-      <Label fx:id="lieu" layoutX="209.0" layoutY="257.0" prefHeight="18.0" prefWidth="150.0" textFill="#e72121" />
-      <Label fx:id="sur" layoutX="209.0" layoutY="330.0" prefHeight="18.0" prefWidth="150.0" textFill="#e72121" />
-      <Label fx:id="nb" layoutX="216.0" layoutY="403.0" prefHeight="18.0" prefWidth="150.0" textFill="#e72121" />
-      <Button layoutX="376.0" layoutY="107.0" mnemonicParsing="false" onAction="#parcourir" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #73228c;" text="parcourir image" textFill="#f7e8f6" />
-      <Pane layoutX="376.0" layoutY="155.0" prefHeight="120.0" prefWidth="150.0" style="-fx-background-color: #73228c;">
+      <Label fx:id="num" layoutX="238.0" layoutY="152.0" prefHeight="18.0" prefWidth="150.0" textFill="#e72121" />
+      <Label fx:id="descript" layoutX="234.0" layoutY="228.0" prefHeight="18.0" prefWidth="150.0" textFill="#e72121" />
+      <Label fx:id="lieu" layoutX="238.0" layoutY="307.0" prefHeight="18.0" prefWidth="150.0" textFill="#e72121" />
+      <Label fx:id="sur" layoutX="227.0" layoutY="376.0" prefHeight="18.0" prefWidth="150.0" textFill="#e72121" />
+      <Label fx:id="nb" layoutX="234.0" layoutY="443.0" prefHeight="18.0" prefWidth="150.0" textFill="#e72121" />
+      <Button layoutX="453.0" layoutY="105.0" mnemonicParsing="false" onAction="#parcourir" prefHeight="46.0" prefWidth="175.0" styleClass="button1" stylesheets="@interfaceu.css" text="parcourir image" textFill="#f7e8f6">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+         </font></Button>
+      <Pane layoutX="461.0" layoutY="171.0" prefHeight="130.0" prefWidth="166.0" style="-fx-background-color: #73228c;">
          <children>
-            <ImageView fx:id="imageView" fitHeight="102.0" fitWidth="126.0" layoutX="12.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageView" fitHeight="111.0" fitWidth="134.0" layoutX="16.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Button fx:id="ajouterFielld" layoutX="325.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#ajouterLocal" prefHeight="45.0" prefWidth="126.0" style="-fx-background-color: #FA2C56;" text=" Ajouter" textFill="WHITE">
+      <Button fx:id="ajouterFielld" layoutX="313.0" layoutY="500.0" mnemonicParsing="false" onMouseClicked="#ajouterLocal" prefHeight="46.0" prefWidth="143.0" styleClass="button1" stylesheets="@interfaceu.css" text=" Ajouter" textFill="WHITE">
          <font>
-            <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+            <Font name="Berlin Sans FB Demi Bold" size="21.0" />
          </font>
       </Button>
-      <Button fx:id="annn" layoutX="481.0" layoutY="465.0" mnemonicParsing="false" onMouseClicked="#annulerLocal" prefHeight="46.0" prefWidth="126.0" style="-fx-background-color: #FA2C56;" styleClass="gererlocaux.css" text="Vider" textFill="WHITE">
+      <Button fx:id="annn" layoutX="498.0" layoutY="500.0" mnemonicParsing="false" onMouseClicked="#annulerLocal" prefHeight="46.0" prefWidth="143.0" styleClass="button1" stylesheets="@interfaceu.css" text="Vider" textFill="WHITE">
          <font>
-            <Font name="Berlin Sans FB Demi Bold" size="15.0" />
+            <Font name="Berlin Sans FB Demi Bold" size="21.0" />
          </font>
       </Button>
       <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="333.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true">
@@ -61,7 +64,7 @@
             <Image url="@../../../Pidev_Java/src/gui/cancel%20(1).png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="-13.0" prefHeight="70.0" prefWidth="887.0" style="-fx-background-color: #FA2C56;">
+      <AnchorPane layoutX="-27.0" prefHeight="86.0" prefWidth="1028.0" style="-fx-background-color: #FA2C56;" stylesheets="@interfaceu.css">
          <children>
             <Label layoutX="45.0" layoutY="14.0" prefHeight="18.0" prefWidth="185.0" text="# remplir le local a jouter" textFill="#73228c">
                <font>
@@ -73,18 +76,18 @@
                   <Image url="@../../../Pidev_Java/src/gui/logo.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="74.0" fitWidth="102.0" layoutX="783.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="120.0" fitWidth="106.0" layoutX="855.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@logo.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="57.0" fitWidth="69.0" layoutX="41.0" layoutY="483.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="57.0" fitWidth="69.0" layoutX="41.0" layoutY="518.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@téléchargement%20(1).png" />
          </image>
       </ImageView>
-      <Label layoutX="23.0" layoutY="477.0" onMouseClicked="#ret" prefHeight="74.0" prefWidth="91.0" />
+      <Label layoutX="24.0" layoutY="502.0" onMouseClicked="#ret" prefHeight="74.0" prefWidth="91.0" />
    </children>
 </AnchorPane>
