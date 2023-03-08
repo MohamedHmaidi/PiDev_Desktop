@@ -84,7 +84,12 @@ public class SidebarAdminController implements Initializable {
     }
 
     @FXML
-    private void produitsPage(ActionEvent event) {
+    private void produitsPage(ActionEvent event) throws IOException {
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("gere.fxml"));
+            Parent root = loader.load();
+
+            // Set the root of the current scene to the new FXML file
+            produitsBtn.getScene().setRoot(root);
     }
 
     @FXML
