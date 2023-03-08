@@ -73,22 +73,28 @@ public class PanierController implements Initializable {
     private Button enrecomft;
     @FXML
     private Button passCommande;
+    private Label totals;
+    @FXML
+    private Label totpanier;
+    @FXML
+    private Label totals1;
+    private double pp;
+    private double cc;
+    private double sostot;
+    private double sostotValue;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         try {
     List<produit> produits = new ArrayList<>();
     produits.add(PS.recupererProduitParId(1));
     produits.add(PS.recupererProduitParId(2));
     produits.add(PS.recupererProduitParId(3));
-//    produits.add(PS.recupererProduitParId(4));
-//    produits.add(PS.recupererProduitParId(5));
-//    produits.add(PS.recupererProduitParId(6));
-//    produits.add(PS.recupererProduitParId(7));
-   // Set the horizontal spacing between the AnchorPanes
+
 flowp.setHgap(10.0);
 
 // Set the preferred wrap length to a large value to avoid wrapping
@@ -98,40 +104,22 @@ flowp.setPrefWrapLength(Double.MAX_VALUE);
 for (produit produit : produits) {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("SousProduit.fxml"));
     AnchorPane pane = loader.load();
-
+    
     SousProduitController controller = loader.getController();
     controller.setProd(produit);
-
     flowp.getChildren().add(pane);
+    totpanier.setText(Double.toString(SousProduitController.totalpanier));
 }
 } catch (IOException ex) {
     System.out.println("Erreur d'entrée/sortie : " + ex.getMessage());
 }
     }    
-  
-    void calstotal(int t) {
-      List <Integer> l = new ArrayList() ; 
-    int p=0 ; 
-    p = p+t;
-    l.add(p);
-      System.out.println(l);
-//      totals.setText(String.valueOf(p));
-  }  
     
-    void caltotale(int tot){
-        
-       
-       }
-    
-    
-
     @FXML
     private void supPanier(ActionEvent event) {
         flowp.getChildren().clear(); //supprimer les produits de l'affichage
         PS.supprimerPanier(4);
     }
-
-    
 
     @FXML
     private void insereCommande(ActionEvent event) {
@@ -231,14 +219,15 @@ for (produit produit : produits) {
         e.printStackTrace();
     }
     }
-    }
+//    public void setSostot(double sostotValue) {
+//    this.sostotValue = sostotValue;
+//    
+//       // System.out.println("salem" + totpanier);
+//}
 
+}
     
-
-    /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+    
 
     
 

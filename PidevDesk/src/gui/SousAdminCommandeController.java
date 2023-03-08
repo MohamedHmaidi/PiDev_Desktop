@@ -57,7 +57,21 @@ public class SousAdminCommandeController implements Initializable {
     @FXML
     private Button imprimer;
     @FXML
-    private Button suppcom;
+    private Label panier_id;
+    @FXML
+    private Label numft;
+    @FXML
+    private Label prixtotft;
+    @FXML
+    private Label nomft;
+    @FXML
+    private Label prenomft;
+    @FXML
+    private Label rueft;
+    @FXML
+    private Label villeft;
+    @FXML
+    private Label codeposft;
 
     /**
      * Initializes the controller class.
@@ -72,84 +86,61 @@ public class SousAdminCommandeController implements Initializable {
        user_id.setText(Integer.toString(r.getUser_id()) );
        commande_id.setText(Integer.toString(r.getCommande_id()));
        commande_date.setText(r.getDate_commande());
-        
-//     datec.setText(r.getDate_commande());
+       panier_id.setText(Integer.toString(r.getId_panier()));
+       numft.setText(r.getTel());
+       nomft.setText(r.getNom());
+       prenomft.setText(r.getPrenom());
+       rueft.setText(r.getRue());
+       villeft.setText(r.getVille());
+       codeposft.setText(r.getCode_postal());
+       prixtotft.setText(Integer.toString(r.getPrix()));
     }
 
     @FXML
     
         private void imprimerFacture(MouseEvent event) throws SQLException {
-//    try {
-//        Document doc = new Document();
-//        PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\wajdi\\Documents\\NetBeansProjects\\projet_pidev_3a6\\src\\gui\\images\\pdf.pdf"));
-//        doc.open();
-//
-//        doc.add(new Paragraph(" "));
-//        Font font = new Font(FontFamily.TIMES_ROMAN, 28, Font.UNDERLINE, BaseColor.BLACK);
-//        Paragraph p = new Paragraph("Commande Informations", font);
-//        p.setAlignment(Element.ALIGN_CENTER);
-//        doc.add(p);
-//        doc.add(new Paragraph(" "));
-//        doc.add(new Paragraph(" "));
-//
-//        PdfPTable tabpdf = new PdfPTable(2);
-//        tabpdf.setWidthPercentage(100);
-//
-//        PdfPCell cell;
-//
-//        cell = new PdfPCell(new Phrase("date_res", FontFactory.getFont("Times New Roman", 11)));
-//        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-//        cell.setBackgroundColor(BaseColor.WHITE);
-//        tabpdf.addCell(cell);
-//
-//        cell = new PdfPCell(new Phrase("prix_res", FontFactory.getFont("Times New Roman", 11)));
-//        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-//        cell.setBackgroundColor(BaseColor.WHITE);
-//        tabpdf.addCell(cell);
-//
-////        String req = "SELECT date_res,prix_res from reservations";
-////        PreparedStatement pst = cnx.prepareStatement(req);
-////        ResultSet rs = pst.executeQuery();
-//
-//java.sql.Connection con1 =  MyDB.getInstance().getCnx();
-//       String req = "SELECT date_res,prix_res from reservations";
-//        java.sql.Statement st = con1.createStatement();
-//        ResultSet rs =  st.executeQuery(req);
-//
-//        while (rs.next()) {
-//            System.out.println(rs.getString("date_res"));
-//            cell = new PdfPCell(new Phrase(rs.getString("date_res"), FontFactory.getFont("Times New Roman", 11)));
-//            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-//            cell.setBackgroundColor(BaseColor.WHITE);
-//            tabpdf.addCell(cell);
-//
-//            cell = new PdfPCell(new Phrase(rs.getString("prix_res"), FontFactory.getFont("Times New Roman", 11)));
-//            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-//            cell.setBackgroundColor(BaseColor.WHITE);
-//            tabpdf.addCell(cell);
-//        }
-//
-//        doc.add(tabpdf);
-//        JOptionPane.showMessageDialog(null, "Success !!");
-//        doc.close();
-//        Desktop.getDesktop().open(new File("C:\\Users\\wajdi\\Documents\\NetBeansProjects\\projet_pidev_3a6\\src\\gui\\images\\pdf.pdf"));
-//
-//        Notifications notificationBuilder = Notifications.create()
-//                .title("Succes").text("Your document has been saved as PDF !!").graphic(null).hideAfter(javafx.util.Duration.seconds(5))
-//                .position(Pos.CENTER_LEFT)
-//                .onAction(new EventHandler<ActionEvent>() {
-//                    public void handle(ActionEvent event) {
-//                        System.out.println("clicked ON ");
-//                    }
-//                });
-//        notificationBuilder.darkStyle();
-//        notificationBuilder.show();
-//    } catch (DocumentException | HeadlessException | IOException e) {
-//        System.out.println("ERROR PDF");
-//        System.out.println(Arrays.toString(e.getStackTrace()));
-//        System.out.println(e.getMessage());
-//        }
+            Document document = new Document();
     
+    try {
+        // Utilisez PdfWriter pour écrire dans un fichier PDF
+        PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\ashre\\OneDrive\\Desktop\\PidevDesk\\src\\gui\\factures\\commande.pdf"));
+        
+        // Ouvrez le document
+        document.open();
+        
+        // Récupérez les valeurs des différents éléments de l'interface JavaFX
+        String commandeID = commande_id.getText();
+        String userID = user_id.getText();
+        String panierID = panier_id.getText();
+        String dateCommande = commande_date.getText();
+        String rue = rueft.getText();
+        String ville = villeft.getText();
+        String nom = nomft.getText();
+        String prenom = prenomft.getText();
+        String num = numft.getText();
+        String codepos = codeposft.getText();
+        String prix = prixtotft.getText();
+        
+       
+        
+        
+        // Écrivez ces valeurs dans le fichier PDF
+        document.add(new Paragraph("Commande ID : " + commandeID));
+        document.add(new Paragraph("User ID : " + userID));
+        document.add(new Paragraph("Panier ID : " + panierID));
+        document.add(new Paragraph("Prix Total : " + prix));
+        document.add(new Paragraph("Nom : " + nom));
+        document.add(new Paragraph("Prénom : " + prenom));
+        document.add(new Paragraph("Rue : " + rue));
+        document.add(new Paragraph("Ville : " + ville));
+        document.add(new Paragraph("Code postale : " + codepos));
+        document.add(new Paragraph("Numéro de téléphone : " + num));
+        document.add(new Paragraph("Date Commande : " + dateCommande));
+        
+        // Fermez le document
+        document.close();
+    } catch (Exception e) {
+        e.printStackTrace();
     }
-
+        }
 }

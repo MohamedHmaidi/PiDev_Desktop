@@ -7,6 +7,7 @@ package gui;
 import entities.produit;
 import entities.Panier;
 import java.io.IOException;
+import static java.lang.System.load;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import static javafx.fxml.FXMLLoader.load;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -28,6 +30,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import services.PanierService;
+import gui.PanierController;
+import javafx.scene.Parent;
 
 
 /**
@@ -60,6 +64,12 @@ public class SousProduitController implements Initializable {
     private Button ajoutprod;
     @FXML
     private Button supprod;
+    @FXML
+    private Label sostot;
+    private double cc;
+    private double xd;
+   static double totalpanier;
+   
     
     /**
      * Initializes the controller class.
@@ -101,15 +111,15 @@ public class SousProduitController implements Initializable {
       
     }
     
-    private void sstotal(int t) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Panier.fxml"));
-        AnchorPane pane = loader.load();
-        PanierController controller = loader.getController();
-        controller.calstotal(t);
-    }
+//    private void sstotal(int t) throws IOException {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("Panier.fxml"));
+//        AnchorPane pane = loader.load();
+//        PanierController controller = loader.getController();
+//        controller.calstotal(t);
+//    }
 
     @FXML
-    private void ajoutProd(ActionEvent event) throws SQLException {
+    private void ajoutProd(ActionEvent event) throws SQLException, IOException {
  pp.setQuantite(Integer.parseInt(caltotal.getText()));
 
     if(pp.getQuantite() == 0) {
@@ -122,6 +132,12 @@ public class SousProduitController implements Initializable {
         pp.setId_panier(i+1);
         System.out.println(pp.toString());
         ps.ajouterPanier(pp);
+        this.xd = Double.parseDouble(produitprix.getText());
+        this.cc = Double.parseDouble(caltotal.getText());
+        double sostotValue = cc * xd;
+        sostot.setText(String.valueOf(sostotValue));
+        totalpanier=totalpanier + sostotValue;
+        
     }
     }
 

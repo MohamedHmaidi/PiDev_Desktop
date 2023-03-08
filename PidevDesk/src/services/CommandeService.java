@@ -64,46 +64,12 @@ try (PreparedStatement ps1 = cnx.prepareStatement(req1)) {
     ps1.setString(6, c.getTel());
     ps1.setString(7, c.getNom());
     ps1.setString(8, c.getPrenom());
-    
            List<Integer> l=ps.recuperer();
-            i = l.get(l.size()-1);
-        
+            i = l.get(l.size()-1);  
     ps1.setInt(9, i);
-    
-   
-    
     ps1.executeUpdate();
-    
 }
-
-
-
-
-        
-//    String req = "INSERT INTO commande (id_user, date_commande, rue, ville, code_postal, tel, nom, prenom) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-//        try (PreparedStatement ps = cnx.prepareStatement(req)) {
-//            ps.setInt(1, id_user);
-//    String req1 = "INSERT INTO commande_commande (id_user_admin, date_commande_admin, rue_admin, ville_admin, code_postal_admin, tel_admin, nom_admin, prenom_admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-//        try (PreparedStatement ps = cnx.prepareStatement(req1)) {
-//            ps.setInt(1, id_user);
-//            
-//            // Obtenir le timestamp actuel
-//        long timestamp = new Date().getTime();
-//        
-//        // Convertir le timestamp en une chaîne de caractères dans le format souhaité
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        String dateCommande = dateFormat.format(new Date(timestamp));
-//            
-//            ps.setString(2, dateCommande);
-//            ps.setString(3, c.getRue());
-//            ps.setString(4, c.getVille());
-//            ps.setString(5, c.getCode_postal());
-//            ps.setString(6, c.getTel());
-//            ps.setString(7, c.getNom());
-//            ps.setString(8, c.getPrenom());
-//            
-//            ps.executeUpdate();
-//        }
+ 
 }
     
    public List<Commande> recupererCommande() throws SQLException {
@@ -121,7 +87,8 @@ try (PreparedStatement ps1 = cnx.prepareStatement(req1)) {
         String tel = rs.getString("tel");
         String nom = rs.getString("nom");
         String prenom = rs.getString("prenom");
-        Commande c = new Commande(commande_id,id_user, date_commande, rue,ville,code_postal, tel, nom,prenom);
+        int panier_id = rs.getInt(10);
+        Commande c = new Commande(commande_id,id_user, date_commande, rue,ville,code_postal, tel, nom,prenom,panier_id);
         CM.add(c);
     }
     return CM;
@@ -145,7 +112,8 @@ String code_postal = rs.getString("code_postal");
 String tel = rs.getString("tel");
 String nom = rs.getString("nom");
 String prenom = rs.getString("prenom");
-Commande c = new Commande(commande_id,id_user, date_commande, rue,ville,code_postal, tel, nom,prenom);
+int panier_id = rs.getInt(10);
+Commande c = new Commande(commande_id,id_user, date_commande, rue,ville,code_postal, tel, nom,prenom,panier_id);
 CM.add(c);
 }
 return CM;
@@ -167,7 +135,8 @@ String code_postal = rs.getString("code_postal");
 String tel = rs.getString("tel");
 String nom = rs.getString("nom");
 String prenom = rs.getString("prenom");
-Commande c = new Commande(commande_id,id_user, date_commande, rue,ville,code_postal, tel, nom,prenom);
+int panier_id = rs.getInt(10);
+Commande c = new Commande(commande_id,id_user, date_commande, rue,ville,code_postal, tel, nom,prenom,panier_id);
 CM.add(c);
 }
 return CM;

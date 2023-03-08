@@ -21,11 +21,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.scene.Parent;
 import services.CommandeService;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -99,36 +102,4 @@ public class AdminCommandeController implements Initializable {
 
 
 
-          
-
- 
-  /**
-     * Initializes the controller class.
-     */
-//    @Override
-//    public void initialize(URL url, ResourceBundle rb) {
-//        trichoix.getItems().add("Date");
-//        trichoix.getItems().add("A-Z");
-//        
-//       try{
-//        List<Commande> CM = CS.recupererCommande();
-//        //Créez une nouvelle instance de ReclamationController pour chaque récupération et ajoutez-la au FlowPane
-//        for (Commande r : CM) {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("SousAdminCommande.fxml"));
-//            Pane reclamationNode = loader.load();
-//            // Récupérer le contrôleur ReclamationController
-//            SousAdminCommandeController CMController = loader.getController();
-//
-//            // Définir les données de la réclamation, recid, admin_id dans le contrôleur
-//            CMController.SetCommande(r);
-//
-//            // Ajouter le nœud de réclamation à FlowPane
-//            flowp.getChildren().add(reclamationNode);
-//        }
-//        }catch(IOException ex) {
-//        System.err.println("erreur: " + ex.getMessage());
-//                } catch (SQLException ex) {
-//            Logger.getLogger(AdminCommandeController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        }
 

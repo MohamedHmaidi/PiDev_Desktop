@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -46,7 +47,7 @@
                               <Font name="System Bold Italic" size="15.0" />
                            </font>
                         </Text>
-                        <Text fill="#fffefe" layoutX="368.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sous-total">
+                        <Text fill="#fffefe" layoutX="365.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sous-total">
                            <font>
                               <Font name="System Bold Italic" size="15.0" />
                            </font>
@@ -67,6 +68,15 @@
                               <Font name="System Bold" size="24.0" />
                            </font>
                         </Text>
+                        <Label fx:id="totpanier" layoutX="417.0" layoutY="549.0" prefHeight="27.0" prefWidth="72.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                        <Label fx:id="totals1" layoutX="495.0" layoutY="548.0" prefHeight="18.0" prefWidth="35.0" text="DT">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                </children>

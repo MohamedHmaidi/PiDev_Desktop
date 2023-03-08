@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,7 +13,11 @@
          <children>
             <AnchorPane fx:id="affichfinale" layoutX="9.0" layoutY="8.0" prefHeight="520.0" prefWidth="751.0" styleClass="parent" stylesheets="@StyleSheet.css">
                <children>
-                  <FlowPane fx:id="flowp" layoutX="12.0" layoutY="8.0" prefHeight="506.0" prefWidth="734.0" styleClass="background2" stylesheets="@StyleSheet.css" />
+                  <ScrollPane layoutX="7.0" layoutY="5.0">
+                     <content>
+                        <FlowPane fx:id="flowp" prefHeight="511.0" prefWidth="738.0" styleClass="background2" stylesheets="@StyleSheet.css" />
+                     </content>
+                  </ScrollPane>
                </children></AnchorPane>
          </children></AnchorPane>
       <ChoiceBox fx:id="trichoix" layoutX="698.0" layoutY="58.0" prefHeight="29.0" prefWidth="154.0" styleClass="background2" stylesheets="@StyleSheet.css" />
