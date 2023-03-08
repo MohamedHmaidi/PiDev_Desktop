@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import services.UserService;
@@ -59,6 +62,10 @@ public class EditController implements Initializable {
     private ImageView pdp;
     @FXML
     private ImageView backbtn;
+    @FXML
+    private ImageView goBackBtn;
+    @FXML
+    private AnchorPane ticketListPane;
     
     /**
      * Initializes the controller class.
@@ -68,22 +75,37 @@ public class EditController implements Initializable {
         
         
         
-Circle clip = new Circle();
-clip.setCenterX(pdp.getFitWidth() / 2);
-clip.setCenterY(pdp.getFitHeight() / 2);
-clip.setRadius(Math.min(pdp.getFitWidth(), pdp.getFitHeight()) / 2);
-
-
-pdp.setClip(clip);
-
-
-pdp.fitWidthProperty().bind(clip.radiusProperty().multiply(2));
-pdp.fitHeightProperty().bind(clip.radiusProperty().multiply(2));
-        
-        if (LoginController.UserConnected.getRole().equals("Admin")){
-        
-        backbtn.setVisible(true);
-        
+        try {
+            Circle clip = new Circle();
+            clip.setCenterX(pdp.getFitWidth() / 2);
+            clip.setCenterY(pdp.getFitHeight() / 2);
+            clip.setRadius(Math.min(pdp.getFitWidth(), pdp.getFitHeight()) / 2);
+            
+            
+            pdp.setClip(clip);
+            
+            
+            pdp.fitWidthProperty().bind(clip.radiusProperty().multiply(2));
+            pdp.fitHeightProperty().bind(clip.radiusProperty().multiply(2));
+            
+            if (LoginController.UserConnected.getRole().equals("Admin")){
+                
+                backbtn.setVisible(true);
+                
+            }
+            if (LoginController.UserConnected.getRole().equals("Admin")){
+                
+                goBackBtn.setVisible(false);
+                
+            }
+            
+            
+            //Show ticket list
+            FXMLLoader contentLoader = new FXMLLoader(getClass().getResource("UserTicketList.fxml"));
+            AnchorPane content = contentLoader.load();
+            ticketListPane.getChildren().setAll(content);
+        } catch (IOException ex) {
+            Logger.getLogger(EditController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }  
     
@@ -184,6 +206,23 @@ pdp.fitHeightProperty().bind(clip.radiusProperty().multiply(2));
         
         
         
+    }
+
+    @FXML
+    private void goBackHandler(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainContainer.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            //Load CSS
+            String css = this.getClass().getResource("../assets/css/app.css").toExternalForm();
+            scene.getStylesheets().add(css);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
     
     

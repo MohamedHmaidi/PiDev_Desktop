@@ -45,6 +45,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -103,13 +104,15 @@ public class EventInfoController implements Initializable {
     private Button likeButton;
     @FXML
     private Button dislikeButton;
+    @FXML
+    private AnchorPane commentPane;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //TODO
+        sPane.setFitToWidth(true);
     }    
 
     void sendEvent(Event eventInfo) {
@@ -138,7 +141,16 @@ public class EventInfoController implements Initializable {
             if(eventInfoStore.getEndDate().before(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())) || LoginController.UserConnected.getRole().equals("Admin")){
                 buyBtn.setVisible(false);
             }
-        } catch (SQLException ex) {
+            
+            
+            //Fill up comment pane
+            FXMLLoader contentLoader = new FXMLLoader(getClass().getResource("Commentaire.fxml"));
+            AnchorPane content = contentLoader.load();
+            CommentaireController controller = contentLoader.getController();
+            controller.sendInfo(eventInfoStore);
+            
+            commentPane.getChildren().setAll(content);
+        } catch (SQLException | IOException ex) {
             System.out.println(ex.getMessage());
         }
     }

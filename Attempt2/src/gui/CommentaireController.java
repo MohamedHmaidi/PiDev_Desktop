@@ -5,6 +5,7 @@
 package gui;
 
 import entities.Commentaire;
+import entities.Event;
 import entities.User;
 import static gui.LoginController.UserConnected;
 import java.io.IOException;
@@ -31,7 +32,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import org.controlsfx.control.Notifications;
 import services.CommentaireService;
 import utils.MyDB;
 
@@ -54,6 +54,8 @@ public class CommentaireController implements Initializable {
     
     CommentaireService cs = new CommentaireService();
     Commentaire t=new Commentaire();
+    private Event eventInfo;
+    
     @FXML
     private Button retbt;
     /**
@@ -61,53 +63,7 @@ public class CommentaireController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         User UserConnected = LoginController.UserConnected;
-        
-        
-         try {
-            // TODO
-            List<Commentaire> cnmts = cs.recuperer();
-            
-            System.out.println(cnmts);
-       int row = 0;
-        int column = 0;
-            for (int i = 0; i < cnmts.size(); i++){
-                
-                if ((cnmts.get(i).getId_event()==4)){
-            
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("UserCommentaire.fxml"));
-        AnchorPane pane = loader.load();
-        UserCommentaireController controller = loader.getController();
-            Commentaire cnmt=cnmts.get(i);
-            
-            controller.setcmnt(cnmt);
-            
-            gridcmnt.add(pane, column, row);
-                row++;
-                if (column > 0) {
-                    column = 0;
-                    row++;
-            
-            
-                }
-            
-            }
-            
-            
-            }    
-        } catch (SQLException|IOException ex) {
-            
-            
-            System.out.println(ex.getMessage());
-            
-            
-            
-        }
-        
-        
-        
-        
         
     }    
 
@@ -120,7 +76,7 @@ public class CommentaireController implements Initializable {
     @FXML
     private void commenter(ActionEvent event) throws SQLException, IOException {
         
-    t.setId_event(4);
+    t.setId_event(eventInfo.getEvent_id());
     t.setId_user(UserConnected.getId());
     t.setCommentaire(cmtntext.getText());
 
@@ -142,12 +98,6 @@ public class CommentaireController implements Initializable {
         
        String nom = cs.NomUser(UserConnected.getId());
         
-        Notifications notifications=Notifications.create();
-        notifications.text(" Commentaire ajouté:"+" "+t.getCommentaire());
-        notifications.title(nom +" "+"a ajouté un commentaire");
-        notifications.darkStyle();
-        notifications.show();
-        
      
 
 
@@ -157,7 +107,7 @@ public class CommentaireController implements Initializable {
         
         
         cmtntext.setText("");
-       initialize(null, null);
+       sendInfo(eventInfo);
         
         
         
@@ -194,6 +144,52 @@ public class CommentaireController implements Initializable {
       stage.setTitle("Affiche Users");
        stage.setScene(scene);
       stage.show();
+    }
+
+    void sendInfo(Event eventInfoStore) {
+        eventInfo = eventInfoStore;
+        
+        
+        
+         try {
+            // TODO
+            List<Commentaire> cnmts = cs.recuperer();
+            
+            System.out.println(cnmts);
+       int row = 0;
+        int column = 0;
+            for (int i = 0; i < cnmts.size(); i++){
+                
+                if ((cnmts.get(i).getId_event()==eventInfo.getEvent_id())){
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("UserCommentaire.fxml"));
+        AnchorPane pane = loader.load();
+        UserCommentaireController controller = loader.getController();
+            Commentaire cnmt=cnmts.get(i);
+            
+            controller.setcmnt(cnmt);
+            
+            gridcmnt.add(pane, column, row);
+                row++;
+                if (column > 0) {
+                    column = 0;
+                    row++;
+            
+            
+                }
+            
+            }
+            
+            
+            }    
+        } catch (SQLException|IOException ex) {
+            
+            
+            System.out.println(ex.getMessage());
+            
+            
+            
+        }
     }
 
         

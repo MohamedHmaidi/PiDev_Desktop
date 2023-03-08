@@ -5,8 +5,10 @@
 package gui;
 
 import entities.Commentaire;
+import entities.Event;
 import entities.Like;
 import entities.User;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,7 +18,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -103,9 +107,6 @@ public class UserCommentaireController implements Initializable {
        user.setText(UserConnected.getRole());
        
        } 
-           
-           
-       
        List<User> cnmts = cs.recuperer_nom_role(c.getId_event());
         for (int i = 0; i < cnmts.size(); i++){
         if (c.getId_user()==cnmts.get(i).getId()){
@@ -113,20 +114,9 @@ public class UserCommentaireController implements Initializable {
         user.setText(cnmts.get(i).getNom());
         role.setText(cnmts.get(i).getRole());
         
-        
+        }
         
         }
-            
-        
-        
-        }
-       
-       
-       
-       
-       
-       
-       
        comment.setText(c.getCommentaire());
        nbr.setText(String.valueOf(cs.nbrlike(c)));
     c2=c;
@@ -154,11 +144,14 @@ public class UserCommentaireController implements Initializable {
 
     @FXML
     private void supprimer(ActionEvent event) throws SQLException {
-        
+//       int i = c2.getId_event();
+//       Event ev = new Event();
+//       ev.setEvent_id(i);
        cs.supprimer(c2);
-        System.out.println(c2);
-        
-        
+       System.out.println(c2);
+//       FXMLLoader loader = new FXMLLoader(getClass().getResource("Commentaire.fxml"));
+//       CommentaireController controller = loader.getController();
+//       controller.sendInfo(ev);
     }
 
     @FXML

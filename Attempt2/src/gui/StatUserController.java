@@ -5,6 +5,7 @@
 package gui;
 
 import entities.User;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,10 +16,17 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import services.UserService;
 import utils.MyDB;
 
@@ -37,6 +45,8 @@ public class StatUserController implements Initializable {
     @FXML
     private Label userP;
     Connection cnx;
+    @FXML
+    private ImageView goBackBtn;
     /**
      * Initializes the controller class.
      */
@@ -101,6 +111,20 @@ public class StatUserController implements Initializable {
         public StatUserController() {
         cnx = MyDB.getInstance().getCnx();
     }    
+
+    @FXML
+    private void goBackHandler(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficheUser.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
         
     }    
     
