@@ -112,12 +112,12 @@ public class LoginController implements Initializable {
             }
             
             
-            if(UserConnected.getRole().equals("Admin")){
-            
+            if(UserConnected != null){
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MainContainer.fxml"));
             Parent root = loader.load();
-        
-        
+
+
         Scene scene = new Scene(root);
         //Load CSS
             String css = this.getClass().getResource("../assets/css/app.css").toExternalForm();
@@ -126,28 +126,8 @@ public class LoginController implements Initializable {
         stage.setTitle("TouskieArt");
         stage.setScene(scene);
         stage.show();
-        
-            
-            }
-            
-            
-            else{
-            
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherListeEvent.fxml"));
-            Parent root = loader.load();
-        //UpdateController controller = loader.getController();
-        //controller.senduser(UserConnected);
-        
-        Scene scene = new Scene(root);
-        //Load CSS
-            String css = this.getClass().getResource("../assets/css/app.css").toExternalForm();
-            scene.getStylesheets().add(css);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setTitle("afficher");
-        stage.setScene(scene);
-        stage.show();
-            
-            
+
+
             }
             
             

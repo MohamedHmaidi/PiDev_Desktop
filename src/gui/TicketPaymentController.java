@@ -48,7 +48,7 @@ import services.TicketService;
 /**
  * FXML Controller class
  *
- * @author WHITE SHARK
+ * @author Aymen
  */
 public class TicketPaymentController implements Initializable {
     

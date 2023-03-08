@@ -22,6 +22,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -54,7 +57,7 @@ import services.UserService;
 /**
  * FXML Controller class
  *
- * @author WHITE SHARK
+ * @author Aymen
  */
 public class EventInfoController implements Initializable {
 
@@ -83,8 +86,6 @@ public class EventInfoController implements Initializable {
     @FXML
     private Text typeText;
     @FXML
-    private Text statusText;
-    @FXML
     private Text endDateText;
     @FXML
     private Text locationAddressText;
@@ -99,13 +100,9 @@ public class EventInfoController implements Initializable {
     @FXML
     private Button buyBtn;
     @FXML
-    private Button payPopBtn;
-    @FXML
     private Button likeButton;
     @FXML
     private Button dislikeButton;
-    @FXML
-    private Button purchaseBtn;
 
     /**
      * Initializes the controller class.
@@ -120,7 +117,6 @@ public class EventInfoController implements Initializable {
             eventInfoStore = eventInfo;
             titleText.setText(eventInfo.getTitle());
             typeText.setText(eventInfo.getType());
-            statusText.setText(eventInfo.getStatus());
             startDateText.setText(String.valueOf(eventInfo.getStartDate()));
             endDateText.setText(String.valueOf(eventInfo.getEndDate()));
             locationAddressText.setText(locS.getLieu(eventInfo.getLocation_id()));
@@ -130,13 +126,17 @@ public class EventInfoController implements Initializable {
             File imageFile = new File(eventInfo.getAffiche());
             Image image = new Image(imageFile.toURI().toString());
             afficheIv.setImage(image);
-            buyBtn.setText("Get your ticket! "+eventInfo.getTicketPrice()+" dt.");
+            buyBtn.setText("Obtenez votre ticket! "+eventInfo.getTicketPrice()+" dt.");
             likeButton.setText("LIKE: "+ers.reactionCount(eventInfoStore.getEvent_id(), EventReaction.Reaction.like));
             dislikeButton.setText("DISLIKE: "+ers.reactionCount(eventInfoStore.getEvent_id(), EventReaction.Reaction.dislike));
             //Check if Admin:
-            if(!LoginController.UserConnected.getRole().equals("Admin") || LoginController.UserConnected.getId() != eventInfoStore.getHost_id()){
+            if(!LoginController.UserConnected.getRole().equals("Admin")){
                 updateBtn.setVisible(false);
                 deleteBtn.setVisible(false);
+            }
+            //Check if
+            if(eventInfoStore.getEndDate().before(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())) || LoginController.UserConnected.getRole().equals("Admin")){
+                buyBtn.setVisible(false);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

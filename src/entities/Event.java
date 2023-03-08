@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class Event {
     private int event_id, ticketCount, host_id, location_id;
-    private String title, type, description, status, affiche;
+    private String title, type, description, affiche;
     private Date startDate, endDate;
     private float ticketPrice;
 
@@ -24,7 +24,7 @@ public class Event {
         this.event_id = event_id;
     }
 
-    public Event(int event_id, int ticketCount, int host_id, int location_id, String title, String type, String description, String status, Date startDate, Date endDate, String affiche) {
+    public Event(int event_id, int ticketCount, int host_id, int location_id, String title, String type, String description, Date startDate, Date endDate, String affiche) {
         this.event_id = event_id;
         this.ticketCount = ticketCount;
         this.host_id = host_id;
@@ -32,20 +32,18 @@ public class Event {
         this.title = title;
         this.type = type;
         this.description = description;
-        this.status = status;
         this.startDate = startDate;
         this.endDate = endDate;
         this.affiche = affiche;
     }
 
-    public Event(int ticketCount, int host_id, int location_id, String title, String type, String description, String status, Date startDate, Date endDate, String affiche) {
+    public Event(int ticketCount, int host_id, int location_id, String title, String type, String description, Date startDate, Date endDate, String affiche) {
         this.ticketCount = ticketCount;
         this.host_id = host_id;
         this.location_id = location_id;
         this.title = title;
         this.type = type;
         this.description = description;
-        this.status = status;
         this.startDate = startDate;
         this.endDate = endDate;
         this.affiche = affiche;
@@ -113,14 +111,6 @@ public class Event {
         this.description = description;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public Date getStartDate() {
         return startDate;
     }
@@ -155,7 +145,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event{" + "event_id=" + event_id + ", ticketCount=" + ticketCount + ", host_id=" + host_id + ", location_id=" + location_id + ", title=" + title + ", type=" + type + ", description=" + description + ", status=" + status + ", startDate=" + startDate + ", endDate=" + endDate + ", affiche=" + affiche + '}';
+        return "Event{" + "event_id=" + event_id + ", ticketCount=" + ticketCount + ", host_id=" + host_id + ", location_id=" + location_id + ", title=" + title + ", type=" + type + ", description=" + description + ", startDate=" + startDate + ", endDate=" + endDate + ", affiche=" + affiche + '}';
     }
     
     

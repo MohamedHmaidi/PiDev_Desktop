@@ -4,7 +4,6 @@
  */
 package gui;
 
-import entities.Event;
 import entities.Ticket;
 import java.io.IOException;
 import java.net.URL;
@@ -17,8 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
-import services.EventService;
 import services.TicketService;
 
 /**
@@ -26,17 +23,12 @@ import services.TicketService;
  *
  * @author Aymen
  */
-public class UserProfileDemoController implements Initializable {
+public class TicketListController implements Initializable {
 
-    @FXML
-    private Text userIdText;
     @FXML
     private ScrollPane ticketListScrollPane;
     @FXML
     private GridPane ticketGridPane;
-    
-    private int userId = LoginController.UserConnected.getId();
-    EventService es = new EventService();
     TicketService ts = new TicketService();
 
     /**
@@ -44,7 +36,6 @@ public class UserProfileDemoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        userIdText.setText(String.valueOf(userId));
         try {
             ticketListScrollPane.setFitToWidth(true);
             List<Ticket> tickets = ts.recuperer();

@@ -11,7 +11,7 @@ import javafx.fxml.Initializable;
 /**
  * FXML Controller class
  *
- * @author WHITE SHARK
+ * @author Aymen
  */
 public class LandingPageController implements Initializable {
 

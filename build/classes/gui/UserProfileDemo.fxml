@@ -21,12 +21,12 @@
             <Font size="22.0" />
          </font>
       </Text>
-      <Text layoutX="88.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ticket list">
+      <Text layoutX="88.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste de tickets">
          <font>
             <Font name="Leelawadee UI Semilight" size="33.0" />
          </font>
       </Text>
-      <Text layoutX="88.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="a list of all purchased tickets">
+      <Text layoutX="88.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="une liste de tous les tickets achetés">
          <font>
             <Font name="Leelawadee UI Semilight" size="15.0" />
          </font>

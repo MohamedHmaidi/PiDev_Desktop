@@ -40,7 +40,7 @@ import services.LocationService;
 /**
  * FXML Controller class
  *
- * @author WHITE SHARK
+ * @author Aymen
  */
 public class AjouterEventController implements Initializable {
 

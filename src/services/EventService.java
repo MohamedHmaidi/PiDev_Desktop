@@ -51,7 +51,7 @@ public class EventService implements IService<Event>{
 
     @Override
     public void modifier(Event t) throws SQLException {
-        String req = "UPDATE event SET title = ?, type = ?, description = ?, startDate = ?, endDate = ?, ticketCount = ?, location_id = ?, affiche = ?, status = ?, ticketPrice = ? WHERE event_id = ?";
+        String req = "UPDATE event SET title = ?, type = ?, description = ?, startDate = ?, endDate = ?, ticketCount = ?, location_id = ?, affiche = ?, ticketPrice = ? WHERE event_id = ?";
         PreparedStatement ps = cnx.prepareStatement(req);
         ps.setString(1, t.getTitle());
         ps.setString(2, t.getType());
@@ -61,9 +61,8 @@ public class EventService implements IService<Event>{
         ps.setInt(6, t.getTicketCount());
         ps.setInt(7, t.getLocation_id());
         ps.setString(8, t.getAffiche());
-        ps.setString(9, t.getStatus());
-        ps.setFloat(10, t.getTicketPrice());
-        ps.setInt(11, t.getEvent_id());
+        ps.setFloat(9, t.getTicketPrice());
+        ps.setInt(10, t.getEvent_id());
         ps.executeUpdate();
     }
 
@@ -89,7 +88,6 @@ public class EventService implements IService<Event>{
             e.setDescription(rs.getString("description"));
             e.setStartDate(rs.getDate("startDate"));
             e.setEndDate(rs.getDate("endDate"));
-            e.setStatus(rs.getString("status"));
             e.setTicketCount(rs.getInt("ticketCount"));
             e.setHost_id(rs.getInt("host_id"));
             e.setLocation_id(rs.getInt("location_id"));
@@ -148,7 +146,6 @@ public class EventService implements IService<Event>{
             e.setDescription(rs.getString("description"));
             e.setStartDate(rs.getDate("startDate"));
             e.setEndDate(rs.getDate("endDate"));
-            e.setStatus(rs.getString("status"));
             e.setTicketCount(rs.getInt("ticketCount"));
             e.setHost_id(rs.getInt("host_id"));
             e.setLocation_id(rs.getInt("location_id"));

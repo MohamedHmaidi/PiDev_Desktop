@@ -21,7 +21,7 @@ import javafx.scene.layout.AnchorPane;
 /**
  * FXML Controller class
  *
- * @author WHITE SHARK
+ * @author Aymen
  */
 public class SidebarController implements Initializable {
 
@@ -34,12 +34,6 @@ public class SidebarController implements Initializable {
     private Button produitsBtn;
     @FXML
     private Button reclamationsBtn;
-    @FXML
-    private Button commandeBtn;
-    @FXML
-    private Button LocationBtn;
-    @FXML
-    private Button utilisateursBtn;
     /**
      * Initializes the controller class.
      */
@@ -68,6 +62,15 @@ public class SidebarController implements Initializable {
 
     @FXML
     private void homePage(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("LandingPage.fxml"));
+            Parent root = loader.load();
+            MCCSaver.mcc.setContent(root);
+            LandingPageController controller = loader.getController();
+          
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML
@@ -78,16 +81,5 @@ public class SidebarController implements Initializable {
     private void reclamationPage(ActionEvent event) {
     }
 
-    @FXML
-    private void commandePage(ActionEvent event) {
-    }
-
-    @FXML
-    private void locationPage(ActionEvent event) {
-    }
-
-    @FXML
-    private void utilisateursPage(ActionEvent event) {
-    }
     
 }

@@ -16,7 +16,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #eaedee;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AfficherListeEventController">
    <children>
-      <Button fx:id="addEventBtn" layoutX="866.0" layoutY="116.0" mnemonicParsing="false" onAction="#addEventRedirect" prefHeight="34.0" prefWidth="114.0" styleClass="GeneralButton2" text="+ Add Event">
+      <Button fx:id="addEventBtn" layoutX="866.0" layoutY="22.0" mnemonicParsing="false" onAction="#addEventRedirect" prefHeight="34.0" prefWidth="114.0" styleClass="GeneralButton2" text="+ Ajouter">
          <font>
             <Font name="Leelawadee UI Semilight" size="14.0" />
          </font></Button>
@@ -36,24 +36,29 @@
                               </GridPane>
         </content>
       </ScrollPane>
-      <Text layoutX="27.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Event list">
+      <Text layoutX="27.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des événements">
          <font>
             <Font name="Leelawadee UI Semilight" size="33.0" />
          </font>
       </Text>
-      <Text layoutX="27.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="a list of the upcoming &amp; ongoing events that are awaiting your participation!">
+      <Text layoutX="27.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="une liste des événements à venir et en cours qui attendent votre participation!">
          <font>
             <Font name="Leelawadee UI Semilight" size="15.0" />
          </font>
       </Text>
-      <TextField fx:id="searchBarTf" layoutX="27.0" layoutY="116.0" prefHeight="34.0" prefWidth="399.0" promptText="Search.." />
-      <ChoiceBox fx:id="sortBoxCB" layoutX="498.0" layoutY="116.0" prefHeight="34.0" prefWidth="137.0" />
-      <Label layoutX="435.0" layoutY="120.0" text="Sort by:">
+      <TextField fx:id="searchBarTf" layoutX="27.0" layoutY="116.0" prefHeight="34.0" prefWidth="399.0" promptText="Rechercher..." />
+      <ChoiceBox fx:id="sortBoxCB" layoutX="508.0" layoutY="117.0" prefHeight="34.0" prefWidth="137.0" />
+      <Label layoutX="435.0" layoutY="120.0" text="Trier par:">
          <font>
             <Font name="Leelawadee UI Semilight" size="18.0" />
          </font>
       </Label>
-      <RadioButton fx:id="showOnlyActiveRb" layoutX="655.0" layoutY="121.0" mnemonicParsing="false" text="Active">
+      <RadioButton fx:id="showOnlyActiveRb" layoutX="677.0" layoutY="121.0" mnemonicParsing="false" text="En cours/à venir">
+         <font>
+            <Font name="Leelawadee UI Semilight" size="16.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="showOnlyEndedRb" layoutX="834.0" layoutY="121.0" mnemonicParsing="false" text="terminés">
          <font>
             <Font name="Leelawadee UI Semilight" size="16.0" />
          </font>

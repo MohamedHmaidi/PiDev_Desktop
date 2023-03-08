@@ -39,7 +39,7 @@ import services.LocationService;
 /**
  * FXML Controller class
  *
- * @author WHITE SHARK
+ * @author Aymen
  */
 public class ModifierEventController implements Initializable {
 
@@ -57,7 +57,6 @@ public class ModifierEventController implements Initializable {
     private TextField ticketCountTf;
     @FXML
     private Button uploadImgBtn;
-    @FXML
     private ChoiceBox<String> statusCBox;
     @FXML
     private Button updateBtn;
@@ -85,12 +84,6 @@ public class ModifierEventController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //Set status choice box values
-        statusCBox.setValue("ongoing");
-        statusCBox.getItems().addAll("ongoing", "pending", "ended");
-        statusCBox.setOnAction(event -> {
-            String selected = statusCBox.getValue();
-        });
         
         //Event Type choice box
             typeTf.setValue("Plein air");
@@ -130,7 +123,6 @@ public class ModifierEventController implements Initializable {
             endDateDp.setValue((eventInfoStore.getEndDate()).toLocalDate());
             ticketCountTf.setText(String.valueOf(eventInfoStore.getTicketCount()));
             imageData = eventInfoStore.getAffiche();
-            statusCBox.setValue(eventInfoStore.getStatus());
             locationCBox.setValue(locS.getLieu(eventInfoStore.getLocation_id()));
             ticketPriceTf.setText(Float.toString(eventInfoStore.getTicketPrice()));
             File imageFile = new File(eventInfo.getAffiche());
@@ -197,7 +189,6 @@ public class ModifierEventController implements Initializable {
             e.setTicketCount(Integer.parseInt(ticketCountTf.getText()));
             e.setLocation_id(selectedLocId);
             e.setAffiche(imageData);
-            e.setStatus(statusCBox.getValue());
             e.setTicketPrice(Float.parseFloat(ticketPriceTf.getText()));
             es.modifier(e);
             eventInfo = e;

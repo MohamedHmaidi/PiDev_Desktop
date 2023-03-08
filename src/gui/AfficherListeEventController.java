@@ -28,6 +28,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -39,7 +40,7 @@ import services.EventService;
 /**
  * FXML Controller class
  *
- * @author WHITE SHARK
+ * @author Aymen
  */
 public class AfficherListeEventController implements Initializable {
 
@@ -58,8 +59,11 @@ public class AfficherListeEventController implements Initializable {
     
     private String sortCriteria = "Start Date";;
     private boolean showOnlyActiveEvents = false;
+    private boolean showOnlyEndedEvents = false;
     @FXML
     private RadioButton showOnlyActiveRb;
+    @FXML
+    private RadioButton showOnlyEndedRb;
 
     /**
      * Initializes the controller class.
@@ -67,8 +71,18 @@ public class AfficherListeEventController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            //Metier Filtre
+            ToggleGroup group = new ToggleGroup();
+            showOnlyActiveRb.setToggleGroup(group);
+            showOnlyEndedRb.setToggleGroup(group);
             showOnlyActiveRb.setOnAction(event -> {
                 showOnlyActiveEvents = showOnlyActiveRb.isSelected();
+                showOnlyEndedEvents = showOnlyEndedRb.isSelected();
+                searchSort(searchBarTf.getText(), sortCriteria);
+            });
+            showOnlyEndedRb.setOnAction(event -> {
+                showOnlyActiveEvents = showOnlyActiveRb.isSelected();
+                showOnlyEndedEvents = showOnlyEndedRb.isSelected();
                 searchSort(searchBarTf.getText(), sortCriteria);
             });
             
@@ -122,8 +136,12 @@ public class AfficherListeEventController implements Initializable {
                 List<Event> filteredEvents = es.rechercher(search, sortBy);
                 if (showOnlyActiveEvents) {
                     filteredEvents = filteredEvents.stream()
-                            .filter(event -> event.getEndDate().after(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())))
-                            .collect(Collectors.toList());
+                    .filter(event -> event.getEndDate().after(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())))
+                    .collect(Collectors.toList());
+                } else if (showOnlyEndedEvents) {
+                    filteredEvents = filteredEvents.stream()
+                    .filter(event -> event.getEndDate().before(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant())))
+                    .collect(Collectors.toList());
                 }
                 eventListGP.getChildren().clear();
                 int rowS = 1;

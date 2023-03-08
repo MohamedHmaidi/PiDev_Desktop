@@ -17,15 +17,15 @@
                   <Font name="Leelawadee UI Semilight" size="13.0" />
                </font>
             </Text>
-            <Button fx:id="deleteBtn" layoutX="912.0" layoutY="125.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="30.0" prefWidth="70.0" styleClass="GeneralButton" text="Remove">
+            <Button fx:id="deleteBtn" layoutX="917.0" layoutY="125.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="30.0" prefWidth="70.0" styleClass="GeneralButton" text="Supprimer">
                <font>
                   <Font name="Leelawadee UI Semilight" size="12.0" />
                </font></Button>
-            <Button fx:id="updateBtn" layoutX="912.0" layoutY="72.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="30.0" prefWidth="70.0" styleClass="GeneralButton" text="Update">
+            <Button fx:id="updateBtn" layoutX="896.0" layoutY="72.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="30.0" prefWidth="90.0" styleClass="GeneralButton" text="Mettre à jour">
                <font>
                   <Font name="Leelawadee UI Semilight" size="12.0" />
                </font></Button>
-            <Button fx:id="backBtn" layoutX="907.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBackToList" prefHeight="40.0" prefWidth="80.0" styleClass="GeneralButton" text="Go back">
+            <Button fx:id="backBtn" layoutX="907.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBackToList" prefHeight="40.0" prefWidth="80.0" styleClass="GeneralButton" text="Retourner">
                <font>
                   <Font name="Leelawadee UI Semilight" size="13.0" />
                </font></Button>
@@ -36,11 +36,6 @@
                </font>
             </Text>
             <Text fx:id="typeText" layoutX="626.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type">
-               <font>
-                  <Font name="Leelawadee UI Semilight" size="17.0" />
-               </font>
-            </Text>
-            <Text fx:id="statusText" layoutX="626.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status">
                <font>
                   <Font name="Leelawadee UI Semilight" size="17.0" />
                </font>
@@ -65,7 +60,7 @@
                   <Font name="Leelawadee UI Semilight" size="13.0" />
                </font>
             </Text>
-            <Text layoutX="653.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location:">
+            <Text layoutX="653.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Local:">
                <font>
                   <Font name="Leelawadee UI Semilight" size="17.0" />
                </font>
@@ -80,12 +75,12 @@
                   <Font name="Leelawadee UI Semilight" size="17.0" />
                </font>
             </Text>
-            <Text layoutX="628.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hosted by:">
+            <Text layoutX="628.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Organisé par:">
                <font>
                   <Font name="Leelawadee UI Semilight" size="17.0" />
                </font>
             </Text>
-            <Text fx:id="hostNameText" layoutX="714.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hostName">
+            <Text fx:id="hostNameText" layoutX="734.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hostName">
                <font>
                   <Font name="Leelawadee UI Semilight" size="13.0" />
                </font>
@@ -95,7 +90,7 @@
                   <Font name="Leelawadee UI Semilight" size="13.0" />
                </font>
             </Text>
-            <Text layoutX="89.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tickets left:">
+            <Text layoutX="89.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tickets restants:">
                <font>
                   <Font name="Leelawadee UI Semilight" size="17.0" />
                </font>

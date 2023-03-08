@@ -20,7 +20,7 @@ import javafx.scene.layout.AnchorPane;
 /**
  * FXML Controller class
  *
- * @author WHITE SHARK
+ * @author Aymen
  */
 public class MainContainerController implements Initializable {
 
@@ -41,15 +41,27 @@ public class MainContainerController implements Initializable {
             FXMLLoader navbarLoader = new FXMLLoader(getClass().getResource("Navbar.fxml"));
             AnchorPane nbar = navbarLoader.load();
             navbarPane.getChildren().setAll(nbar);
-            //Load sidebar
-            FXMLLoader sidebarLoader = new FXMLLoader(getClass().getResource("Sidebar.fxml"));
-            AnchorPane sbar = sidebarLoader.load();
-            sidebarPane.getChildren().setAll(sbar);
-            SidebarController controller = sidebarLoader.getController();
-            //Load content
-            FXMLLoader contentLoader = new FXMLLoader(getClass().getResource("AfficherListeEvent.fxml"));
-            AnchorPane content = contentLoader.load();
-            contentPane.getChildren().setAll(content);
+            //Load sidebar & Landing Page
+            if (LoginController.UserConnected.getRole().equals("Admin")) {
+                FXMLLoader sidebarLoader = new FXMLLoader(getClass().getResource("SidebarAdmin.fxml"));
+                AnchorPane sbar = sidebarLoader.load();
+                sidebarPane.getChildren().setAll(sbar);
+                SidebarAdminController controller = sidebarLoader.getController();
+                //Load content
+                FXMLLoader contentLoader = new FXMLLoader(getClass().getResource("LandingPageAdmin.fxml"));
+                AnchorPane content = contentLoader.load();
+                contentPane.getChildren().setAll(content);
+            } else {
+                FXMLLoader sidebarLoader = new FXMLLoader(getClass().getResource("Sidebar.fxml"));
+                AnchorPane sbar = sidebarLoader.load();
+                sidebarPane.getChildren().setAll(sbar);
+                SidebarController controller = sidebarLoader.getController();
+                //Load content
+                FXMLLoader contentLoader = new FXMLLoader(getClass().getResource("LandingPage.fxml"));
+                AnchorPane content = contentLoader.load();
+                contentPane.getChildren().setAll(content);
+            }
+            
             //Save an instance of the Main Container Controller to edit the Content Pane
             MCCSaver.setMCC(this);
             

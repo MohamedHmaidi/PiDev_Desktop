@@ -21,7 +21,7 @@ import javafx.scene.text.Text;
 /**
  * FXML Controller class
  *
- * @author WHITE SHARK
+ * @author Aymen
  */
 public class NavbarController implements Initializable {
 
@@ -37,9 +37,12 @@ public class NavbarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //String name = LoginController.UserConnected.getNom();
-        //welcomeText.setText("Welcome, "+name+"!");
-        welcomeText.setText("Welcome!");
+        String name = LoginController.UserConnected.getNom();
+        welcomeText.setText("Welcome, "+name+"!");
+        if(LoginController.UserConnected.getRole().equals("Admin")){
+                profileIcon.setVisible(false);
+                panierIcon.setVisible(false);
+        }
     }    
 
     @FXML

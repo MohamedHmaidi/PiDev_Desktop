@@ -28,17 +28,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import services.EventService;
+import services.TicketService;
 
 /**
  * FXML Controller class
  *
- * @author WHITE SHARK
+ * @author Aymen
  */
 public class SingleTicketController implements Initializable {
 
@@ -54,18 +57,23 @@ public class SingleTicketController implements Initializable {
     private ImageView qrCodeDisplay;
     
     EventService es = new EventService();
+    TicketService ts = new TicketService();
     private com.itextpdf.text.Image ITPImage;
     private Ticket ticketInfo;
     private Event eventInfo;
     @FXML
     private Button printTickBtn;
+    @FXML
+    private Button DeleteTicketButton;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        if(!LoginController.UserConnected.getRole().equals("Admin")){
+                DeleteTicketButton.setVisible(false);
+        }
     }    
 
     void setData(Ticket t) {
@@ -133,6 +141,19 @@ public class SingleTicketController implements Initializable {
             
             document.close();
         } catch (FileNotFoundException | DocumentException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void deleteTicketHandler(ActionEvent event) {
+        try {
+            ts.supprimer(ticketInfo);
+            //Refresh back to ticket list
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("TicketList.fxml"));
+            Parent root = loader.load();
+            MCCSaver.mcc.setContent(root);
+        } catch (SQLException | IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
