@@ -14,6 +14,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -60,6 +61,8 @@ public class LoginController implements Initializable {
     private ImageView logo;
     @FXML
     private Text slogan;
+    @FXML
+    private Text bien;
 
     /**
      * Initializes the controller class.
@@ -68,7 +71,10 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
-    
+    RotateTransition rotate = new RotateTransition(Duration.seconds(0.5), bien);
+    rotate.setByAngle(360);
+    rotate.setCycleCount(3);
+    rotate.play();
         
         
     
@@ -157,24 +163,8 @@ translateTransition.play();
 
 
             }
-            
-            
-            
-            
-            
-            
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+    
     }
 
     

@@ -88,7 +88,12 @@ public class SidebarAdminController implements Initializable {
     }
 
     @FXML
-    private void reclamationPage(ActionEvent event) {
+    private void reclamationPage(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminRecPanel.fxml"));
+            Parent root = loader.load();
+
+            // Set the root of the current scene to the new FXML file
+            reclamationsBtn.getScene().setRoot(root);
     }
 
     @FXML

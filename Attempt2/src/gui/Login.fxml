@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" onDragDetected="#mdp_ob" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginController">
+<AnchorPane id="AnchorPane" onDragDetected="#mdp_ob" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="383.0">
          <image>
@@ -25,7 +25,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Text fill="#bf4759" layoutX="454.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue Chez TouskiArt" textAlignment="CENTER" wrappingWidth="259.0">
+      <Text fx:id="bien" fill="#bf4759" layoutX="454.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue Chez TouskiArt" textAlignment="CENTER" wrappingWidth="259.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
